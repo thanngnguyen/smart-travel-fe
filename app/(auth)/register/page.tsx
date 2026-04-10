@@ -1,0 +1,120 @@
+'use client';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Icon from '@/components/ui/Icon';
+import Link from 'next/link';
+
+export default function RegisterPage() {
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    role: 'customer' // Defaults to customer
+  });
+
+  const handleRegister = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formData.role === 'admin') {
+      router.push('/admin');
+    } else {
+      router.push('/');
+    }
+  };
+
+  return (
+    <div className="w-full max-w-xl mx-auto flex flex-col items-center">
+      <div className="w-full bg-surface-container-lowest shadow-[0_20px_40px_rgba(25,28,30,0.06)] rounded-[2.5rem] p-8 md:p-12 border border-slate-100">
+        
+        <div className="mb-10 text-center">
+          <h1 className="font-extrabold text-3xl tracking-tight text-on-surface mb-2">Create Your Journey</h1>
+          <p className="text-on-surface-variant text-sm md:text-base font-medium">Start managing your global travel with STMS.</p>
+        </div>
+
+        <form className="space-y-6" onSubmit={handleRegister}>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col space-y-2">
+              <label className="text-xs uppercase tracking-widest text-on-surface-variant font-bold px-1">Full Name</label>
+              <div className="group relative">
+                <Icon name="person" className="absolute left-4 top-1/2 -translate-y-1/2 text-outline text-sm transition-colors group-focus-within:text-primary" />
+                <input 
+                  required
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  className="w-full bg-surface-container-low border border-transparent rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-on-surface transition-all placeholder:text-outline font-medium focus:outline-none" 
+                  placeholder="John Doe" 
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col space-y-2">
+              <label className="text-xs uppercase tracking-widest text-on-surface-variant font-bold px-1">Role Setup (Demo)</label>
+              <div className="group relative">
+                 <Icon name="groups" className="absolute left-4 top-1/2 -translate-y-1/2 text-outline text-sm transition-colors group-focus-within:text-primary z-10" />
+                 <select 
+                    value={formData.role}
+                    onChange={(e) => setFormData({...formData, role: e.target.value})}
+                    className="w-full bg-surface-container-low border border-transparent rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-on-surface transition-all font-medium focus:outline-none appearance-none"
+                 >
+                    <option value="customer">Customer</option>
+                    <option value="admin">Administrator</option>
+                 </select>
+                 <Icon name="expand_more" className="absolute right-4 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none" />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col space-y-2">
+            <label className="text-xs uppercase tracking-widest text-on-surface-variant font-bold px-1">Email Address</label>
+            <div className="group relative">
+              <Icon name="alternate_email" className="absolute left-4 top-1/2 -translate-y-1/2 text-outline text-sm transition-colors group-focus-within:text-primary" />
+              <input 
+                required
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                className="w-full bg-surface-container-low border border-transparent rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-on-surface transition-all placeholder:text-outline font-medium focus:outline-none" 
+                placeholder="john@stms.travel" 
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col space-y-2">
+            <label className="text-xs uppercase tracking-widest text-on-surface-variant font-bold px-1">Password Setup</label>
+            <div className="group relative">
+              <Icon name="lock" className="absolute left-4 top-1/2 -translate-y-1/2 text-outline text-sm transition-colors group-focus-within:text-primary" />
+              <input 
+                required
+                type="password"
+                value={formData.password}
+                onChange={(e) => setFormData({...formData, password: e.target.value})}
+                className="w-full bg-surface-container-low border border-transparent rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-on-surface transition-all placeholder:text-outline font-medium focus:outline-none" 
+                placeholder="••••••••••••" 
+              />
+            </div>
+          </div>
+
+          <div className="pt-6">
+            <button 
+              type="submit"
+              className="w-full bg-primary hover:bg-primary-container text-on-primary py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-colors shadow-lg shadow-primary/20 flex gap-2 justify-center items-center group"
+            >
+              Create Account
+              <Icon name="navigate_next" className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+          
+        </form>
+
+        <div className="mt-8 pt-8 border-t border-outline-variant/30 text-center">
+          <p className="text-sm font-medium text-on-surface-variant">
+            Already have an account? <Link href="/login" className="text-primary hover:underline font-bold">Sign In</Link>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  );
+}
