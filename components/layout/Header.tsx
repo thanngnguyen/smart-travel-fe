@@ -9,10 +9,9 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Hook để theo dõi trạng thái cuộn trang
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -22,130 +21,79 @@ export default function Header() {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/80 dark:bg-slate-900/90 backdrop-blur-xl shadow-[0_20px_40px_rgba(25,28,30,0.06)] py-2"
-          : "bg-surface/50 dark:bg-slate-900/50 backdrop-blur-md py-4"
+          ? "bg-white/95 backdrop-blur-xl shadow-sm border-b border-slate-200"
+          : "bg-white/80 backdrop-blur-lg"
       }`}
     >
-      <nav className="flex justify-between items-center w-full px-4 md:px-8 max-w-screen-2xl mx-auto">
-        <div className="flex justify-between items-center w-full">
-          <div className="flex items-center gap-10">
-            <Link
-              href="/"
-              className="text-2xl font-bold tracking-tight text-blue-700 dark:text-blue-400"
-            >
-              STMS
-            </Link>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
-              <Link
-                className="text-blue-700 dark:text-blue-400 font-bold border-b-2 border-blue-700 dark:border-blue-400 pb-1 text-sm uppercase tracking-wider"
-                href="/"
-              >
-                Destinations
-              </Link>
-              <Link
-                className="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm uppercase tracking-wider"
-                href="/tours"
-              >
-                Tours
-              </Link>
-              <Link
-                className="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm uppercase tracking-wider"
-                href="/tours"
-              >
-                Deals
-              </Link>
-              <Link
-                className="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm uppercase tracking-wider"
-                href="/guide-portal"
-              >
-                Guides
-              </Link>
-              <Link
-                className="flex items-center gap-1.5 text-primary dark:text-blue-400 font-bold hover:opacity-80 transition-opacity text-sm uppercase tracking-wider bg-primary/5 px-3 py-1 rounded-full"
-                href="/concierge"
-              >
-                <Icon name="smart_toy" className="text-lg" />
-                Concierge
-              </Link>
-            </div>
-          </div>
-
-          {/* Desktop Auth/Actions */}
-          <div className="hidden lg:flex items-center gap-6">
-            <Link
-              href="/login"
-              className="text-slate-600 dark:text-slate-400 font-semibold hover:text-blue-600 transition-colors text-sm"
-            >
-              Login
-            </Link>
-            <Link href="/tours">
-              <Button size="md" variant="primary">
-                Book Now
-              </Button>
-            </Link>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="lg:hidden p-2 text-slate-600 dark:text-slate-300"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <Icon
-              name={isMobileMenuOpen ? "close" : "menu"}
-              className="text-3xl"
-            />
-          </button>
-        </div>
-      </nav>
-      {/* Mobile Navigation Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 shadow-xl border-t border-slate-100 dark:border-slate-800">
-          {" "}
-          <div className="flex flex-col px-6 py-6 gap-4">
-            <Link
-              href="/"
-              className="font-bold text-lg text-blue-700 py-2 border-b border-slate-100 dark:border-slate-800"
-            >
+      <nav className="mx-auto flex h-20 max-w-screen-2xl items-center justify-between px-4 md:px-8">
+        <div className="flex items-center gap-10">
+          <Link href="/" className="text-2xl font-black tracking-tight text-slate-900">
+            STMS
+          </Link>
+          <div className="hidden lg:flex items-center gap-8 text-sm uppercase tracking-[0.3em] text-slate-600">
+            <Link href="/" className="hover:text-slate-900 transition-colors">
               Destinations
             </Link>
-            <Link
-              href="/tours"
-              className="font-medium text-lg text-slate-600 py-2 border-b border-slate-100 dark:border-slate-800"
-            >
+            <Link href="/tours" className="hover:text-slate-900 transition-colors">
               Tours
             </Link>
-            <Link
-              href="/profile"
-              className="font-medium text-lg text-slate-600 py-2 border-b border-slate-100 dark:border-slate-800"
-            >
-              My Trips
+            <Link href="/tours" className="hover:text-slate-900 transition-colors">
+              Deals
             </Link>
-            <Link
-              href="/guide-portal"
-              className="font-medium text-lg text-slate-600 py-2 border-b border-slate-100 dark:border-slate-800"
-            >
+            <Link href="/guide-portal" className="hover:text-slate-900 transition-colors">
               Guides
             </Link>
             <Link
               href="/concierge"
-              className="flex items-center gap-2 font-bold text-lg text-primary py-2 border-b border-slate-100 dark:border-slate-800"
+              className="rounded-full bg-slate-900 px-4 py-2 text-white shadow-sm transition hover:bg-slate-800"
             >
-              <Icon name="smart_toy" /> AI Concierge
+              Concierge
             </Link>
+          </div>
+        </div>
 
-            <div className="flex flex-col gap-4 mt-4">
-              <Link
-                href="/login"
-                className="text-left font-semibold text-slate-600 text-lg"
-              >
-                Login
-              </Link>
-              <Link href="/tours" className="w-full inline-block">
-                <Button className="w-full">Book Now</Button>
-              </Link>
-            </div>
+        <div className="hidden lg:flex items-center gap-4">
+          <Link href="/login" className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">
+            Login
+          </Link>
+          <Link href="/tours">
+            <Button size="md" variant="primary">
+              Book Now
+            </Button>
+          </Link>
+        </div>
+
+        <button className="lg:hidden p-2 text-slate-700" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <Icon name={isMobileMenuOpen ? "close" : "menu"} className="text-3xl" />
+        </button>
+      </nav>
+
+      {isMobileMenuOpen && (
+        <div className="lg:hidden border-t border-slate-200 bg-white/95 px-6 py-5 shadow-xl">
+          <div className="space-y-3">
+            <Link href="/" className="block rounded-2xl px-4 py-3 text-base font-semibold text-slate-800 hover:bg-slate-100">
+              Destinations
+            </Link>
+            <Link href="/tours" className="block rounded-2xl px-4 py-3 text-base font-semibold text-slate-800 hover:bg-slate-100">
+              Tours
+            </Link>
+            <Link href="/tours" className="block rounded-2xl px-4 py-3 text-base font-semibold text-slate-800 hover:bg-slate-100">
+              Deals
+            </Link>
+            <Link href="/guide-portal" className="block rounded-2xl px-4 py-3 text-base font-semibold text-slate-800 hover:bg-slate-100">
+              Guides
+            </Link>
+            <Link href="/concierge" className="block rounded-2xl bg-slate-900 px-4 py-3 text-base font-semibold text-white hover:bg-slate-800">
+              Concierge
+            </Link>
+          </div>
+          <div className="mt-5 flex flex-col gap-3">
+            <Link href="/login" className="block rounded-2xl px-4 py-3 text-center text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200">
+              Login
+            </Link>
+            <Link href="/tours" className="block rounded-2xl bg-slate-900 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-slate-800">
+              Book Now
+            </Link>
           </div>
         </div>
       )}

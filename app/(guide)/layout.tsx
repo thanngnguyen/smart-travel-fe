@@ -1,12 +1,8 @@
 import React from 'react';
 
-export default function GuideLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function GuideLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-surface text-on-surface flex flex-col min-h-[100dvh] pb-20">
+    <div className="min-h-screen bg-surface text-on-surface">
       {children}
     </div>
   );
