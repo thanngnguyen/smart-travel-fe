@@ -1,0 +1,374 @@
+import React from "react";
+import Icon from "@/components/ui/Icon";
+
+export default function BookingsManagementPage() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* Header & Actions */}
+      <header className="flex justify-between items-end mb-8">
+        <div>
+          <h2 className="text-3xl font-black text-on-surface tracking-tight">
+            Booking Management
+          </h2>
+          <p className="text-on-surface-variant font-medium mt-1">
+            Monitor and process global travel reservations
+          </p>
+        </div>
+        <div className="flex gap-3">
+          <button className="flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest text-on-surface font-semibold rounded-xl shadow-sm border border-outline-variant/20 hover:bg-surface-container-low transition-all">
+            <Icon name="file_download" className="text-[20px]" />
+            Export CSV
+          </button>
+          <button className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-xl shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+            <Icon name="add_circle" className="text-[20px]" />
+            New Booking
+          </button>
+        </div>
+      </header>
+
+      {/* Stats Bento Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_20px_40px_rgba(25,28,30,0.04)] flex flex-col">
+          <span className="text-xs font-bold uppercase tracking-widest text-outline mb-2">
+            Total Bookings
+          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-3xl font-black text-on-surface">1,284</span>
+            <span className="text-sm font-bold text-green-600">+12%</span>
+          </div>
+        </div>
+        <div className="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_20px_40px_rgba(25,28,30,0.04)] flex flex-col">
+          <span className="text-xs font-bold uppercase tracking-widest text-outline mb-2">
+            Revenue
+          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-3xl font-black text-on-surface">$42.8k</span>
+            <span className="text-sm font-bold text-green-600">+$3k</span>
+          </div>
+        </div>
+        <div className="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_20px_40px_rgba(25,28,30,0.04)] flex flex-col">
+          <span className="text-xs font-bold uppercase tracking-widest text-outline mb-2">
+            Pending
+          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-3xl font-black text-on-surface">43</span>
+            <span className="text-sm font-bold text-secondary">Review</span>
+          </div>
+        </div>
+        <div className="bg-tertiary-container p-6 rounded-3xl shadow-[0_20px_40px_rgba(163,53,0,0.1)] flex flex-col">
+          <span className="text-xs font-bold uppercase tracking-widest text-on-tertiary-container mb-2">
+            AI Alert
+          </span>
+          <div className="flex items-center gap-2">
+            <Icon
+              name="warning"
+              filled
+              className="text-on-tertiary-container"
+            />
+            <span className="text-sm font-bold text-on-tertiary-container">
+              3 Disputed Payments
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Filter & Search Bar */}
+      <div className="bg-surface-container-high rounded-3xl p-4 mb-6 flex flex-wrap items-center gap-4">
+        <div className="flex-1 min-w-[300px] relative">
+          <Icon
+            name="search"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-outline"
+          />
+          <input
+            className="w-full pl-12 pr-4 py-3 bg-surface-container-lowest border-none rounded-2xl text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+            placeholder="Search customer, tour name, or ID..."
+            type="text"
+          />
+        </div>
+        <div className="flex items-center gap-2 bg-surface-container-low p-1 rounded-2xl">
+          <button className="px-4 py-2 rounded-xl text-sm font-bold bg-white shadow-sm text-primary">
+            All
+          </button>
+          <button className="px-4 py-2 rounded-xl text-sm font-bold text-outline hover:text-on-surface transition-colors">
+            Paid
+          </button>
+          <button className="px-4 py-2 rounded-xl text-sm font-bold text-outline hover:text-on-surface transition-colors">
+            Pending
+          </button>
+          <button className="px-4 py-2 rounded-xl text-sm font-bold text-outline hover:text-on-surface transition-colors">
+            Cancelled
+          </button>
+        </div>
+        <button className="flex items-center gap-2 px-4 py-2 text-on-surface font-bold text-sm bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10">
+          <Icon name="filter_list" className="text-[18px]" />
+          Filters
+        </button>
+      </div>
+
+      {/* DataTable */}
+      <div className="bg-surface-container-lowest rounded-3xl shadow-[0_20px_40px_rgba(25,28,30,0.06)] overflow-hidden mb-8">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="bg-surface-container-low">
+              <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
+                <input
+                  className="rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+              </th>
+              <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
+                Customer
+              </th>
+              <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
+                Tour Name
+              </th>
+              <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
+                Departure
+              </th>
+              <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
+                Amount
+              </th>
+              <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
+                Status
+              </th>
+              <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-surface-container-low">
+            {/* Row 1 */}
+            <tr className="hover:bg-surface transition-colors group">
+              <td className="px-6 py-5">
+                <input
+                  className="rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+              </td>
+              <td className="px-6 py-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-primary font-bold text-xs">
+                    JD
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-bold text-on-surface">
+                      Julianne Moore
+                    </span>
+                    <span className="text-xs text-outline">
+                      j.moore@travel.com
+                    </span>
+                  </div>
+                </div>
+              </td>
+              <td className="px-6 py-5">
+                <span className="font-semibold text-on-surface">
+                  Santorini Sunset Escapade
+                </span>
+              </td>
+              <td className="px-6 py-5">
+                <div className="flex flex-col">
+                  <span className="font-medium text-on-surface">
+                    Oct 12, 2024
+                  </span>
+                  <span className="text-xs text-outline">
+                    Gate 4B • Economy
+                  </span>
+                </div>
+              </td>
+              <td className="px-6 py-5 font-black text-on-surface">
+                $2,450.00
+              </td>
+              <td className="px-6 py-5">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">
+                  Paid
+                </span>
+              </td>
+              <td className="px-6 py-5">
+                <button className="p-2 rounded-lg hover:bg-surface-container-high transition-colors opacity-0 group-hover:opacity-100">
+                  <Icon name="more_vert" className="text-[20px]" />
+                </button>
+              </td>
+            </tr>
+            {/* Row 2 */}
+            <tr className="hover:bg-surface transition-colors group">
+              <td className="px-6 py-5">
+                <input
+                  className="rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+              </td>
+              <td className="px-6 py-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 font-bold text-xs">
+                    RW
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-bold text-on-surface">
+                      Robert Wagner
+                    </span>
+                    <span className="text-xs text-outline">
+                      robert.w@web.de
+                    </span>
+                  </div>
+                </div>
+              </td>
+              <td className="px-6 py-5">
+                <span className="font-semibold text-on-surface">
+                  Swiss Alps Luxury Rail
+                </span>
+              </td>
+              <td className="px-6 py-5">
+                <div className="flex flex-col">
+                  <span className="font-medium text-on-surface">
+                    Nov 05, 2024
+                  </span>
+                  <span className="text-xs text-outline">
+                    Zurich HB • First Class
+                  </span>
+                </div>
+              </td>
+              <td className="px-6 py-5 font-black text-on-surface">
+                $5,120.00
+              </td>
+              <td className="px-6 py-5">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700">
+                  Pending
+                </span>
+              </td>
+              <td className="px-6 py-5">
+                <button className="p-2 rounded-lg hover:bg-surface-container-high transition-colors opacity-0 group-hover:opacity-100">
+                  <Icon name="more_vert" className="text-[20px]" />
+                </button>
+              </td>
+            </tr>
+            {/* Row 3 */}
+            <tr className="hover:bg-surface transition-colors group">
+              <td className="px-6 py-5">
+                <input
+                  className="rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+              </td>
+              <td className="px-6 py-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 font-bold text-xs">
+                    EL
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-bold text-on-surface">
+                      Elena Lopez
+                    </span>
+                    <span className="text-xs text-outline">
+                      e.lopez@studio.io
+                    </span>
+                  </div>
+                </div>
+              </td>
+              <td className="px-6 py-5">
+                <span className="font-semibold text-on-surface">
+                  Kyoto Cherry Blossom Tour
+                </span>
+              </td>
+              <td className="px-6 py-5">
+                <div className="flex flex-col">
+                  <span className="font-medium text-on-surface">
+                    Oct 29, 2024
+                  </span>
+                  <span className="text-xs text-outline">
+                    Osaka Intl • Boutique
+                  </span>
+                </div>
+              </td>
+              <td className="px-6 py-5 font-black text-on-surface">
+                $1,890.00
+              </td>
+              <td className="px-6 py-5">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700">
+                  Cancelled
+                </span>
+              </td>
+              <td className="px-6 py-5">
+                <button className="p-2 rounded-lg hover:bg-surface-container-high transition-colors opacity-0 group-hover:opacity-100">
+                  <Icon name="more_vert" className="text-[20px]" />
+                </button>
+              </td>
+            </tr>
+            {/* Row 4 */}
+            <tr className="hover:bg-surface transition-colors group">
+              <td className="px-6 py-5">
+                <input
+                  className="rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+              </td>
+              <td className="px-6 py-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xs">
+                    TK
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-bold text-on-surface">
+                      Thomas Klein
+                    </span>
+                    <span className="text-xs text-outline">tk@corp.net</span>
+                  </div>
+                </div>
+              </td>
+              <td className="px-6 py-5">
+                <span className="font-semibold text-on-surface">
+                  Serengeti Safari Classic
+                </span>
+              </td>
+              <td className="px-6 py-5">
+                <div className="flex flex-col">
+                  <span className="font-medium text-on-surface">
+                    Dec 14, 2024
+                  </span>
+                  <span className="text-xs text-outline">
+                    JRO Airport • Lodge
+                  </span>
+                </div>
+              </td>
+              <td className="px-6 py-5 font-black text-on-surface">
+                $3,900.00
+              </td>
+              <td className="px-6 py-5">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">
+                  Paid
+                </span>
+              </td>
+              <td className="px-6 py-5">
+                <button className="p-2 rounded-lg hover:bg-surface-container-high transition-colors opacity-0 group-hover:opacity-100">
+                  <Icon name="more_vert" className="text-[20px]" />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div className="px-6 py-4 flex items-center justify-between bg-surface-container-low/50 border-t border-surface-container-low">
+          <span className="text-xs font-bold text-outline uppercase tracking-wider">
+            Showing 1-10 of 1,284 bookings
+          </span>
+          <div className="flex gap-2">
+            <button className="p-2 rounded-xl bg-white shadow-sm border border-outline-variant/10 text-outline hover:text-on-surface">
+              <Icon name="chevron_left" className="text-[20px]" />
+            </button>
+            <button className="w-10 h-10 rounded-xl bg-primary text-on-primary font-bold shadow-sm">
+              1
+            </button>
+            <button className="w-10 h-10 rounded-xl bg-white shadow-sm border border-outline-variant/10 text-outline font-bold hover:bg-surface-container-low transition-colors">
+              2
+            </button>
+            <button className="w-10 h-10 rounded-xl bg-white shadow-sm border border-outline-variant/10 text-outline font-bold hover:bg-surface-container-low transition-colors">
+              3
+            </button>
+            <button className="p-2 rounded-xl bg-white shadow-sm border border-outline-variant/10 text-outline hover:text-on-surface">
+              <Icon name="chevron_right" className="text-[20px]" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

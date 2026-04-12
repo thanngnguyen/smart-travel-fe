@@ -258,7 +258,7 @@ export default function AdminCreateTourPage() {
                     <input
                       className="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-2 text-sm font-semibold text-on-surface"
                       type="month"
-                      value="2024-05"
+                      defaultValue="2024-05"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -268,7 +268,7 @@ export default function AdminCreateTourPage() {
                     <input
                       className="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-2 text-sm font-semibold text-on-surface"
                       type="number"
-                      value="12"
+                      defaultValue="12"
                     />
                   </div>
                 </div>
