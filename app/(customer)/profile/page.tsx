@@ -10,24 +10,24 @@ export default function ProfilePage() {
         <section className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16">
           <div className="md:col-span-8 flex flex-col justify-center">
             <span className="text-primary font-bold tracking-widest uppercase text-xs mb-4">
-              Voyager Gold Member
+              Hội viên Voyager hạng Vàng
             </span>
             <h1 className="text-5xl font-extrabold tracking-tight text-on-surface mb-6 leading-tight">
-              Welcome back,
+              Chào mừng quay lại,
               <br />
               Alexandra Sterling.
             </h1>
             <p className="text-on-surface-variant text-lg max-w-xl mb-8 leading-relaxed">
-              Your journey through the Mediterranean is just 14 days away.
-              We&apos;ve updated your digital itinerary with exclusive concierge
-              recommendations.
+              Chuyến hành trình Địa Trung Hải của bạn chỉ còn 14 ngày nữa. Chúng
+              tôi đã cập nhật lịch trình số với các gợi ý độc quyền từ trợ lý cá
+              nhân.
             </p>
             <div className="flex gap-4">
               <button className="bg-gradient-to-r from-primary to-primary-container text-white px-8 py-4 rounded-3xl font-bold shadow-lg scale-95 active:scale-90 transition-transform">
-                Edit Profile
+                Chỉnh sửa hồ sơ
               </button>
               <button className="bg-white text-on-surface px-8 py-4 rounded-3xl font-bold shadow-sm border border-outline-variant/20 hover:bg-surface-container-low transition-all">
-                Account Settings
+                Cài đặt tài khoản
               </button>
             </div>
           </div>
@@ -42,7 +42,7 @@ export default function ProfilePage() {
             </div>
             <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl max-w-[240px] transform -rotate-3 border border-outline-variant/10">
               <p className="text-xs text-on-surface-variant font-medium mb-1">
-                Total Distance Traveled
+                Tổng quãng đường đã đi
               </p>
               <p className="text-3xl font-black text-primary tracking-tighter">
                 42,850 <span className="text-sm font-bold">KM</span>
@@ -56,10 +56,10 @@ export default function ProfilePage() {
           <div className="md:col-span-2 bg-surface-container-lowest rounded-3xl p-8 shadow-sm relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-8">
               <span className="bg-primary-container/10 text-primary px-4 py-1 rounded-full text-xs font-bold">
-                Upcoming
+                Sắp tới
               </span>
             </div>
-            <h2 className="text-2xl font-extrabold mb-6">Upcoming Adventure</h2>
+            <h2 className="text-2xl font-extrabold mb-6">Chuyến đi sắp tới</h2>
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="w-full md:w-48 h-48 rounded-2xl overflow-hidden">
                 <img
@@ -71,7 +71,7 @@ export default function ProfilePage() {
               </div>
               <div className="flex-grow">
                 <h3 className="text-xl font-bold text-on-surface mb-2">
-                  Grand Mediterranean Cruise &amp; Tour
+                  Du thuyền &amp; khám phá Địa Trung Hải
                 </h3>
                 <div className="flex items-center gap-4 text-on-surface-variant text-sm mb-4">
                   <span className="flex items-center gap-1">
@@ -81,7 +81,7 @@ export default function ProfilePage() {
                     >
                       calendar_today
                     </span>{" "}
-                    Oct 12 - Oct 26
+                    12 Th10 - 26 Th10
                   </span>
                   <span className="flex items-center gap-1">
                     <span
@@ -90,12 +90,12 @@ export default function ProfilePage() {
                     >
                       location_on
                     </span>{" "}
-                    Italy, Greece, Croatia
+                    Ý, Hy Lạp, Croatia
                   </span>
                 </div>
                 <div className="space-y-3">
                   <div className="flex justify-between text-xs font-bold">
-                    <span>Preparation Status</span>
+                    <span>Mức độ sẵn sàng</span>
                     <span>85%</span>
                   </div>
                   <div className="h-2 bg-surface-container-high rounded-full overflow-hidden">
@@ -109,10 +109,10 @@ export default function ProfilePage() {
             </div>
             <div className="mt-8 pt-8 border-t border-outline-variant/10 flex justify-between items-center">
               <p className="text-sm text-on-surface-variant italic">
-                Don&apos;t forget to upload your travel insurance docs.
+                Đừng quên tải lên giấy tờ bảo hiểm du lịch.
               </p>
               <button className="text-primary font-bold flex items-center gap-2 hover:translate-x-1 transition-transform">
-                Manage Itinerary{" "}
+                Quản lý lịch trình{" "}
                 <span
                   className="material-symbols-outlined"
                   data-icon="arrow_forward"
@@ -124,7 +124,7 @@ export default function ProfilePage() {
           </div>
           {/*  Profile Quick Stats  */}
           <div className="bg-surface-container-low rounded-3xl p-8 flex flex-col justify-between border border-white/50">
-            <h2 className="text-xl font-extrabold mb-6">Saved Tours</h2>
+            <h2 className="text-xl font-extrabold mb-6">Tour đã lưu</h2>
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-primary shadow-sm">
@@ -136,9 +136,9 @@ export default function ProfilePage() {
                   </span>
                 </div>
                 <div>
-                  <p className="text-sm font-bold">Swiss Alps Retreat</p>
+                  <p className="text-sm font-bold">Ẩn cư dãy Alps Thụy Sĩ</p>
                   <p className="text-xs text-on-surface-variant">
-                    7 Days • $3,400
+                    7 ngày • $3,400
                   </p>
                 </div>
               </div>
@@ -152,9 +152,9 @@ export default function ProfilePage() {
                   </span>
                 </div>
                 <div>
-                  <p className="text-sm font-bold">Kyoto Heritage Walk</p>
+                  <p className="text-sm font-bold">Dạo bước di sản Kyoto</p>
                   <p className="text-xs text-on-surface-variant">
-                    5 Days • $1,850
+                    5 ngày • $1,850
                   </p>
                 </div>
               </div>
@@ -168,15 +168,15 @@ export default function ProfilePage() {
                   </span>
                 </div>
                 <div>
-                  <p className="text-sm font-bold">Sahara Star Gazing</p>
+                  <p className="text-sm font-bold">Ngắm sao Sahara</p>
                   <p className="text-xs text-on-surface-variant">
-                    3 Days • $980
+                    3 ngày • $980
                   </p>
                 </div>
               </div>
             </div>
             <button className="mt-8 text-sm font-bold text-primary-container underline underline-offset-4">
-              View All Saved (12)
+              Xem tất cả đã lưu (12)
             </button>
           </div>
           {/*  Past Bookings & Reviews  */}
@@ -184,10 +184,11 @@ export default function ProfilePage() {
             <div className="flex justify-between items-end mb-8">
               <div>
                 <h2 className="text-3xl font-extrabold text-on-surface tracking-tight">
-                  Past Experiences
+                  Trải nghiệm đã qua
                 </h2>
                 <p className="text-on-surface-variant">
-                  Relive your memories and help others by sharing your feedback.
+                  Nhìn lại kỷ niệm và chia sẻ đánh giá để giúp những du khách
+                  khác.
                 </p>
               </div>
               <div className="hidden md:flex gap-2">
@@ -221,16 +222,16 @@ export default function ProfilePage() {
                   />
                   <div className="absolute top-3 left-3">
                     <span className="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">
-                      Completed
+                      Hoàn thành
                     </span>
                   </div>
                 </div>
                 <div className="p-5">
                   <p className="text-xs text-on-surface-variant font-medium mb-1">
-                    August 2023
+                    Tháng 8/2023
                   </p>
                   <h4 className="font-bold text-on-surface mb-3 line-clamp-1">
-                    Golden Triangle Expedition
+                    Hành trình Tam Giác Vàng
                   </h4>
                   <button className="w-full py-2 bg-surface-container text-primary text-xs font-bold rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-2">
                     <span
@@ -239,7 +240,7 @@ export default function ProfilePage() {
                     >
                       rate_review
                     </span>{" "}
-                    Write Review
+                    Viết đánh giá
                   </button>
                 </div>
               </div>
@@ -254,16 +255,16 @@ export default function ProfilePage() {
                   />
                   <div className="absolute top-3 left-3">
                     <span className="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">
-                      Completed
+                      Hoàn thành
                     </span>
                   </div>
                 </div>
                 <div className="p-5">
                   <p className="text-xs text-on-surface-variant font-medium mb-1">
-                    June 2023
+                    Tháng 6/2023
                   </p>
                   <h4 className="font-bold text-on-surface mb-3 line-clamp-1">
-                    Bahamas Luxury Sailing
+                    Du thuyền cao cấp Bahamas
                   </h4>
                   <div className="flex items-center gap-1 text-tertiary">
                     <span
@@ -302,7 +303,7 @@ export default function ProfilePage() {
                       star
                     </span>
                     <span className="text-[10px] text-on-surface-variant ml-1">
-                      Reviewed
+                      Đã đánh giá
                     </span>
                   </div>
                 </div>
@@ -318,16 +319,16 @@ export default function ProfilePage() {
                   />
                   <div className="absolute top-3 left-3">
                     <span className="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">
-                      Completed
+                      Hoàn thành
                     </span>
                   </div>
                 </div>
                 <div className="p-5">
                   <p className="text-xs text-on-surface-variant font-medium mb-1">
-                    December 2022
+                    Tháng 12/2022
                   </p>
                   <h4 className="font-bold text-on-surface mb-3 line-clamp-1">
-                    Imperial Cities Train Tour
+                    Hành trình tàu hỏa các thành phố đế chế
                   </h4>
                   <button className="w-full py-2 bg-surface-container text-primary text-xs font-bold rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-2">
                     <span
@@ -336,7 +337,7 @@ export default function ProfilePage() {
                     >
                       rate_review
                     </span>{" "}
-                    Write Review
+                    Viết đánh giá
                   </button>
                 </div>
               </div>
@@ -351,16 +352,16 @@ export default function ProfilePage() {
                   />
                   <div className="absolute top-3 left-3">
                     <span className="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">
-                      Completed
+                      Hoàn thành
                     </span>
                   </div>
                 </div>
                 <div className="p-5">
                   <p className="text-xs text-on-surface-variant font-medium mb-1">
-                    October 2022
+                    Tháng 10/2022
                   </p>
                   <h4 className="font-bold text-on-surface mb-3 line-clamp-1">
-                    Kenia Wildlife Safari
+                    Safari hoang dã Kenya
                   </h4>
                   <div className="flex items-center gap-1 text-tertiary">
                     <span
@@ -398,7 +399,7 @@ export default function ProfilePage() {
                       star
                     </span>
                     <span className="text-[10px] text-on-surface-variant ml-1">
-                      Reviewed
+                      Đã đánh giá
                     </span>
                   </div>
                 </div>

@@ -9,10 +9,10 @@ export default function AdminDashboard() {
       <header className="h-20 px-8 flex items-center justify-between sticky top-0 z-10 bg-surface/80 backdrop-blur-md">
         <div>
           <h1 className="text-2xl font-extrabold tracking-tight text-on-surface">
-            Dashboard Overview
+            Tổng quan bảng điều khiển
           </h1>
           <p className="text-sm text-on-surface-variant font-medium">
-            Welcome back, Marcus. Here's what's happening today.
+            Chào mừng quay lại, Marcus. Đây là những gì đang diễn ra hôm nay.
           </p>
         </div>
         <div className="flex items-center gap-4">
@@ -20,7 +20,7 @@ export default function AdminDashboard() {
             <span className="material-symbols-outlined text-xl">search</span>
             <input
               className="bg-transparent border-none focus:ring-0 text-sm w-48"
-              placeholder="Search data points..."
+              placeholder="Tìm dữ liệu..."
               type="text"
             />
           </div>
@@ -51,7 +51,7 @@ export default function AdminDashboard() {
             </div>
             <div className="mt-4">
               <h3 className="text-sm font-bold text-on-surface-variant uppercase tracking-wider">
-                Total Bookings
+                Tổng đặt chỗ
               </h3>
               <p className="text-3xl font-extrabold text-on-surface mt-1">
                 1,284
@@ -73,7 +73,7 @@ export default function AdminDashboard() {
             </div>
             <div className="mt-4">
               <h3 className="text-sm font-bold text-on-surface-variant uppercase tracking-wider">
-                Revenue
+                Doanh thu
               </h3>
               <p className="text-3xl font-extrabold text-on-surface mt-1">
                 $412.5k
@@ -89,12 +89,12 @@ export default function AdminDashboard() {
                 </span>
               </div>
               <span className="text-sm font-bold text-on-surface-variant">
-                42 Active
+                42 đang hoạt động
               </span>
             </div>
             <div className="mt-4">
               <h3 className="text-sm font-bold text-on-surface-variant uppercase tracking-wider">
-                Active Guides
+                Hướng dẫn viên hoạt động
               </h3>
               <p className="text-3xl font-extrabold text-on-surface mt-1">
                 86%
@@ -113,12 +113,12 @@ export default function AdminDashboard() {
                 </span>
               </div>
               <span className="text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full uppercase">
-                Stable
+                Ổn định
               </span>
             </div>
             <div className="mt-4">
               <h3 className="text-sm font-bold text-on-surface-variant uppercase tracking-wider">
-                System Health
+                Tình trạng hệ thống
               </h3>
               <p className="text-3xl font-extrabold text-on-surface mt-1">
                 99.9<span className="text-lg">%</span>
@@ -143,11 +143,11 @@ export default function AdminDashboard() {
                   </span>
                 </div>
                 <h2 className="text-xl font-bold font-headline">
-                  AI Moderator: Review Red Flags
+                  AI kiểm duyệt: Rà soát cảnh báo đỏ
                 </h2>
               </div>
               <span className="text-xs font-bold uppercase tracking-widest bg-black/20 px-3 py-1 rounded-full">
-                Live Analysis
+                Phân tích trực tiếp
               </span>
             </div>
             <div className="mt-8 space-y-4 relative z-10">
@@ -165,21 +165,21 @@ export default function AdminDashboard() {
                     <p className="text-sm font-bold">
                       Sarah Jenkins{" "}
                       <span className="text-white/60 font-normal ml-2">
-                        Tour #492
+                        Chuyến #492
                       </span>
                     </p>
                     <p className="text-xs text-white/80 line-clamp-1 italic">
-                      "The guide never showed up at the meeting point and..."
+                      "Hướng dẫn viên không xuất hiện tại điểm hẹn và..."
                     </p>
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-[10px] font-bold bg-error/20 text-error-container px-2 py-0.5 rounded border border-error/30">
-                        CRITICAL: SENTIMENT 0.12
+                        NGHIÊM TRỌNG: CẢM XÚC 0.12
                       </span>
                     </div>
                   </div>
                 </div>
                 <button className="bg-white text-tertiary font-bold px-4 py-2 rounded-xl text-sm shadow-lg shadow-black/10 hover:scale-105 transition-transform">
-                  Take Action
+                  Xử lý ngay
                 </button>
               </div>
               {/*  Red Flag Item 2  */}
@@ -196,22 +196,21 @@ export default function AdminDashboard() {
                     <p className="text-sm font-bold">
                       David Chen{" "}
                       <span className="text-white/60 font-normal ml-2">
-                        Tour #311
+                        Chuyến #311
                       </span>
                     </p>
                     <p className="text-xs text-white/80 line-clamp-1 italic">
-                      "Transport was cramped and air conditioning failed
-                      midway..."
+                      "Phương tiện quá chật và điều hòa bị hỏng giữa chặng..."
                     </p>
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-[10px] font-bold bg-orange-400/20 text-orange-200 px-2 py-0.5 rounded border border-orange-400/30">
-                        WARNING: SENTIMENT 0.38
+                        CẢNH BÁO: CẢM XÚC 0.38
                       </span>
                     </div>
                   </div>
                 </div>
                 <button className="bg-white text-tertiary font-bold px-4 py-2 rounded-xl text-sm shadow-lg shadow-black/10 hover:scale-105 transition-transform">
-                  View Details
+                  Xem chi tiết
                 </button>
               </div>
             </div>
@@ -220,10 +219,10 @@ export default function AdminDashboard() {
           <div className="lg:col-span-5 bg-surface-container-low p-8 rounded-3xl">
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-xl font-bold font-headline">
-                Upcoming Departures
+                Chuyến khởi hành sắp tới
               </h2>
               <button className="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
-                Full Manifest{" "}
+                Danh sách đầy đủ{" "}
                 <span className="material-symbols-outlined text-sm">
                   arrow_forward
                 </span>
@@ -234,9 +233,9 @@ export default function AdminDashboard() {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="font-bold text-on-surface">
-                    Iceland Glaciers Expedition
+                    Thám hiểm sông băng Iceland
                   </span>
-                  <span className="text-on-surface-variant">2/14 Seats</span>
+                  <span className="text-on-surface-variant">2/14 chỗ</span>
                 </div>
                 <div className="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
                   <div
@@ -245,16 +244,16 @@ export default function AdminDashboard() {
                   ></div>
                 </div>
                 <p className="text-[10px] uppercase font-bold text-error tracking-tighter">
-                  Selling Fast • 48h to Launch
+                  Bán nhanh • Còn 48h trước khởi hành
                 </p>
               </div>
               {/*  Departure Item 2  */}
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="font-bold text-on-surface">
-                    Amalfi Coast Luxury Retreat
+                    Nghỉ dưỡng cao cấp bờ biển Amalfi
                   </span>
-                  <span className="text-on-surface-variant">8/12 Seats</span>
+                  <span className="text-on-surface-variant">8/12 chỗ</span>
                 </div>
                 <div className="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
                   <div
@@ -263,16 +262,16 @@ export default function AdminDashboard() {
                   ></div>
                 </div>
                 <p className="text-[10px] uppercase font-bold text-on-surface-variant tracking-tighter">
-                  Steady Pace • 5d to Launch
+                  Ổn định • Còn 5 ngày trước khởi hành
                 </p>
               </div>
               {/*  Departure Item 3  */}
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="font-bold text-on-surface">
-                    Kyoto Cherry Blossom Tour
+                    Tour hoa anh đào Kyoto
                   </span>
-                  <span className="text-on-surface-variant">20/20 Seats</span>
+                  <span className="text-on-surface-variant">20/20 chỗ</span>
                 </div>
                 <div className="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
                   <div
@@ -281,7 +280,7 @@ export default function AdminDashboard() {
                   ></div>
                 </div>
                 <p className="text-[10px] uppercase font-bold text-green-600 tracking-tighter">
-                  Fully Booked • 12d to Launch
+                  Kín chỗ • Còn 12 ngày trước khởi hành
                 </p>
               </div>
             </div>
@@ -292,14 +291,14 @@ export default function AdminDashboard() {
           <div className="lg:col-span-2 bg-surface-container-lowest p-8 rounded-3xl border-0">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold font-headline">
-                Recent Booking Activity
+                Hoạt động đặt chỗ gần đây
               </h2>
               <div className="flex gap-2">
                 <button className="px-3 py-1 bg-surface-container rounded-full text-xs font-bold text-on-surface-variant">
-                  Today
+                  Hôm nay
                 </button>
                 <button className="px-3 py-1 bg-transparent rounded-full text-xs font-medium text-outline">
-                  Yesterday
+                  Hôm qua
                 </button>
               </div>
             </div>
@@ -307,11 +306,11 @@ export default function AdminDashboard() {
               <table className="w-full text-left">
                 <thead>
                   <tr className="text-[10px] uppercase tracking-widest text-outline border-b border-surface-container-low">
-                    <th className="pb-4 font-black">Customer</th>
-                    <th className="pb-4 font-black">Destination</th>
-                    <th className="pb-4 font-black">Date</th>
-                    <th className="pb-4 font-black">Status</th>
-                    <th className="pb-4 font-black text-right">Amount</th>
+                    <th className="pb-4 font-black">Khách hàng</th>
+                    <th className="pb-4 font-black">Điểm đến</th>
+                    <th className="pb-4 font-black">Thời gian</th>
+                    <th className="pb-4 font-black">Trạng thái</th>
+                    <th className="pb-4 font-black text-right">Số tiền</th>
                   </tr>
                 </thead>
                 <tbody className="text-sm divide-y divide-surface-container-low">
@@ -325,14 +324,14 @@ export default function AdminDashboard() {
                       </div>
                     </td>
                     <td className="py-4 text-on-surface-variant">
-                      Paris Arts &amp; Gastronomy
+                      Paris nghệ thuật &amp; ẩm thực
                     </td>
                     <td className="py-4 text-on-surface-variant">
-                      Oct 24, 09:42 AM
+                      24 Th10, 09:42
                     </td>
                     <td className="py-4">
                       <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-md text-[10px] font-bold">
-                        PAID
+                        ĐÃ THANH TOÁN
                       </span>
                     </td>
                     <td className="py-4 text-right font-bold">$2,450</td>
@@ -347,14 +346,14 @@ export default function AdminDashboard() {
                       </div>
                     </td>
                     <td className="py-4 text-on-surface-variant">
-                      Wild Safari Kenya
+                      Safari hoang dã Kenya
                     </td>
                     <td className="py-4 text-on-surface-variant">
-                      Oct 24, 08:15 AM
+                      24 Th10, 08:15
                     </td>
                     <td className="py-4">
                       <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-md text-[10px] font-bold">
-                        PENDING
+                        CHỜ XỬ LÝ
                       </span>
                     </td>
                     <td className="py-4 text-right font-bold">$4,890</td>
@@ -369,14 +368,14 @@ export default function AdminDashboard() {
                       </div>
                     </td>
                     <td className="py-4 text-on-surface-variant">
-                      Machu Picchu Trek
+                      Trekking Machu Picchu
                     </td>
                     <td className="py-4 text-on-surface-variant">
-                      Oct 24, 07:30 AM
+                      24 Th10, 07:30
                     </td>
                     <td className="py-4">
                       <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-md text-[10px] font-bold">
-                        PAID
+                        ĐÃ THANH TOÁN
                       </span>
                     </td>
                     <td className="py-4 text-right font-bold">$3,120</td>
@@ -388,7 +387,7 @@ export default function AdminDashboard() {
           {/*  Guide Assignments (Last Column)  */}
           <div className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-50">
             <h2 className="text-xl font-bold font-headline mb-6">
-              Guide Status
+              Trạng thái hướng dẫn viên
             </h2>
             <div className="space-y-6">
               <div className="flex items-center gap-4">
@@ -404,7 +403,7 @@ export default function AdminDashboard() {
                 <div className="flex-1">
                   <p className="text-sm font-bold">Emma Wilson</p>
                   <p className="text-xs text-outline italic">
-                    In Transit: Rome City Tour
+                    Đang di chuyển: Tour thành phố Rome
                   </p>
                 </div>
                 <span className="material-symbols-outlined text-outline">
@@ -424,7 +423,7 @@ export default function AdminDashboard() {
                 <div className="flex-1">
                   <p className="text-sm font-bold">Julian Pearce</p>
                   <p className="text-xs text-outline italic">
-                    Resting (On Call)
+                    Nghỉ ngơi (Trực)
                   </p>
                 </div>
                 <span className="material-symbols-outlined text-outline">
@@ -444,7 +443,7 @@ export default function AdminDashboard() {
                 <div className="flex-1">
                   <p className="text-sm font-bold">Liam Foster</p>
                   <p className="text-xs text-outline italic">
-                    Briefing: Safari Prep
+                    Họp nhanh: Chuẩn bị Safari
                   </p>
                 </div>
                 <span className="material-symbols-outlined text-outline">
@@ -453,7 +452,7 @@ export default function AdminDashboard() {
               </div>
             </div>
             <button className="w-full mt-8 py-3 border border-outline-variant text-on-surface-variant text-sm font-bold rounded-xl hover:bg-surface-container-low transition-colors">
-              Manage All Fleet
+              Quản lý toàn bộ đội ngũ
             </button>
           </div>
         </section>

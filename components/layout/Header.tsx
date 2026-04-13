@@ -42,32 +42,32 @@ export default function Header() {
                 className="text-blue-700 dark:text-blue-400 font-bold border-b-2 border-blue-700 dark:border-blue-400 pb-1 text-sm uppercase tracking-wider"
                 href="/"
               >
-                Destinations
+                Điểm đến
               </Link>
               <Link
                 className="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm uppercase tracking-wider"
                 href="/tours"
               >
-                Tours
+                Tour
               </Link>
               <Link
                 className="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm uppercase tracking-wider"
                 href="/tours"
               >
-                Deals
+                Ưu đãi
               </Link>
               <Link
                 className="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm uppercase tracking-wider"
                 href="/guide-portal"
               >
-                Guides
+                Hướng dẫn viên
               </Link>
               <Link
                 className="flex items-center gap-1.5 text-primary dark:text-blue-400 font-bold hover:opacity-80 transition-opacity text-sm uppercase tracking-wider bg-primary/5 px-3 py-1 rounded-full"
                 href="/concierge"
               >
                 <Icon name="smart_toy" className="text-lg" />
-                Concierge
+                Trợ lý AI
               </Link>
             </div>
           </div>
@@ -78,11 +78,11 @@ export default function Header() {
               href="/login"
               className="text-slate-600 dark:text-slate-400 font-semibold hover:text-blue-600 transition-colors text-sm"
             >
-              Login
+              Đăng nhập
             </Link>
             <Link href="/tours">
               <Button size="md" variant="primary">
-                Book Now
+                Đặt ngay
               </Button>
             </Link>
           </div>
@@ -108,31 +108,31 @@ export default function Header() {
               href="/"
               className="font-bold text-lg text-blue-700 py-2 border-b border-slate-100 dark:border-slate-800"
             >
-              Destinations
+              Điểm đến
             </Link>
             <Link
               href="/tours"
               className="font-medium text-lg text-slate-600 py-2 border-b border-slate-100 dark:border-slate-800"
             >
-              Tours
+              Tour
             </Link>
             <Link
               href="/profile"
               className="font-medium text-lg text-slate-600 py-2 border-b border-slate-100 dark:border-slate-800"
             >
-              My Trips
+              Chuyến đi của tôi
             </Link>
             <Link
               href="/guide-portal"
               className="font-medium text-lg text-slate-600 py-2 border-b border-slate-100 dark:border-slate-800"
             >
-              Guides
+              Hướng dẫn viên
             </Link>
             <Link
               href="/concierge"
               className="flex items-center gap-2 font-bold text-lg text-primary py-2 border-b border-slate-100 dark:border-slate-800"
             >
-              <Icon name="smart_toy" /> AI Concierge
+              <Icon name="smart_toy" /> Trợ lý AI
             </Link>
 
             <div className="flex flex-col gap-4 mt-4">
@@ -140,10 +140,10 @@ export default function Header() {
                 href="/login"
                 className="text-left font-semibold text-slate-600 text-lg"
               >
-                Login
+                Đăng nhập
               </Link>
               <Link href="/tours" className="w-full inline-block">
-                <Button className="w-full">Book Now</Button>
+                <Button className="w-full">Đặt ngay</Button>
               </Link>
             </div>
           </div>

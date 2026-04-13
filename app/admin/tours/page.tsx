@@ -9,11 +9,11 @@ export default function AdminToursPage() {
         <header className="flex justify-between items-end mb-10">
           <div>
             <h1 className="text-4xl font-extrabold tracking-tight text-on-surface">
-              Tour Management
+              Quản lý tour
             </h1>
             <p className="text-on-surface-variant mt-2 text-lg">
-              Manage master itineraries, schedule departures, and audit guide
-              availability.
+              Quản lý lịch trình gốc, lên lịch khởi hành và kiểm tra khả dụng
+              của hướng dẫn viên.
             </p>
           </div>
           <div className="flex gap-4">
@@ -21,20 +21,20 @@ export default function AdminToursPage() {
               href="/admin/tours/create"
               className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white shadow-lg shadow-primary/20 hover:bg-primary-container transition-colors font-bold mr-3"
             >
-              <span className="material-symbols-outlined">add</span> Create Tour
+              <span className="material-symbols-outlined">add</span> Tạo tour
             </Link>
             <button className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-lowest text-on-surface border border-outline-variant/20 hover:bg-surface-container transition-colors font-semibold">
               <span className="material-symbols-outlined">download</span>
-              Export Manifest
+              Xuất danh sách chuyến
             </button>
           </div>
         </header>
         {/*  Bento Grid Layout for Features  */}
         <div className="grid grid-cols-12 gap-6">
-          {/*  Master Tour List (Primary Canvas)  */}
+          {/*  Danh sách tour gốc (Primary Canvas)  */}
           <section className="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-2xl p-6 shadow-none">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold">Master Tour List</h3>
+              <h3 className="text-xl font-bold">Danh sách tour gốc</h3>
               <div className="flex gap-2">
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">
@@ -42,7 +42,7 @@ export default function AdminToursPage() {
                   </span>
                   <input
                     className="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-sm w-64 focus:ring-2 focus:ring-primary"
-                    placeholder="Search itineraries..."
+                    placeholder="Tìm kiếm lịch trình..."
                     type="text"
                   />
                 </div>
@@ -55,12 +55,12 @@ export default function AdminToursPage() {
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="text-left text-xs font-black uppercase tracking-widest text-outline border-b border-outline-variant/10">
-                    <th className="pb-4 px-2">Itinerary</th>
-                    <th className="pb-4 px-2">Code</th>
-                    <th className="pb-4 px-2">Duration</th>
-                    <th className="pb-4 px-2">Base Price</th>
-                    <th className="pb-4 px-2">Active Dep.</th>
-                    <th className="pb-4 px-2 text-right">Actions</th>
+                    <th className="pb-4 px-2">Lịch trình</th>
+                    <th className="pb-4 px-2">Mã</th>
+                    <th className="pb-4 px-2">Thời lượng</th>
+                    <th className="pb-4 px-2">Giá cơ bản</th>
+                    <th className="pb-4 px-2">Lịch khởi hành hoạt động</th>
+                    <th className="pb-4 px-2 text-right">Thao tác</th>
                   </tr>
                 </thead>
                 <tbody className="text-sm">
@@ -74,19 +74,19 @@ export default function AdminToursPage() {
                         />
                       </div>
                       <span className="font-bold">
-                        Icelandic Highlands Expedition
+                        Thám hiểm cao nguyên Iceland
                       </span>
                     </td>
                     <td className="py-4 px-2 font-mono text-outline">
                       ICE-HGH-01
                     </td>
-                    <td className="py-4 px-2">8 Days</td>
+                    <td className="py-4 px-2">8 ngày</td>
                     <td className="py-4 px-2 font-semibold text-primary">
                       $3,450
                     </td>
                     <td className="py-4 px-2">
                       <span className="bg-primary-fixed text-on-primary-fixed px-2 py-1 rounded-full text-[10px] font-bold">
-                        24 Active
+                        24 hoạt động
                       </span>
                     </td>
                     <td className="py-4 px-2 text-right">
@@ -112,19 +112,19 @@ export default function AdminToursPage() {
                         />
                       </div>
                       <span className="font-bold">
-                        Kyoto Heritage &amp; Zen Gardens
+                        Di sản Kyoto &amp; Vườn Thiền
                       </span>
                     </td>
                     <td className="py-4 px-2 font-mono text-outline">
                       JPN-KYO-04
                     </td>
-                    <td className="py-4 px-2">5 Days</td>
+                    <td className="py-4 px-2">5 ngày</td>
                     <td className="py-4 px-2 font-semibold text-primary">
                       $1,890
                     </td>
                     <td className="py-4 px-2">
                       <span className="bg-primary-fixed text-on-primary-fixed px-2 py-1 rounded-full text-[10px] font-bold">
-                        12 Active
+                        12 hoạt động
                       </span>
                     </td>
                     <td className="py-4 px-2 text-right">
@@ -149,18 +149,20 @@ export default function AdminToursPage() {
                           src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSGu-9mT77fw8nphVke4wNURyzHyXpd4PKcCM5ZzCssDuGRtZmrvEic3Ugb-o2KTrqPE4L1c2sgC2Y7QLpMhrRgsoX-Kd2WKNhqZ6oWzctuuHHeNHB1CL3t4q0PNaVOXkm49B4PMQDR_j7CqAoevDkEyqqcHhGUN7RLAiVe_9gMN9081dcjjcYgD2yxSMo-RVbs70rED0lP_3-oj67nyjLzQ-HtS7xKP--RXXzCG9MPV6mC2iTPfjjPIjVgz3eIAngoAtTYvDUWaA"
                         />
                       </div>
-                      <span className="font-bold">Serengeti Luxury Safari</span>
+                      <span className="font-bold">
+                        Safari cao cấp Serengeti
+                      </span>
                     </td>
                     <td className="py-4 px-2 font-mono text-outline">
                       TAN-SER-09
                     </td>
-                    <td className="py-4 px-2">10 Days</td>
+                    <td className="py-4 px-2">10 ngày</td>
                     <td className="py-4 px-2 font-semibold text-primary">
                       $6,200
                     </td>
                     <td className="py-4 px-2">
                       <span className="bg-primary-fixed text-on-primary-fixed px-2 py-1 rounded-full text-[10px] font-bold">
-                        8 Active
+                        8 hoạt động
                       </span>
                     </td>
                     <td className="py-4 px-2 text-right">
@@ -188,22 +190,22 @@ export default function AdminToursPage() {
                   event_repeat
                 </span>
               </div>
-              <h3 className="text-xl font-bold">Bulk Generator</h3>
+              <h3 className="text-xl font-bold">Trình tạo hàng loạt</h3>
             </div>
             <form className="space-y-5">
               <div>
                 <label className="block text-xs font-bold uppercase text-on-surface-variant mb-2">
-                  Target Itinerary
+                  Lịch trình mục tiêu
                 </label>
                 <select className="w-full bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary py-3">
-                  <option>Icelandic Highlands Expedition</option>
-                  <option>Kyoto Heritage &amp; Zen Gardens</option>
+                  <option>Thám hiểm cao nguyên Iceland</option>
+                  <option>Di sản Kyoto &amp; Vườn Thiền</option>
                 </select>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold uppercase text-on-surface-variant mb-2">
-                    Start Date
+                    Ngày bắt đầu
                   </label>
                   <input
                     className="w-full p-2 bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary"
@@ -212,7 +214,7 @@ export default function AdminToursPage() {
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase text-on-surface-variant mb-2">
-                    End Date
+                    Ngày kết thúc
                   </label>
                   <input
                     className="w-full p-2 bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary"
@@ -222,64 +224,64 @@ export default function AdminToursPage() {
               </div>
               <div>
                 <label className="block text-xs font-bold uppercase text-on-surface-variant mb-2">
-                  Recurring Days
+                  Ngày lặp lại
                 </label>
                 <div className="flex flex-wrap gap-2">
                   <button
                     className="w-9 h-9 rounded-full bg-surface-container-lowest text-on-surface text-xs font-bold border border-outline-variant/20 hover:border-primary"
                     type="button"
                   >
-                    M
+                    T2
                   </button>
                   <button
                     className="w-9 h-9 rounded-full bg-surface-container-lowest text-on-surface text-xs font-bold border border-outline-variant/20 hover:border-primary"
                     type="button"
                   >
-                    T
+                    T3
                   </button>
                   <button
                     className="w-9 h-9 rounded-full bg-surface-container-lowest text-on-surface text-xs font-bold border border-outline-variant/20 hover:border-primary"
                     type="button"
                   >
-                    W
+                    T4
                   </button>
                   <button
                     className="w-9 h-9 rounded-full bg-surface-container-lowest text-on-surface text-xs font-bold border border-outline-variant/20 hover:border-primary"
                     type="button"
                   >
-                    T
+                    T5
                   </button>
                   <button
                     className="w-9 h-9 rounded-full bg-surface-container-lowest text-on-surface text-xs font-bold border border-outline-variant/20 hover:border-primary"
                     type="button"
                   >
-                    F
+                    T6
                   </button>
                   <button
                     className="w-9 h-9 rounded-full bg-primary text-on-primary text-xs font-bold"
                     type="button"
                   >
-                    S
+                    T7
                   </button>
                   <button
                     className="w-9 h-9 rounded-full bg-primary text-on-primary text-xs font-bold"
                     type="button"
                   >
-                    S
+                    CN
                   </button>
                 </div>
               </div>
               <div>
                 <label className="block text-xs font-bold uppercase text-on-surface-variant mb-2">
-                  Allotted Guide
+                  Hướng dẫn viên phụ trách
                 </label>
                 <select className="w-full bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary py-3">
-                  <option>Elena Rodriguez (Senior Guide)</option>
-                  <option>Markus Thorne (Lead Scout)</option>
+                  <option>Elena Rodriguez (Hướng dẫn viên cao cấp)</option>
+                  <option>Markus Thorne (Trưởng nhóm khảo sát)</option>
                 </select>
               </div>
               <button className="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl font-bold shadow-lg hover:shadow-primary-container/20 transition-all flex items-center justify-center gap-2">
-                Preview 24 Departures
+                Xem trước 24 lịch khởi hành
               </button>
             </form>
           </section>
@@ -287,20 +289,22 @@ export default function AdminToursPage() {
           <section className="col-span-12 lg:col-span-12 bg-surface-container-lowest rounded-2xl p-6">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h3 className="text-xl font-bold">Smart Conflict Checker</h3>
+                <h3 className="text-xl font-bold">
+                  Trình kiểm tra xung đột thông minh
+                </h3>
                 <p className="text-sm text-on-surface-variant">
-                  Live audit of guide assignments and resource overlaps for
-                  upcoming quarter.
+                  Kiểm tra trực tiếp việc phân công hướng dẫn viên và chồng chéo
+                  tài nguyên cho quý sắp tới.
                 </p>
               </div>
               <div className="flex gap-4">
                 <div className="flex items-center gap-2 text-sm font-medium">
                   <div className="w-3 h-3 rounded-full bg-tertiary"></div>
-                  <span>Guide Conflict</span>
+                  <span>Xung đột hướng dẫn viên</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm font-medium">
                   <div className="w-3 h-3 rounded-full bg-error"></div>
-                  <span>Overbooked</span>
+                  <span>Quá tải đặt chỗ</span>
                 </div>
               </div>
             </div>
@@ -314,24 +318,24 @@ export default function AdminToursPage() {
                 </div>
                 <div>
                   <span className="text-[10px] font-bold uppercase text-tertiary tracking-widest">
-                    Overlap Detected
+                    Phát hiện chồng chéo
                   </span>
                   <h4 className="font-bold text-on-surface mt-1">
                     Elena Rodriguez
                   </h4>
                   <p className="text-xs text-on-surface-variant mt-2 leading-relaxed">
-                    Scheduled for{" "}
-                    <span className="font-bold">Iceland Expedition</span> (Oct
-                    12-20) while assigned to{" "}
-                    <span className="font-bold">Kyoto Walk</span> starting Oct
-                    19.
+                    Được xếp cho{" "}
+                    <span className="font-bold">Thám hiểm Iceland</span>
+                    (12-20/10) trong khi được phân cho{" "}
+                    <span className="font-bold">Dạo bộ Kyoto</span> bắt đầu ngày
+                    19/10.
                   </p>
                   <div className="mt-4 flex gap-2">
                     <button className="text-[11px] font-bold text-tertiary underline uppercase">
-                      Reassign Guide
+                      Phân công lại hướng dẫn viên
                     </button>
                     <button className="text-[11px] font-bold text-on-surface-variant underline uppercase">
-                      Dismiss
+                      Bỏ qua
                     </button>
                   </div>
                 </div>
@@ -345,22 +349,22 @@ export default function AdminToursPage() {
                 </div>
                 <div>
                   <span className="text-[10px] font-bold uppercase text-error tracking-widest">
-                    Inventory Alert
+                    Cảnh báo tồn kho
                   </span>
                   <h4 className="font-bold text-on-surface mt-1">
                     Serengeti Safari (SN-102)
                   </h4>
                   <p className="text-xs text-on-surface-variant mt-2 leading-relaxed">
-                    Vehicle capacity exceeded for Nov 04 departure.{" "}
-                    <span className="font-bold">14/12 seats</span> confirmed via
-                    OTA sync.
+                    Sức chứa phương tiện đã vượt mức cho lịch khởi hành ngày
+                    04/11. <span className="font-bold">14/12 ghế</span> được xác
+                    nhận qua đồng bộ OTA.
                   </p>
                   <div className="mt-4 flex gap-2">
                     <button className="text-[11px] font-bold text-error underline uppercase">
-                      Expand Fleet
+                      Mở rộng đội phương tiện
                     </button>
                     <button className="text-[11px] font-bold text-on-surface-variant underline uppercase">
-                      Pause Booking
+                      Tạm dừng đặt chỗ
                     </button>
                   </div>
                 </div>
@@ -369,22 +373,22 @@ export default function AdminToursPage() {
               <div className="p-5 rounded-2xl bg-surface-container-low flex flex-col justify-between">
                 <div>
                   <h4 className="font-bold text-on-surface">
-                    Yield Management
+                    Quản lý lợi suất
                   </h4>
                   <p className="text-xs text-on-surface-variant mt-1 italic">
-                    Suggested price hike for high-demand dates.
+                    Đề xuất tăng giá cho các ngày nhu cầu cao.
                   </p>
                 </div>
                 <div className="mt-6 space-y-3">
                   <div className="flex justify-between items-center text-xs">
-                    <span>Aug 15-25 (Peak)</span>
+                    <span>15-25/08 (Cao điểm)</span>
                     <span className="font-black text-green-600">+15% SRP</span>
                   </div>
                   <div className="w-full bg-outline-variant/30 h-1 rounded-full overflow-hidden">
                     <div className="bg-green-500 h-full w-[85%]"></div>
                   </div>
                   <div className="flex justify-between items-center text-xs">
-                    <span>Dec 01-10 (Lull)</span>
+                    <span>01-10/12 (Thấp điểm)</span>
                     <span className="font-black text-blue-600">-10% SRP</span>
                   </div>
                   <div className="w-full bg-outline-variant/30 h-1 rounded-full overflow-hidden">

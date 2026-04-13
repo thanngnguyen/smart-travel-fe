@@ -7,11 +7,11 @@ export default function AdminSettingsPage() {
       <main className="min-h-screen p-8 lg:p-12">
         <header className="mb-12">
           <h2 className="text-4xl font-headline font-black text-on-surface tracking-tight mb-2">
-            System Configuration
+            Cấu hình hệ thống
           </h2>
           <p className="text-on-surface-variant font-body">
-            Manage global STMS parameters, security keys, and automated
-            intelligence thresholds.
+            Quản lý tham số STMS toàn cục, khóa bảo mật và ngưỡng trí tuệ tự
+            động.
           </p>
         </header>
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
@@ -25,13 +25,13 @@ export default function AdminSettingsPage() {
                   business
                 </span>
                 <h3 className="text-xl font-headline font-bold">
-                  Company Identity
+                  Thông tin doanh nghiệp
                 </h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-xs font-bold uppercase tracking-widest text-outline">
-                    Organization Name
+                    Tên tổ chức
                   </label>
                   <input
                     className="w-full bg-surface-container-low border-none rounded-xl p-4 text-on-surface font-body focus:ring-2 focus:ring-primary-container transition-all"
@@ -41,7 +41,7 @@ export default function AdminSettingsPage() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs font-bold uppercase tracking-widest text-outline">
-                    Contact Email
+                    Email liên hệ
                   </label>
                   <input
                     className="w-full bg-surface-container-low border-none rounded-xl p-4 text-on-surface font-body focus:ring-2 focus:ring-primary-container transition-all"
@@ -51,7 +51,7 @@ export default function AdminSettingsPage() {
                 </div>
                 <div className="md:col-span-2 space-y-2">
                   <label className="text-xs font-bold uppercase tracking-widest text-outline">
-                    Global HQ Address
+                    Địa chỉ trụ sở chính toàn cầu
                   </label>
                   <textarea
                     className="w-full bg-surface-container-low border-none rounded-xl p-4 text-on-surface font-body focus:ring-2 focus:ring-primary-container transition-all"
@@ -71,31 +71,31 @@ export default function AdminSettingsPage() {
                     vpn_key
                   </span>
                   <h3 className="text-xl font-headline font-bold">
-                    Payment Gateway API
+                    API cổng thanh toán
                   </h3>
                 </div>
                 <span className="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase tracking-tighter">
-                  Connected
+                  Đã kết nối
                 </span>
               </div>
               <div className="space-y-6">
                 <div className="flex flex-col md:flex-row md:items-center gap-4 bg-surface-container-low p-4 rounded-xl">
                   <div className="flex-1">
                     <p className="text-xs font-bold text-outline uppercase mb-1">
-                      Stripe Production Key
+                      Khóa Stripe môi trường thật
                     </p>
                     <code className="text-sm font-mono text-on-surface">
                       pk_live_51Mxxxxxxxxxxxxxxxxxxxxxxxxxxxx
                     </code>
                   </div>
                   <button className="px-4 py-2 bg-surface-container-highest text-on-surface font-bold text-xs rounded-lg hover:bg-outline-variant transition-colors">
-                    Rotate Key
+                    Xoay vòng khóa
                   </button>
                 </div>
                 <div className="flex flex-col md:flex-row md:items-center gap-4 bg-surface-container-low p-4 rounded-xl">
                   <div className="flex-1">
                     <p className="text-xs font-bold text-outline uppercase mb-1">
-                      Webhook Secret
+                      Bí mật webhook
                     </p>
                     <div className="flex items-center gap-2">
                       <code className="text-sm font-mono text-on-surface">
@@ -110,7 +110,7 @@ export default function AdminSettingsPage() {
                     </div>
                   </div>
                   <button className="px-4 py-2 bg-surface-container-highest text-on-surface font-bold text-xs rounded-lg hover:bg-outline-variant transition-colors">
-                    Test Endpoint
+                    Kiểm tra endpoint
                   </button>
                 </div>
               </div>
@@ -124,7 +124,7 @@ export default function AdminSettingsPage() {
                   shield_person
                 </span>
                 <h3 className="text-xl font-headline font-bold">
-                  User Role Management (RBAC)
+                  Quản lý vai trò người dùng (RBAC)
                 </h3>
               </div>
               <div className="overflow-x-auto">
@@ -132,13 +132,13 @@ export default function AdminSettingsPage() {
                   <thead>
                     <tr className="border-b border-surface-container">
                       <th className="pb-4 text-[10px] font-bold uppercase tracking-widest text-outline">
-                        Role Name
+                        Tên vai trò
                       </th>
                       <th className="pb-4 text-[10px] font-bold uppercase tracking-widest text-outline">
-                        Scope
+                        Phạm vi
                       </th>
                       <th className="pb-4 text-[10px] font-bold uppercase tracking-widest text-outline">
-                        Users
+                        Người dùng
                       </th>
                       <th className="pb-4 text-right"></th>
                     </tr>
@@ -146,10 +146,10 @@ export default function AdminSettingsPage() {
                   <tbody className="divide-y divide-surface-container-low">
                     <tr className="group hover:bg-surface-container-low transition-colors">
                       <td className="py-4 font-bold text-on-surface">
-                        Super Admin
+                        Quản trị viên cấp cao
                       </td>
                       <td className="py-4 text-sm text-outline">
-                        Full System Access
+                        Toàn quyền hệ thống
                       </td>
                       <td className="py-4 text-sm text-outline">2</td>
                       <td className="py-4 text-right">
@@ -163,10 +163,10 @@ export default function AdminSettingsPage() {
                     </tr>
                     <tr className="group hover:bg-surface-container-low transition-colors">
                       <td className="py-4 font-bold text-on-surface">
-                        Concierge Lead
+                        Trưởng nhóm Concierge
                       </td>
                       <td className="py-4 text-sm text-outline">
-                        Booking &amp; Inventory
+                        Đặt chỗ &amp; tồn kho
                       </td>
                       <td className="py-4 text-sm text-outline">14</td>
                       <td className="py-4 text-right">
@@ -180,10 +180,10 @@ export default function AdminSettingsPage() {
                     </tr>
                     <tr className="group hover:bg-surface-container-low transition-colors">
                       <td className="py-4 font-bold text-on-surface">
-                        Finance Auditor
+                        Kiểm toán tài chính
                       </td>
                       <td className="py-4 text-sm text-outline">
-                        Payments &amp; Reports
+                        Thanh toán &amp; báo cáo
                       </td>
                       <td className="py-4 text-sm text-outline">4</td>
                       <td className="py-4 text-right">
@@ -211,20 +211,20 @@ export default function AdminSettingsPage() {
                     auto_awesome
                   </span>
                   <h3 className="text-xl font-headline font-extrabold">
-                    AI Red Flag Sensitivity
+                    Độ nhạy cảnh báo đỏ của AI
                   </h3>
                 </div>
                 <p className="text-sm opacity-80 mb-8 leading-relaxed">
-                  Adjust the threshold for the travel anomaly detection engine.
-                  Higher sensitivity increases "Red Flag" warnings for itinerary
-                  conflicts and high-risk booking patterns.
+                  Điều chỉnh ngưỡng cho bộ máy phát hiện bất thường du lịch. Độ
+                  nhạy cao hơn sẽ tăng cảnh báo "Cờ đỏ" cho xung đột lịch trình
+                  và mẫu đặt chỗ rủi ro cao.
                 </p>
                 <div className="space-y-8">
                   <div className="space-y-4">
                     <div className="flex justify-between text-xs font-bold uppercase">
-                      <span>Threshold Level</span>
+                      <span>Mức ngưỡng</span>
                       <span className="text-on-tertiary-container">
-                        82% (High)
+                        82% (Cao)
                       </span>
                     </div>
                     <div className="w-full h-1.5 bg-white/20 rounded-full relative">
@@ -235,17 +235,17 @@ export default function AdminSettingsPage() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-white/10 rounded-xl p-4">
                       <p className="text-[10px] font-bold uppercase opacity-60 mb-1">
-                        Risk Alerts
+                        Cảnh báo rủi ro
                       </p>
-                      <p className="text-lg font-headline font-bold">Enabled</p>
+                      <p className="text-lg font-headline font-bold">
+                        Đang bật
+                      </p>
                     </div>
                     <div className="bg-white/10 rounded-xl p-4">
                       <p className="text-[10px] font-bold uppercase opacity-60 mb-1">
-                        Auto-Delay
+                        Trì hoãn tự động
                       </p>
-                      <p className="text-lg font-headline font-bold">
-                        12h Buffer
-                      </p>
+                      <p className="text-lg font-headline font-bold">Đệm 12h</p>
                     </div>
                   </div>
                 </div>
@@ -260,7 +260,7 @@ export default function AdminSettingsPage() {
                 >
                   history
                 </span>
-                Recent Activity
+                Hoạt động gần đây
               </h4>
               <div className="space-y-6">
                 <div className="flex gap-4">
@@ -268,41 +268,43 @@ export default function AdminSettingsPage() {
                   <div>
                     <p className="text-xs font-bold">Admin (Sarah J.)</p>
                     <p className="text-[11px] text-outline">
-                      Updated Stripe API Production Secret
+                      Đã cập nhật khóa bí mật Stripe API môi trường thật
                     </p>
                     <p className="text-[10px] text-outline-variant mt-1">
-                      2 hours ago
+                      2 giờ trước
                     </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <div className="w-2 h-2 mt-1.5 rounded-full bg-tertiary flex-shrink-0"></div>
                   <div>
-                    <p className="text-xs font-bold">System AI</p>
+                    <p className="text-xs font-bold">AI hệ thống</p>
                     <p className="text-[11px] text-outline">
-                      Auto-calibrated threshold due to high volume
+                      Tự hiệu chỉnh ngưỡng do lưu lượng cao
                     </p>
                     <p className="text-[10px] text-outline-variant mt-1">
-                      6 hours ago
+                      6 giờ trước
                     </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <div className="w-2 h-2 mt-1.5 rounded-full bg-primary flex-shrink-0"></div>
                   <div>
-                    <p className="text-xs font-bold">Lead Auditor</p>
+                    <p className="text-xs font-bold">
+                      Trưởng bộ phận kiểm toán
+                    </p>
                     <p className="text-[11px] text-outline">
-                      Modified Role Scope for 'Finance Auditor'
+                      Đã chỉnh phạm vi vai trò cho 'Kiểm toán tài chính'
                     </p>
                     <p className="text-[10px] text-outline-variant mt-1">
-                      Yesterday
+                      Hôm qua
                     </p>
                   </div>
                 </div>
               </div>
             </div>
             <button className="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-white rounded-2xl font-headline font-bold shadow-lg hover:shadow-xl transition-all scale-95 active:scale-90">
-              Save Global Configuration
+              Lưu cấu hình toàn cục
             </button>
           </aside>
         </div>

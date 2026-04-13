@@ -8,20 +8,20 @@ export default function BookingsManagementPage() {
       <header className="flex justify-between items-end mb-8">
         <div>
           <h2 className="text-3xl font-black text-on-surface tracking-tight">
-            Booking Management
+            Quản lý đặt chỗ
           </h2>
           <p className="text-on-surface-variant font-medium mt-1">
-            Monitor and process global travel reservations
+            Theo dõi và xử lý các đơn đặt chỗ du lịch toàn cầu
           </p>
         </div>
         <div className="flex gap-3">
           <button className="flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest text-on-surface font-semibold rounded-xl shadow-sm border border-outline-variant/20 hover:bg-surface-container-low transition-all">
             <Icon name="file_download" className="text-[20px]" />
-            Export CSV
+            Xuất CSV
           </button>
           <button className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-xl shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
             <Icon name="add_circle" className="text-[20px]" />
-            New Booking
+            Đặt chỗ mới
           </button>
         </div>
       </header>
@@ -30,7 +30,7 @@ export default function BookingsManagementPage() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div className="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_20px_40px_rgba(25,28,30,0.04)] flex flex-col">
           <span className="text-xs font-bold uppercase tracking-widest text-outline mb-2">
-            Total Bookings
+            Tổng đơn đặt chỗ
           </span>
           <div className="flex items-baseline gap-2">
             <span className="text-3xl font-black text-on-surface">1,284</span>
@@ -39,7 +39,7 @@ export default function BookingsManagementPage() {
         </div>
         <div className="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_20px_40px_rgba(25,28,30,0.04)] flex flex-col">
           <span className="text-xs font-bold uppercase tracking-widest text-outline mb-2">
-            Revenue
+            Doanh thu
           </span>
           <div className="flex items-baseline gap-2">
             <span className="text-3xl font-black text-on-surface">$42.8k</span>
@@ -48,16 +48,16 @@ export default function BookingsManagementPage() {
         </div>
         <div className="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_20px_40px_rgba(25,28,30,0.04)] flex flex-col">
           <span className="text-xs font-bold uppercase tracking-widest text-outline mb-2">
-            Pending
+            Chờ xử lý
           </span>
           <div className="flex items-baseline gap-2">
             <span className="text-3xl font-black text-on-surface">43</span>
-            <span className="text-sm font-bold text-secondary">Review</span>
+            <span className="text-sm font-bold text-secondary">Cần duyệt</span>
           </div>
         </div>
         <div className="bg-tertiary-container p-6 rounded-3xl shadow-[0_20px_40px_rgba(163,53,0,0.1)] flex flex-col">
           <span className="text-xs font-bold uppercase tracking-widest text-on-tertiary-container mb-2">
-            AI Alert
+            Cảnh báo AI
           </span>
           <div className="flex items-center gap-2">
             <Icon
@@ -66,7 +66,7 @@ export default function BookingsManagementPage() {
               className="text-on-tertiary-container"
             />
             <span className="text-sm font-bold text-on-tertiary-container">
-              3 Disputed Payments
+              3 giao dịch tranh chấp
             </span>
           </div>
         </div>
@@ -81,27 +81,27 @@ export default function BookingsManagementPage() {
           />
           <input
             className="w-full pl-12 pr-4 py-3 bg-surface-container-lowest border-none rounded-2xl text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all outline-none"
-            placeholder="Search customer, tour name, or ID..."
+            placeholder="Tìm khách hàng, tên tour hoặc ID..."
             type="text"
           />
         </div>
         <div className="flex items-center gap-2 bg-surface-container-low p-1 rounded-2xl">
           <button className="px-4 py-2 rounded-xl text-sm font-bold bg-white shadow-sm text-primary">
-            All
+            Tất cả
           </button>
           <button className="px-4 py-2 rounded-xl text-sm font-bold text-outline hover:text-on-surface transition-colors">
-            Paid
+            Đã thanh toán
           </button>
           <button className="px-4 py-2 rounded-xl text-sm font-bold text-outline hover:text-on-surface transition-colors">
-            Pending
+            Chờ xử lý
           </button>
           <button className="px-4 py-2 rounded-xl text-sm font-bold text-outline hover:text-on-surface transition-colors">
-            Cancelled
+            Đã hủy
           </button>
         </div>
         <button className="flex items-center gap-2 px-4 py-2 text-on-surface font-bold text-sm bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10">
           <Icon name="filter_list" className="text-[18px]" />
-          Filters
+          Bộ lọc
         </button>
       </div>
 
@@ -117,22 +117,22 @@ export default function BookingsManagementPage() {
                 />
               </th>
               <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
-                Customer
+                Khách hàng
               </th>
               <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
-                Tour Name
+                Tên tour
               </th>
               <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
-                Departure
+                Khởi hành
               </th>
               <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
-                Amount
+                Số tiền
               </th>
               <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
-                Status
+                Trạng thái
               </th>
               <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
-                Actions
+                Thao tác
               </th>
             </tr>
           </thead>
@@ -162,16 +162,16 @@ export default function BookingsManagementPage() {
               </td>
               <td className="px-6 py-5">
                 <span className="font-semibold text-on-surface">
-                  Santorini Sunset Escapade
+                  Santorini hoàng hôn
                 </span>
               </td>
               <td className="px-6 py-5">
                 <div className="flex flex-col">
                   <span className="font-medium text-on-surface">
-                    Oct 12, 2024
+                    12 Th10, 2024
                   </span>
                   <span className="text-xs text-outline">
-                    Gate 4B • Economy
+                    Cổng 4B • Phổ thông
                   </span>
                 </div>
               </td>
@@ -180,7 +180,7 @@ export default function BookingsManagementPage() {
               </td>
               <td className="px-6 py-5">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">
-                  Paid
+                  Đã thanh toán
                 </span>
               </td>
               <td className="px-6 py-5">
@@ -214,16 +214,16 @@ export default function BookingsManagementPage() {
               </td>
               <td className="px-6 py-5">
                 <span className="font-semibold text-on-surface">
-                  Swiss Alps Luxury Rail
+                  Tàu hỏa cao cấp Alps Thụy Sĩ
                 </span>
               </td>
               <td className="px-6 py-5">
                 <div className="flex flex-col">
                   <span className="font-medium text-on-surface">
-                    Nov 05, 2024
+                    05 Th11, 2024
                   </span>
                   <span className="text-xs text-outline">
-                    Zurich HB • First Class
+                    Zurich HB • Hạng nhất
                   </span>
                 </div>
               </td>
@@ -232,7 +232,7 @@ export default function BookingsManagementPage() {
               </td>
               <td className="px-6 py-5">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700">
-                  Pending
+                  Chờ xử lý
                 </span>
               </td>
               <td className="px-6 py-5">
@@ -266,13 +266,13 @@ export default function BookingsManagementPage() {
               </td>
               <td className="px-6 py-5">
                 <span className="font-semibold text-on-surface">
-                  Kyoto Cherry Blossom Tour
+                  Tour hoa anh đào Kyoto
                 </span>
               </td>
               <td className="px-6 py-5">
                 <div className="flex flex-col">
                   <span className="font-medium text-on-surface">
-                    Oct 29, 2024
+                    29 Th10, 2024
                   </span>
                   <span className="text-xs text-outline">
                     Osaka Intl • Boutique
@@ -284,7 +284,7 @@ export default function BookingsManagementPage() {
               </td>
               <td className="px-6 py-5">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700">
-                  Cancelled
+                  Đã hủy
                 </span>
               </td>
               <td className="px-6 py-5">
@@ -316,16 +316,16 @@ export default function BookingsManagementPage() {
               </td>
               <td className="px-6 py-5">
                 <span className="font-semibold text-on-surface">
-                  Serengeti Safari Classic
+                  Safari Serengeti cổ điển
                 </span>
               </td>
               <td className="px-6 py-5">
                 <div className="flex flex-col">
                   <span className="font-medium text-on-surface">
-                    Dec 14, 2024
+                    14 Th12, 2024
                   </span>
                   <span className="text-xs text-outline">
-                    JRO Airport • Lodge
+                    Sân bay JRO • Khu nghỉ dưỡng
                   </span>
                 </div>
               </td>
@@ -334,7 +334,7 @@ export default function BookingsManagementPage() {
               </td>
               <td className="px-6 py-5">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">
-                  Paid
+                  Đã thanh toán
                 </span>
               </td>
               <td className="px-6 py-5">
@@ -348,7 +348,7 @@ export default function BookingsManagementPage() {
 
         <div className="px-6 py-4 flex items-center justify-between bg-surface-container-low/50 border-t border-surface-container-low">
           <span className="text-xs font-bold text-outline uppercase tracking-wider">
-            Showing 1-10 of 1,284 bookings
+            Hiển thị 1-10 / 1,284 đơn đặt chỗ
           </span>
           <div className="flex gap-2">
             <button className="p-2 rounded-xl bg-white shadow-sm border border-outline-variant/10 text-outline hover:text-on-surface">

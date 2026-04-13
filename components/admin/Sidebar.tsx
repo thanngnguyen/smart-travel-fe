@@ -6,13 +6,13 @@ import React from "react";
 import Icon from "@/components/ui/Icon";
 
 const NAV_ITEMS = [
-  { path: "/admin", icon: "dashboard", label: "Dashboard" },
-  { path: "/admin/tours", icon: "map", label: "Tour Management" },
-  { path: "/admin/bookings", icon: "confirmation_number", label: "Bookings" },
-  { path: "/admin/users", icon: "people", label: "User Management" },
-  { path: "/admin/reports", icon: "monitoring", label: "Reports & Analytics" },
-  { path: "/admin/insights", icon: "psychology", label: "AI Insights" },
-  { path: "/admin/settings", icon: "settings", label: "System Settings" },
+  { path: "/admin", icon: "dashboard", label: "Tổng quan" },
+  { path: "/admin/tours", icon: "map", label: "Quản lý tour" },
+  { path: "/admin/bookings", icon: "confirmation_number", label: "Đặt chỗ" },
+  { path: "/admin/users", icon: "people", label: "Quản lý người dùng" },
+  { path: "/admin/reports", icon: "monitoring", label: "Báo cáo & phân tích" },
+  { path: "/admin/insights", icon: "psychology", label: "Phân tích AI" },
+  { path: "/admin/settings", icon: "settings", label: "Cài đặt hệ thống" },
 ];
 
 export default function Sidebar() {
@@ -25,10 +25,10 @@ export default function Sidebar() {
           href="/admin"
           className="text-2xl font-black text-blue-700 dark:text-blue-400"
         >
-          STMS Admin
+          STMS Quản trị
         </Link>
         <p className="text-xs text-slate-500 font-medium mt-1">
-          Management Console
+          Bảng điều khiển
         </p>
       </div>
 
@@ -61,9 +61,9 @@ export default function Sidebar() {
             A
           </div>
           <div>
-            <p className="text-sm font-bold text-on-surface">Admin User</p>
+            <p className="text-sm font-bold text-on-surface">Quản trị viên</p>
             <p className="text-xs text-on-surface-variant group-hover:text-primary transition-colors">
-              Log out
+              Đăng xuất
             </p>
           </div>
         </div>

@@ -16,20 +16,20 @@ export default function BookingDetailsPage() {
           </Link>
           <div>
             <h2 className="font-headline font-bold tracking-tight text-slate-900 dark:text-slate-100 text-xl">
-              Booking #STMS-882910
+              Đặt chỗ #STMS-882910
             </h2>
             <p className="text-xs font-medium text-slate-500 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary"></span>
-              Confirmed on Oct 24, 2024
+              Đã xác nhận ngày 24 Th10, 2024
             </p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <button className="px-4 py-2 text-sm font-semibold text-primary hover:bg-primary-fixed transition-colors rounded-xl border border-outline-variant/20">
-            Edit Booking
+            Chỉnh sửa đặt chỗ
           </button>
           <button className="px-6 py-2 text-sm font-bold text-white bg-gradient-to-r from-primary to-primary-container rounded-xl shadow-lg active:scale-95 transition-transform">
-            Print Itinerary
+            In lịch trình
           </button>
         </div>
       </header>
@@ -42,13 +42,13 @@ export default function BookingDetailsPage() {
           <section className="bg-surface-container-lowest rounded-2xl p-0 overflow-hidden flex flex-col md:flex-row shadow-sm group">
             <div className="w-full md:w-2/5 h-64 md:h-auto relative overflow-hidden">
               <img
-                alt="Tour Destination"
+                alt="Điểm đến tour"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbT3LNTtKsWPmZC93CfclJzFmKb04EWaQGLPBF7CetnNQIsKY39LEL1gXX9U2XZfXOPHb_mnbtVQ7W-kjEgrczHSnnCspb75GJ7BLPQkdscYzdCt5HsIZnIMJwqqnKRwaGNSU3MMY7RRuiCkyyOaMeZeLJrOsqz3r-vvZVcygJpLFJ3vJG5ctuVSCDE4gYOcR3Eghy1cYSw2x4Go4PjFUQh3WU4z-dk_yioOT2TBmLv4VRkiruOnIMhh3n8wyfqxobB6EZt3iF1bI"
               />
               <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-lg shadow-sm">
                 <span className="text-[10px] font-bold text-primary uppercase tracking-widest">
-                  Active Tour
+                  Tour đang hoạt động
                 </span>
               </div>
             </div>
@@ -56,30 +56,30 @@ export default function BookingDetailsPage() {
               <div>
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-2xl font-bold text-on-background tracking-tight">
-                    Swiss Alps Expedition: 7-Day Peaks & Valleys
+                    Thám hiểm dãy Alps Thụy Sĩ: 7 ngày đỉnh núi & thung lũng
                   </h3>
                   <span className="bg-primary-fixed text-primary text-[10px] font-black px-2 py-1 rounded">
-                    PREMIUM
+                    CAO CẤP
                   </span>
                 </div>
                 <div className="flex gap-6 mt-4">
                   <div className="flex flex-col">
                     <span className="text-[10px] font-bold text-outline uppercase tracking-wider">
-                      Departure
+                      Khởi hành
                     </span>
-                    <span className="text-sm font-semibold">Dec 12, 2024</span>
+                    <span className="text-sm font-semibold">12 Th12, 2024</span>
                   </div>
                   <div className="flex flex-col">
                     <span className="text-[10px] font-bold text-outline uppercase tracking-wider">
-                      Return
+                      Trở về
                     </span>
-                    <span className="text-sm font-semibold">Dec 19, 2024</span>
+                    <span className="text-sm font-semibold">19 Th12, 2024</span>
                   </div>
                   <div className="flex flex-col">
                     <span className="text-[10px] font-bold text-outline uppercase tracking-wider">
-                      Group Size
+                      Quy mô đoàn
                     </span>
-                    <span className="text-sm font-semibold">12 Pax</span>
+                    <span className="text-sm font-semibold">12 khách</span>
                   </div>
                 </div>
               </div>
@@ -87,11 +87,11 @@ export default function BookingDetailsPage() {
                 <div className="flex items-center gap-2">
                   <Icon name="location_on" filled className="text-primary" />
                   <span className="text-sm font-medium">
-                    St. Moritz, Switzerland
+                    St. Moritz, Thụy Sĩ
                   </span>
                 </div>
                 <button className="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
-                  View Tour Details{" "}
+                  Xem chi tiết tour{" "}
                   <Icon name="open_in_new" className="text-sm" />
                 </button>
               </div>
@@ -109,7 +109,7 @@ export default function BookingDetailsPage() {
                 <div>
                   <h4 className="font-bold text-lg">Elena Rodriguez</h4>
                   <p className="text-xs text-outline">
-                    Lead Passenger (ID: P-9912)
+                    Hành khách chính (ID: P-9912)
                   </p>
                 </div>
               </div>
@@ -119,15 +119,15 @@ export default function BookingDetailsPage() {
                   <span className="font-medium">e.rodriguez@example.com</span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
-                  <span className="text-outline">Phone</span>
+                  <span className="text-outline">Số điện thoại</span>
                   <span className="font-medium">+34 612 990 123</span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
-                  <span className="text-outline">Nationality</span>
-                  <span className="font-medium">Spanish</span>
+                  <span className="text-outline">Quốc tịch</span>
+                  <span className="font-medium">Tây Ban Nha</span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
-                  <span className="text-outline">Passport</span>
+                  <span className="text-outline">Hộ chiếu</span>
                   <span className="font-medium">P88****12</span>
                 </div>
               </div>
@@ -137,25 +137,25 @@ export default function BookingDetailsPage() {
             <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border-l-4 border-tertiary">
               <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
                 <Icon name="priority_high" className="text-tertiary" />
-                Special Requirements
+                Yêu cầu đặc biệt
               </h4>
               <div className="space-y-3">
                 <div className="p-3 bg-tertiary-fixed/30 rounded-xl">
                   <p className="text-[10px] font-bold text-tertiary uppercase tracking-widest mb-1">
-                    Dietary
+                    Dinh dưỡng
                   </p>
                   <p className="text-sm font-medium">
-                    Severe nut allergy. Requires vegan meal options for all
-                    flights and group dinners.
+                    Dị ứng nặng với hạt. Cần lựa chọn bữa ăn thuần chay cho tất
+                    cả chuyến bay và bữa tối theo đoàn.
                   </p>
                 </div>
                 <div className="p-3 bg-surface-container-low rounded-xl">
                   <p className="text-[10px] font-bold text-outline uppercase tracking-widest mb-1">
-                    Accessibility
+                    Hỗ trợ tiếp cận
                   </p>
                   <p className="text-sm font-medium">
-                    Requests lower-floor hotel rooms where available (No stairs
-                    preference).
+                    Yêu cầu phòng tầng thấp khi có thể (ưu tiên không dùng cầu
+                    thang).
                   </p>
                 </div>
               </div>
@@ -165,9 +165,9 @@ export default function BookingDetailsPage() {
           {/* Activity Log / Audit Trail */}
           <section className="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden">
             <div className="px-6 py-4 border-b border-outline-variant/10 flex justify-between items-center">
-              <h4 className="font-bold">Activity Log</h4>
+              <h4 className="font-bold">Nhật ký hoạt động</h4>
               <span className="text-[10px] font-bold text-outline-variant bg-surface-container-low px-2 py-1 rounded">
-                AUDIT TRAIL
+                LỊCH SỬ KIỂM TOÁN
               </span>
             </div>
             <div className="p-6 space-y-6">
@@ -178,12 +178,12 @@ export default function BookingDetailsPage() {
                   <Icon name="check" className="text-[14px] text-white" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold">Booking Confirmed</p>
+                  <p className="text-sm font-semibold">Đặt chỗ đã xác nhận</p>
                   <p className="text-xs text-outline mt-1">
-                    Payment verified through Stripe (Ref: ch_91283)
+                    Thanh toán đã xác thực qua Stripe (Ref: ch_91283)
                   </p>
                   <p className="text-[10px] text-outline-variant mt-2 font-mono">
-                    OCT 24, 2024 • 14:32 PM • System
+                    24 TH10, 2024 • 14:32 • Hệ thống
                   </p>
                 </div>
               </div>
@@ -195,13 +195,13 @@ export default function BookingDetailsPage() {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-semibold">
-                    Passenger Details Updated
+                    Đã cập nhật thông tin hành khách
                   </p>
                   <p className="text-xs text-outline mt-1">
-                    Passport expiry date corrected to 2029-05-15.
+                    Ngày hết hạn hộ chiếu đã được chỉnh về 2029-05-15.
                   </p>
                   <p className="text-[10px] text-outline-variant mt-2 font-mono">
-                    OCT 25, 2024 • 09:12 AM • Admin: Sarah J.
+                    25 TH10, 2024 • 09:12 • Quản trị: Sarah J.
                   </p>
                 </div>
               </div>
@@ -212,14 +212,14 @@ export default function BookingDetailsPage() {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-semibold">
-                    Pre-Departure Pack Sent
+                    Đã gửi bộ tài liệu trước chuyến đi
                   </p>
                   <p className="text-xs text-outline mt-1">
-                    Digital itinerary and visa guide delivered to lead passenger
-                    email.
+                    Lịch trình số và hướng dẫn visa đã gửi tới email hành khách
+                    chính.
                   </p>
                   <p className="text-[10px] text-outline-variant mt-2 font-mono">
-                    NOV 01, 2024 • 10:00 AM • Automated Task
+                    01 TH11, 2024 • 10:00 • Tác vụ tự động
                   </p>
                 </div>
               </div>
@@ -236,30 +236,30 @@ export default function BookingDetailsPage() {
             <div className="flex justify-between items-start mb-8 relative z-10">
               <div>
                 <p className="text-primary-container text-xs font-bold tracking-widest uppercase">
-                  Payment Status
+                  Trạng thái thanh toán
                 </p>
                 <h3 className="text-3xl font-black mt-1">$4,850.00</h3>
               </div>
               <div className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold">
-                PAID IN FULL
+                ĐÃ THANH TOÁN ĐỦ
               </div>
             </div>
             <div className="space-y-3 relative z-10">
               <div className="flex justify-between text-xs font-medium">
-                <span className="opacity-70">Subtotal</span>
+                <span className="opacity-70">Tạm tính</span>
                 <span>$4,500.00</span>
               </div>
               <div className="flex justify-between text-xs font-medium">
-                <span className="opacity-70">Tax & Fees</span>
+                <span className="opacity-70">Thuế &amp; phí</span>
                 <span>$350.00</span>
               </div>
               <div className="pt-3 border-t border-white/10 flex justify-between text-xs font-bold">
-                <span>Total</span>
+                <span>Tổng cộng</span>
                 <span>$4,850.00</span>
               </div>
             </div>
             <button className="w-full mt-6 py-3 bg-white text-primary rounded-xl font-bold text-sm shadow-md hover:bg-slate-50 transition-colors">
-              Download Invoice
+              Tải hóa đơn
             </button>
           </div>
 
@@ -267,53 +267,54 @@ export default function BookingDetailsPage() {
           <div className="bg-white rounded-2xl p-6 border border-outline-variant/10 shadow-sm">
             <div className="flex items-center gap-2 mb-4">
               <Icon name="psychology" className="text-blue-600" />
-              <h4 className="font-bold">AI Insights</h4>
+              <h4 className="font-bold">Phân tích AI</h4>
             </div>
             <div className="p-4 bg-blue-50/50 rounded-xl border border-blue-100 mb-4">
               <p className="text-xs font-bold text-blue-700 uppercase tracking-widest mb-1">
-                Travel Advisory
+                Khuyến nghị hành trình
               </p>
               <p className="text-sm text-slate-700">
-                Flight connection in Zurich has a 12% delay probability based on
-                winter weather trends. Monitoring active weather fronts.
+                Chặng nối chuyến tại Zurich có xác suất trễ 12% theo xu hướng
+                thời tiết mùa đông. Hệ thống đang theo dõi thời tiết theo thời
+                gian thực.
               </p>
             </div>
             <div className="p-4 bg-tertiary-fixed/30 rounded-xl">
               <p className="text-xs font-bold text-tertiary uppercase tracking-widest mb-1">
-                Urgent Action
+                Hành động khẩn
               </p>
               <p className="text-sm text-slate-700 font-medium">
-                Visa verification required for segment 2. Deadline: Nov 15.
+                Cần xác minh visa cho chặng 2. Hạn chót: 15 Th11.
               </p>
             </div>
           </div>
 
           {/* Quick Actions */}
           <div className="bg-surface-container-low rounded-2xl p-6">
-            <h4 className="font-bold mb-4">Quick Admin Actions</h4>
+            <h4 className="font-bold mb-4">Thao tác nhanh quản trị</h4>
             <div className="grid grid-cols-2 gap-3">
               <button className="flex flex-col items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all active:scale-95 text-primary">
                 <Icon name="send" className="mb-2" />
                 <span className="text-[10px] font-bold uppercase tracking-tight">
-                  Resend
+                  Gửi lại
                 </span>
               </button>
               <button className="flex flex-col items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all active:scale-95 text-primary">
                 <Icon name="content_copy" className="mb-2" />
                 <span className="text-[10px] font-bold uppercase tracking-tight">
-                  Clone
+                  Nhân bản
                 </span>
               </button>
               <button className="flex flex-col items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all active:scale-95 text-primary">
                 <Icon name="sync" className="mb-2" />
                 <span className="text-[10px] font-bold uppercase tracking-tight">
-                  Refund
+                  Hoàn tiền
                 </span>
               </button>
               <button className="flex flex-col items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all active:scale-95 text-error">
                 <Icon name="cancel" className="mb-2" />
                 <span className="text-[10px] font-bold uppercase tracking-tight">
-                  Cancel
+                  Hủy
                 </span>
               </button>
             </div>
@@ -321,17 +322,17 @@ export default function BookingDetailsPage() {
 
           {/* Itinerary Quick Look */}
           <div className="bg-surface-container-lowest rounded-2xl p-6 shadow-sm">
-            <h4 className="font-bold mb-4">Itinerary Map</h4>
+            <h4 className="font-bold mb-4">Bản đồ lịch trình</h4>
             <div className="w-full h-40 bg-surface-container-high rounded-xl relative overflow-hidden group">
               <img
-                alt="Map View"
+                alt="Bản đồ"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWCQixtElx0_lIKUH0oy5ExCEY22P0EsBQwIw102dPbiFgEC1HVEiUNwdQ8A32OyCHhyH2aCjlYy5uu9a1MLuircOLEmk0EI8h-wFK0JZ6cEuDjq54jKgBlpbh-4HXtEvu-pqzXZAf_gOZVbd4IaX2XOLiKXOmH8XacF8MJjsy--ZJCBNkiMSO4pLU3uiKngP0KNUkQ4kKcfLKCFwv8Y7ze5D8A3TvQGHVSSdBLJpQxRuSjNev84PdJFygzb4WCaw99vsEr1P675U"
               />
               <div className="absolute inset-0 bg-primary/10 pointer-events-none"></div>
               <div className="absolute bottom-3 right-3 bg-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow-md">
                 <Icon name="map" className="text-[12px]" />
-                OPEN MAP
+                MỞ BẢN ĐỒ
               </div>
             </div>
           </div>

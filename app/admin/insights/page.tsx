@@ -9,10 +9,10 @@ export default function AdminInsightsPage() {
         <header className="flex justify-between items-end mb-8">
           <div>
             <h2 className="text-4xl font-black text-on-surface tracking-tight mb-1">
-              AI Insights Dashboard
+              Bảng điều khiển phân tích AI
             </h2>
             <p className="text-on-surface-variant font-medium">
-              Predictive analysis and sentiment tracking for Q4 2024
+              Phân tích dự báo và theo dõi cảm xúc cho Quý 4 năm 2024
             </p>
           </div>
           <div className="flex gap-3">
@@ -20,10 +20,10 @@ export default function AdminInsightsPage() {
               <span className="material-symbols-outlined text-sm">
                 calendar_today
               </span>
-              <span className="text-sm font-bold">Last 30 Days</span>
+              <span className="text-sm font-bold">30 ngày gần nhất</span>
             </button>
             <button className="px-6 py-2 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-xl font-bold shadow-lg hover:opacity-90 transition-opacity">
-              Export Analysis
+              Xuất báo cáo phân tích
             </button>
           </div>
         </header>
@@ -36,20 +36,20 @@ export default function AdminInsightsPage() {
                 <span className="material-symbols-outlined text-primary">
                   analytics
                 </span>
-                Sentiment Analysis Trends
+                Xu hướng phân tích cảm xúc
               </h3>
               <div className="flex gap-4">
                 <div className="flex items-center gap-1.5 text-xs font-medium">
-                  <span className="w-3 h-3 rounded-full bg-primary"></span>{" "}
-                  Positive
+                  <span className="w-3 h-3 rounded-full bg-primary"></span> Tích
+                  cực
                 </div>
                 <div className="flex items-center gap-1.5 text-xs font-medium">
                   <span className="w-3 h-3 rounded-full bg-secondary-container"></span>{" "}
-                  Neutral
+                  Trung tính
                 </div>
                 <div className="flex items-center gap-1.5 text-xs font-medium">
-                  <span className="w-3 h-3 rounded-full bg-error"></span>{" "}
-                  Negative
+                  <span className="w-3 h-3 rounded-full bg-error"></span> Tiêu
+                  cực
                 </div>
               </div>
             </div>
@@ -85,23 +85,23 @@ export default function AdminInsightsPage() {
               </div>
             </div>
             <div className="flex justify-between text-[10px] text-on-surface-variant font-bold uppercase tracking-widest px-2">
-              <span>Mon</span>
-              <span>Tue</span>
-              <span>Wed</span>
-              <span>Thu</span>
-              <span>Fri</span>
-              <span>Sat</span>
-              <span>Sun</span>
+              <span>Th2</span>
+              <span>Th3</span>
+              <span>Th4</span>
+              <span>Th5</span>
+              <span>Th6</span>
+              <span>Th7</span>
+              <span>CN</span>
             </div>
           </div>
           {/*  Chatbot Intent Recognition Stats  */}
           <div className="col-span-4 bg-surface-container-high rounded-2xl p-6 shadow-sm flex flex-col justify-between">
             <div>
-              <h3 className="text-lg font-extrabold mb-4">Intent Stats</h3>
+              <h3 className="text-lg font-extrabold mb-4">Thống kê ý định</h3>
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between text-xs font-bold mb-1">
-                    <span>Booking Inquiries</span>
+                    <span>Yêu cầu đặt chỗ</span>
                     <span className="text-primary">64%</span>
                   </div>
                   <div className="w-full h-2 bg-surface rounded-full overflow-hidden">
@@ -113,7 +113,7 @@ export default function AdminInsightsPage() {
                 </div>
                 <div>
                   <div className="flex justify-between text-xs font-bold mb-1">
-                    <span>Refund Requests</span>
+                    <span>Yêu cầu hoàn tiền</span>
                     <span className="text-tertiary">22%</span>
                   </div>
                   <div className="w-full h-2 bg-surface rounded-full overflow-hidden">
@@ -125,7 +125,7 @@ export default function AdminInsightsPage() {
                 </div>
                 <div>
                   <div className="flex justify-between text-xs font-bold mb-1">
-                    <span>Flight Status</span>
+                    <span>Trạng thái chuyến bay</span>
                     <span className="text-secondary">12%</span>
                   </div>
                   <div className="w-full h-2 bg-surface rounded-full overflow-hidden">
@@ -144,7 +144,7 @@ export default function AdminInsightsPage() {
                 </span>
                 <div>
                   <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">
-                    AI Resolution Rate
+                    Tỷ lệ xử lý bởi AI
                   </p>
                   <p className="text-2xl font-black text-primary">91.4%</p>
                 </div>
@@ -158,11 +158,10 @@ export default function AdminInsightsPage() {
                 <span className="material-symbols-outlined text-error">
                   flag
                 </span>
-                &apos;Red Flag&apos;apos;Red Flag&apos;Red Flag&apos;apos;
-                Reviews
+                Đánh giá "Cờ đỏ"
               </h3>
               <span className="px-2 py-1 bg-tertiary-container text-on-tertiary-container text-[10px] font-black rounded-md">
-                8 URGENT ACTIONS
+                8 HÀNH ĐỘNG KHẨN
               </span>
             </div>
             <div className="w-full overflow-x-auto">
@@ -170,19 +169,19 @@ export default function AdminInsightsPage() {
                 <thead>
                   <tr className="bg-surface-container-low border-b border-outline-variant/10">
                     <th className="px-6 py-3 text-[10px] font-black text-on-surface-variant uppercase tracking-widest">
-                      Customer
+                      Khách hàng
                     </th>
                     <th className="px-6 py-3 text-[10px] font-black text-on-surface-variant uppercase tracking-widest">
-                      Review Excerpt
+                      Trích đoạn đánh giá
                     </th>
                     <th className="px-6 py-3 text-[10px] font-black text-on-surface-variant uppercase tracking-widest text-center">
-                      Sentiment Score
+                      Điểm cảm xúc
                     </th>
                     <th className="px-6 py-3 text-[10px] font-black text-on-surface-variant uppercase tracking-widest">
-                      Primary Intent
+                      Ý định chính
                     </th>
                     <th className="px-6 py-3 text-[10px] font-black text-on-surface-variant uppercase tracking-widest text-right">
-                      Actions
+                      Thao tác
                     </th>
                   </tr>
                 </thead>
@@ -197,15 +196,15 @@ export default function AdminInsightsPage() {
                         <div>
                           <p className="text-sm font-bold">Johnathan Doe</p>
                           <p className="text-[10px] text-slate-500">
-                            Premium Member
+                            Thành viên cao cấp
                           </p>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4">
                       <p className="text-sm text-on-surface max-w-xs truncate italic">
-                        "The flight was delayed by 6 hours and nobody at the
-                        concierge desk helped. Absolute disaster..."
+                        "Chuyến bay bị trễ 6 tiếng và không ai ở quầy concierge
+                        hỗ trợ. Thật sự là thảm họa..."
                       </p>
                     </td>
                     <td className="px-6 py-4 text-center">
@@ -221,12 +220,12 @@ export default function AdminInsightsPage() {
                     </td>
                     <td className="px-6 py-4">
                       <span className="px-2 py-1 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">
-                        SUPPORT_FAILURE
+                        LỖI_HỖ_TRỢ
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right">
                       <button className="text-primary font-bold text-xs hover:underline">
-                        Escalate
+                        Chuyển xử lý
                       </button>
                     </td>
                   </tr>
@@ -240,15 +239,15 @@ export default function AdminInsightsPage() {
                         <div>
                           <p className="text-sm font-bold">Maria Santos</p>
                           <p className="text-[10px] text-slate-500">
-                            First-time Traveler
+                            Khách lần đầu
                           </p>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4">
                       <p className="text-sm text-on-surface max-w-xs truncate italic">
-                        "Tour guide never showed up. No communication from the
-                        app. I want a full refund immediately."
+                        "Hướng dẫn viên không xuất hiện. Không có phản hồi từ
+                        ứng dụng. Tôi muốn hoàn tiền toàn bộ ngay lập tức."
                       </p>
                     </td>
                     <td className="px-6 py-4 text-center">
@@ -264,12 +263,12 @@ export default function AdminInsightsPage() {
                     </td>
                     <td className="px-6 py-4">
                       <span className="px-2 py-1 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">
-                        REFUND_REQUEST
+                        YÊU_CẦU_HOÀN_TIỀN
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right">
                       <button className="text-primary font-bold text-xs hover:underline">
-                        Escalate
+                        Chuyển xử lý
                       </button>
                     </td>
                   </tr>
@@ -283,15 +282,15 @@ export default function AdminInsightsPage() {
                         <div>
                           <p className="text-sm font-bold">Alex Wong</p>
                           <p className="text-[10px] text-slate-500">
-                            Business Class
+                            Hạng thương gia
                           </p>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4">
                       <p className="text-sm text-on-surface max-w-xs truncate italic">
-                        "Billing error on my last booking. Charged twice for the
-                        same destination. AI bot was unhelpful."
+                        "Lỗi thanh toán ở đơn đặt gần nhất. Tôi bị trừ tiền hai
+                        lần cho cùng một điểm đến. Bot AI không hữu ích."
                       </p>
                     </td>
                     <td className="px-6 py-4 text-center">
@@ -307,12 +306,12 @@ export default function AdminInsightsPage() {
                     </td>
                     <td className="px-6 py-4">
                       <span className="px-2 py-1 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">
-                        BILLING_DISPUTE
+                        TRANH_CHẤP_THANH_TOÁN
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right">
                       <button className="text-primary font-bold text-xs hover:underline">
-                        Escalate
+                        Chuyển xử lý
                       </button>
                     </td>
                   </tr>
@@ -321,7 +320,7 @@ export default function AdminInsightsPage() {
             </div>
             <div className="px-6 py-4 bg-surface-container-low text-center">
               <button className="text-sm font-bold text-primary hover:text-primary-container transition-colors">
-                View All 124 Flagged Insights
+                Xem toàn bộ 124 cảnh báo
               </button>
             </div>
           </div>
@@ -332,12 +331,12 @@ export default function AdminInsightsPage() {
             </div>
             <div>
               <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">
-                Sentiment Growth
+                Tăng trưởng cảm xúc
               </p>
               <h4 className="text-2xl font-black">+14.2%</h4>
             </div>
             <p className="text-[10px] text-slate-500">
-              Compared to previous month's baseline sentiment score.
+              So với mức nền cảm xúc của tháng trước.
             </p>
           </div>
           <div className="col-span-3 bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-outline-variant/15 flex flex-col gap-3">
@@ -346,12 +345,12 @@ export default function AdminInsightsPage() {
             </div>
             <div>
               <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">
-                Total Review Volume
+                Tổng lượng đánh giá
               </p>
               <h4 className="text-2xl font-black">2,842</h4>
             </div>
             <p className="text-[10px] text-slate-500">
-              Processed across 12 connected travel platforms.
+              Được xử lý trên 12 nền tảng du lịch liên kết.
             </p>
           </div>
           <div className="col-span-3 bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-outline-variant/15 flex flex-col gap-3">
@@ -360,12 +359,12 @@ export default function AdminInsightsPage() {
             </div>
             <div>
               <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">
-                Urgency Index
+                Chỉ số khẩn cấp
               </p>
-              <h4 className="text-2xl font-black">Medium</h4>
+              <h4 className="text-2xl font-black">Trung bình</h4>
             </div>
             <p className="text-[10px] text-slate-500">
-              Based on negative intent clustering and churn risk.
+              Dựa trên cụm ý định tiêu cực và rủi ro rời bỏ.
             </p>
           </div>
           <div className="col-span-3 bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-outline-variant/15 flex flex-col gap-3">
@@ -374,12 +373,12 @@ export default function AdminInsightsPage() {
             </div>
             <div>
               <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">
-                Avg Response Time
+                Thời gian phản hồi TB
               </p>
               <h4 className="text-2xl font-black">1.2m</h4>
             </div>
             <p className="text-[10px] text-slate-500">
-              AI suggested response generation latency.
+              Độ trễ tạo phản hồi do AI đề xuất.
             </p>
           </div>
         </div>

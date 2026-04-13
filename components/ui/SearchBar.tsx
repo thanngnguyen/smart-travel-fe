@@ -13,7 +13,7 @@ export default function SearchBar() {
     e.preventDefault();
     // Logic tương tác tìm kiếm tạm thời
     alert(
-      `Searching parameters:\n- Dest: ${destination || "Any"}\n- Date: ${date || "Any"}\n- Budget: ${budget || "Any"}`,
+      `Thông tin tìm kiếm:\n- Điểm đến: ${destination || "Bất kỳ"}\n- Ngày: ${date || "Bất kỳ"}\n- Ngân sách: ${budget || "Bất kỳ"}`,
     );
   };
 
@@ -27,12 +27,12 @@ export default function SearchBar() {
         <Icon name="location_on" className="text-primary mr-4" />
         <div className="flex flex-col text-left w-full">
           <label className="text-xs font-bold text-outline uppercase tracking-wider mb-1 cursor-pointer">
-            Destination
+            Điểm đến
           </label>
           <input
             type="text"
             className="bg-transparent border-none p-0 outline-none ring-0 w-full text-on-surface font-medium placeholder:text-on-surface-variant focus:ring-0"
-            placeholder="Where to next?"
+            placeholder="Bạn muốn đi đâu tiếp theo?"
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
           />
@@ -46,7 +46,7 @@ export default function SearchBar() {
         <Icon name="calendar_today" className="text-primary mr-4" />
         <div className="flex flex-col text-left w-full">
           <label className="text-xs font-bold text-outline uppercase tracking-wider mb-1 cursor-pointer">
-            Dates
+            Ngày đi
           </label>
           <input
             type="date"
@@ -65,7 +65,7 @@ export default function SearchBar() {
         <Icon name="payments" className="text-primary mr-4" />
         <div className="flex flex-col text-left w-full relative">
           <label className="text-xs font-bold text-outline uppercase tracking-wider mb-1 cursor-pointer">
-            Budget
+            Ngân sách
           </label>
           <select
             className="bg-transparent border-none p-0 outline-none ring-0 w-full text-on-surface font-medium focus:ring-0 cursor-pointer appearance-none"
@@ -73,11 +73,11 @@ export default function SearchBar() {
             onChange={(e) => setBudget(e.target.value)}
           >
             <option value="" disabled hidden>
-              Set your range
+              Chọn khoảng ngân sách
             </option>
-            <option value="economy">Economy ($0 - $1,000)</option>
-            <option value="standard">Standard ($1,000 - $3,000)</option>
-            <option value="luxury">Luxury ($3,000+)</option>
+            <option value="economy">Tiết kiệm ($0 - $1,000)</option>
+            <option value="standard">Tiêu chuẩn ($1,000 - $3,000)</option>
+            <option value="luxury">Cao cấp ($3,000+)</option>
           </select>
           {/* Custom Dropdown Arrow */}
           <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 opacity-50">
@@ -93,7 +93,7 @@ export default function SearchBar() {
         className="rounded-2xl px-8 py-4 md:py-0 flex items-center justify-center gap-2 mt-2 md:mt-0"
       >
         <Icon name="search" />
-        <span>Explore</span>
+        <span>Khám phá</span>
       </Button>
     </form>
   );

@@ -8,10 +8,10 @@ export default function AdminReportsPage() {
         <header className="flex justify-between items-end mb-12">
           <div className="space-y-1">
             <h2 className="text-4xl font-headline font-extrabold tracking-tight text-slate-900">
-              Financial &amp; Operational
+              Tài chính &amp; vận hành
             </h2>
             <p className="text-slate-500 font-medium">
-              Real-time performance metrics for Q4 2024
+              Chỉ số hiệu suất thời gian thực cho Quý 4 năm 2024
             </p>
           </div>
           <div className="flex gap-3">
@@ -19,13 +19,13 @@ export default function AdminReportsPage() {
               <span className="material-symbols-outlined text-lg">
                 calendar_today
               </span>
-              Last 30 Days
+              30 ngày gần nhất
             </button>
             <button className="px-6 py-3 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/20 hover:scale-105 transition-all flex items-center gap-2">
               <span className="material-symbols-outlined text-lg">
                 download
               </span>
-              Export PDF
+              Xuất PDF
             </button>
           </div>
         </header>
@@ -34,23 +34,23 @@ export default function AdminReportsPage() {
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="text-lg font-headline font-bold text-slate-900">
-                  Revenue by Tour Category
+                  Doanh thu theo danh mục tour
                 </h3>
                 <p className="text-sm text-slate-500">
-                  Global performance across top 5 luxury destinations
+                  Hiệu suất toàn cầu trên 5 điểm đến cao cấp hàng đầu
                 </p>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-primary"></span>
                   <span className="text-xs font-medium text-slate-600">
-                    Current
+                    Hiện tại
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-secondary-container"></span>
                   <span className="text-xs font-medium text-slate-600">
-                    Previous
+                    Trước đó
                   </span>
                 </div>
               </div>
@@ -62,7 +62,7 @@ export default function AdminReportsPage() {
                   <div className="w-1/2 bg-surface-container-high rounded-t-lg h-[40%]"></div>
                 </div>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-                  Europe
+                  Châu Âu
                 </span>
               </div>
               <div className="flex flex-col items-center gap-3 w-16 group">
@@ -71,7 +71,7 @@ export default function AdminReportsPage() {
                   <div className="w-1/2 bg-surface-container-high rounded-t-lg h-[55%]"></div>
                 </div>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-                  Asia
+                  Châu Á
                 </span>
               </div>
               <div className="flex flex-col items-center gap-3 w-16 group">
@@ -80,7 +80,7 @@ export default function AdminReportsPage() {
                   <div className="w-1/2 bg-surface-container-high rounded-t-lg h-[70%]"></div>
                 </div>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-                  Americas
+                  Châu Mỹ
                 </span>
               </div>
               <div className="flex flex-col items-center gap-3 w-16 group">
@@ -89,7 +89,7 @@ export default function AdminReportsPage() {
                   <div className="w-1/2 bg-surface-container-high rounded-t-lg h-[35%]"></div>
                 </div>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-                  Africa
+                  Châu Phi
                 </span>
               </div>
               <div className="flex flex-col items-center gap-3 w-16 group">
@@ -98,7 +98,7 @@ export default function AdminReportsPage() {
                   <div className="w-1/2 bg-surface-container-high rounded-t-lg h-[60%]"></div>
                 </div>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-                  Oceania
+                  Châu Đại Dương
                 </span>
               </div>
             </div>
@@ -106,7 +106,7 @@ export default function AdminReportsPage() {
           <div className="col-span-12 md:col-span-4 bg-primary text-white rounded-2xl p-8 flex flex-col justify-between overflow-hidden relative">
             <div className="z-10">
               <h3 className="text-lg font-headline font-bold text-on-primary-container">
-                Total Revenue
+                Tổng doanh thu
               </h3>
               <p className="text-4xl font-headline font-extrabold mt-2 tracking-tighter">
                 $4,285,190
@@ -115,19 +115,19 @@ export default function AdminReportsPage() {
                 <span className="material-symbols-outlined text-sm">
                   trending_up
                 </span>
-                +12.4% vs LY
+                +12.4% so với cùng kỳ năm trước
               </div>
             </div>
             <div className="z-10 mt-12 grid grid-cols-2 gap-4">
               <div className="space-y-1">
                 <p className="text-[10px] text-on-primary-container uppercase font-bold tracking-widest">
-                  Avg. Booking
+                  Giá trị đặt chỗ TB
                 </p>
                 <p className="text-xl font-headline font-bold">$12,405</p>
               </div>
               <div className="space-y-1">
                 <p className="text-[10px] text-on-primary-container uppercase font-bold tracking-widest">
-                  Profit Margin
+                  Biên lợi nhuận
                 </p>
                 <p className="text-xl font-headline font-bold">28.4%</p>
               </div>
@@ -137,7 +137,7 @@ export default function AdminReportsPage() {
           </div>
           <div className="col-span-12 md:col-span-4 bg-surface-container-lowest rounded-2xl p-8 flex flex-col gap-6">
             <h3 className="text-lg font-headline font-bold text-slate-900">
-              Booking Conversion
+              Tỷ lệ chuyển đổi đặt chỗ
             </h3>
             <div className="relative flex items-center justify-center py-4">
               <svg className="w-40 h-40 transform -rotate-90">
@@ -167,20 +167,20 @@ export default function AdminReportsPage() {
                   68%
                 </span>
                 <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">
-                  Leads to Tour
+                  Từ khách tiềm năng thành tour
                 </span>
               </div>
             </div>
             <div className="space-y-3">
               <div className="flex justify-between items-center text-sm">
-                <span className="text-slate-500">Direct Search</span>
+                <span className="text-slate-500">Tìm kiếm trực tiếp</span>
                 <span className="font-bold text-slate-900">72%</span>
               </div>
               <div className="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
                 <div className="bg-primary h-full w-[72%]"></div>
               </div>
               <div className="flex justify-between items-center text-sm pt-2">
-                <span className="text-slate-500">Concierge Referrals</span>
+                <span className="text-slate-500">Giới thiệu từ Concierge</span>
                 <span className="font-bold text-slate-900">45%</span>
               </div>
               <div className="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
@@ -192,12 +192,12 @@ export default function AdminReportsPage() {
             <div className="flex justify-between items-start mb-8">
               <div>
                 <h3 className="text-lg font-headline font-bold text-slate-900">
-                  Guide Utilization
+                  Mức độ sử dụng hướng dẫn viên
                 </h3>
-                <p className="text-sm text-slate-500">Operational Efficiency</p>
+                <p className="text-sm text-slate-500">Hiệu quả vận hành</p>
               </div>
               <span className="px-2 py-1 bg-tertiary-container/10 text-tertiary font-bold text-[10px] rounded uppercase">
-                Peak Demand
+                Nhu cầu đỉnh
               </span>
             </div>
             <div className="space-y-6">
@@ -258,16 +258,16 @@ export default function AdminReportsPage() {
           <div className="col-span-12 md:col-span-4 bg-surface-container-lowest rounded-2xl p-8 relative overflow-hidden group">
             <div className="z-10 relative">
               <h3 className="text-lg font-headline font-bold text-slate-900">
-                Seat Occupancy
+                Tỷ lệ lấp đầy chỗ
               </h3>
               <p className="text-sm text-slate-500 mb-6">
-                Average across all fleet types
+                Trung bình trên mọi loại phương tiện
               </p>
               <div className="flex items-baseline gap-2 mb-8">
                 <span className="text-5xl font-headline font-extrabold text-slate-900 tracking-tighter">
                   82%
                 </span>
-                <span className="text-slate-500 font-bold">+5% pts</span>
+                <span className="text-slate-500 font-bold">+5 điểm %</span>
               </div>
               <div className="grid grid-cols-4 gap-2 h-24 items-end">
                 <div className="bg-primary/20 h-[40%] rounded-t-md"></div>
@@ -277,16 +277,16 @@ export default function AdminReportsPage() {
               </div>
               <div className="flex justify-between mt-2">
                 <span className="text-[10px] font-bold text-slate-400 uppercase">
-                  Bus
+                  Xe buýt
                 </span>
                 <span className="text-[10px] font-bold text-slate-400 uppercase">
                   SUV
                 </span>
                 <span className="text-[10px] font-bold text-slate-400 uppercase">
-                  Jet
+                  Phản lực
                 </span>
                 <span className="text-[10px] font-bold text-slate-400 uppercase">
-                  Yacht
+                  Du thuyền
                 </span>
               </div>
             </div>
@@ -300,10 +300,10 @@ export default function AdminReportsPage() {
             <div className="p-8 flex justify-between items-center border-b border-surface-container">
               <div>
                 <h3 className="text-lg font-headline font-bold text-slate-900">
-                  Recent Operational Log
+                  Nhật ký vận hành gần đây
                 </h3>
                 <p className="text-sm text-slate-500">
-                  Live booking status and guide allocation
+                  Trạng thái đặt chỗ trực tiếp và phân công hướng dẫn viên
                 </p>
               </div>
               <div className="flex gap-2">
@@ -326,19 +326,19 @@ export default function AdminReportsPage() {
                     ID
                   </th>
                   <th className="px-8 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                    Tour Details
+                    Chi tiết tour
                   </th>
                   <th className="px-8 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                    Guide
+                    Hướng dẫn viên
                   </th>
                   <th className="px-8 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                    Capacity
+                    Sức chứa
                   </th>
                   <th className="px-8 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                    Status
+                    Trạng thái
                   </th>
                   <th className="px-8 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                    Revenue
+                    Doanh thu
                   </th>
                 </tr>
               </thead>
@@ -349,9 +349,9 @@ export default function AdminReportsPage() {
                   </td>
                   <td className="px-8 py-6">
                     <p className="text-sm font-bold text-slate-900">
-                      Amalfi Coast Private Escape
+                      Kỳ nghỉ riêng bờ biển Amalfi
                     </p>
-                    <p className="text-xs text-slate-500">Italy • 3 Days</p>
+                    <p className="text-xs text-slate-500">Ý • 3 ngày</p>
                   </td>
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-2">
@@ -367,7 +367,7 @@ export default function AdminReportsPage() {
                   </td>
                   <td className="px-8 py-6">
                     <span className="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full uppercase">
-                      In Progress
+                      Đang diễn ra
                     </span>
                   </td>
                   <td className="px-8 py-6 font-headline font-bold text-slate-900">
@@ -380,9 +380,9 @@ export default function AdminReportsPage() {
                   </td>
                   <td className="px-8 py-6">
                     <p className="text-sm font-bold text-slate-900">
-                      Kyoto Zen Exploration
+                      Hành trình Thiền Kyoto
                     </p>
-                    <p className="text-xs text-slate-500">Japan • 5 Days</p>
+                    <p className="text-xs text-slate-500">Nhật Bản • 5 ngày</p>
                   </td>
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-2">
@@ -398,7 +398,7 @@ export default function AdminReportsPage() {
                   </td>
                   <td className="px-8 py-6">
                     <span className="px-3 py-1 bg-surface-container text-slate-500 text-[10px] font-bold rounded-full uppercase">
-                      Scheduled
+                      Đã lên lịch
                     </span>
                   </td>
                   <td className="px-8 py-6 font-headline font-bold text-slate-900">
@@ -411,9 +411,9 @@ export default function AdminReportsPage() {
                   </td>
                   <td className="px-8 py-6">
                     <p className="text-sm font-bold text-slate-900">
-                      Serengeti Luxury Safari
+                      Safari cao cấp Serengeti
                     </p>
-                    <p className="text-xs text-slate-500">Tanzania • 7 Days</p>
+                    <p className="text-xs text-slate-500">Tanzania • 7 ngày</p>
                   </td>
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-2">
@@ -429,7 +429,7 @@ export default function AdminReportsPage() {
                   </td>
                   <td className="px-8 py-6">
                     <span className="px-3 py-1 bg-tertiary-container/10 text-tertiary text-[10px] font-bold rounded-full uppercase">
-                      Review
+                      Cần xem xét
                     </span>
                   </td>
                   <td className="px-8 py-6 font-headline font-bold text-slate-900">
@@ -442,32 +442,32 @@ export default function AdminReportsPage() {
         </div>
         <footer className="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-4 mt-12 border-t border-slate-200/20">
           <p className="font-body text-xs text-slate-500">
-            © 2024 Smart Travel Management System. All rights reserved.
+            © 2024 Smart Travel Management System. Đã đăng ký mọi quyền.
           </p>
           <div className="flex gap-8">
             <a
               className="text-slate-500 text-xs hover:text-blue-700 transition-colors opacity-80 hover:opacity-100"
               href="#"
             >
-              Privacy Policy
+              Chính sách bảo mật
             </a>
             <a
               className="text-slate-500 text-xs hover:text-blue-700 transition-colors opacity-80 hover:opacity-100"
               href="#"
             >
-              Terms of Service
+              Điều khoản dịch vụ
             </a>
             <a
               className="text-slate-500 text-xs hover:text-blue-700 transition-colors opacity-80 hover:opacity-100"
               href="#"
             >
-              Support Center
+              Trung tâm hỗ trợ
             </a>
             <a
               className="text-slate-500 text-xs hover:text-blue-700 transition-colors opacity-80 hover:opacity-100"
               href="#"
             >
-              Contact
+              Liên hệ
             </a>
           </div>
         </footer>

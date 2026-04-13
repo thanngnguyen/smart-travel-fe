@@ -9,22 +9,22 @@ export default function AdminCreateTourPage() {
         <header className="flex justify-between items-center w-full px-8 py-6 sticky top-0 z-40 bg-white/80 backdrop-blur-md shadow-sm">
           <div className="flex flex-col">
             <h2 className="text-2xl font-black text-slate-900 tracking-tight">
-              Create Master Tour
+              Tạo tour gốc
             </h2>
             <nav className="flex text-xs text-outline font-medium gap-2 items-center">
-              <span>Tours</span>
+              <span>Tour</span>
               <span className="material-symbols-outlined text-[10px]">
                 arrow_forward_ios
               </span>
-              <span className="text-primary">New Master</span>
+              <span className="text-primary">Tour gốc mới</span>
             </nav>
           </div>
           <div className="flex items-center gap-4">
             <button className="px-5 py-2.5 rounded-xl border border-outline-variant/20 text-on-surface font-semibold text-sm hover:bg-surface-container-low transition-colors">
-              Discard Draft
+              Hủy bản nháp
             </button>
             <button className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-primary to-primary-container text-white font-bold text-sm shadow-md hover:shadow-lg active:scale-95 transition-all">
-              Publish Tour
+              Xuất bản tour
             </button>
           </div>
         </header>
@@ -39,34 +39,34 @@ export default function AdminCreateTourPage() {
                   info
                 </span>
                 <h3 className="text-lg font-bold text-on-surface">
-                  General Information
+                  Thông tin chung
                 </h3>
               </div>
               <div className="space-y-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                    Tour Title
+                    Tiêu đề tour
                   </label>
                   <input
                     className="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-outline-variant transition-all"
-                    placeholder="e.g., Amalfi Coast Luxury Escape"
+                    placeholder="ví dụ: Kỳ nghỉ cao cấp bờ biển Amalfi"
                     type="text"
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                    Short Description
+                    Mô tả ngắn
                   </label>
                   <textarea
                     className="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-outline-variant transition-all"
-                    placeholder="Summarize the experience in 2 sentences..."
+                    placeholder="Tóm tắt trải nghiệm trong 2 câu..."
                     rows={3}
                   ></textarea>
                 </div>
                 <div className="grid grid-cols-3 gap-4">
                   <div className="flex flex-col gap-1.5">
                     <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                      Base Price ($)
+                      Giá cơ bản ($)
                     </label>
                     <input
                       className="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface transition-all"
@@ -76,7 +76,7 @@ export default function AdminCreateTourPage() {
                   </div>
                   <div className="flex flex-col gap-1.5">
                     <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                      Duration (Days)
+                      Thời lượng (ngày)
                     </label>
                     <input
                       className="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface transition-all"
@@ -86,7 +86,7 @@ export default function AdminCreateTourPage() {
                   </div>
                   <div className="flex flex-col gap-1.5">
                     <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                      Max Capacity
+                      Sức chứa tối đa
                     </label>
                     <input
                       className="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface transition-all"
@@ -105,14 +105,14 @@ export default function AdminCreateTourPage() {
                     route
                   </span>
                   <h3 className="text-lg font-bold text-on-surface">
-                    Curated Itinerary
+                    Lịch trình được tuyển chọn
                   </h3>
                 </div>
                 <button className="flex items-center gap-2 text-primary font-bold text-xs hover:bg-primary/5 px-3 py-1.5 rounded-lg transition-colors">
                   <span className="material-symbols-outlined text-sm">
                     add_circle
                   </span>{" "}
-                  Add Day
+                  Thêm ngày
                 </button>
               </div>
               <div className="relative pl-8 space-y-12">
@@ -124,7 +124,7 @@ export default function AdminCreateTourPage() {
                   <div className="bg-surface p-6 rounded-2xl border border-outline-variant/10 shadow-sm space-y-4">
                     <div className="flex justify-between">
                       <h4 className="font-bold text-on-surface">
-                        Day 1: Arrival &amp; Welcome Dinner
+                        Ngày 1: Đến nơi &amp; Tiệc chào mừng
                       </h4>
                       <span className="material-symbols-outlined text-outline cursor-pointer hover:text-error transition-colors">
                         delete
@@ -132,15 +132,15 @@ export default function AdminCreateTourPage() {
                     </div>
                     <textarea
                       className="w-full bg-transparent border-none p-0 focus:ring-0 text-sm text-on-surface-variant italic"
-                      placeholder="Description of activities..."
+                      placeholder="Mô tả hoạt động..."
                       rows={2}
                     ></textarea>
                     <div className="flex gap-2">
                       <span className="px-3 py-1 bg-surface-container-highest rounded-full text-[10px] font-bold text-outline uppercase">
-                        Lodging Included
+                        Bao gồm lưu trú
                       </span>
                       <span className="px-3 py-1 bg-surface-container-highest rounded-full text-[10px] font-bold text-outline uppercase">
-                        Airport Pickup
+                        Đón sân bay
                       </span>
                     </div>
                   </div>
@@ -151,7 +151,7 @@ export default function AdminCreateTourPage() {
                   <div className="bg-surface p-6 rounded-2xl border border-outline-variant/10 shadow-sm space-y-4">
                     <div className="flex justify-between">
                       <h4 className="font-bold text-on-surface">
-                        Day 2: Coastal Exploration
+                        Ngày 2: Khám phá ven biển
                       </h4>
                       <span className="material-symbols-outlined text-outline cursor-pointer hover:text-error transition-colors">
                         delete
@@ -159,12 +159,12 @@ export default function AdminCreateTourPage() {
                     </div>
                     <textarea
                       className="w-full bg-transparent border-none p-0 focus:ring-0 text-sm text-on-surface-variant italic"
-                      placeholder="Private yacht tour along the Positano cliffs..."
+                      placeholder="Du ngoạn du thuyền riêng dọc vách đá Positano..."
                       rows={2}
                     ></textarea>
                     <div className="flex gap-2">
                       <span className="px-3 py-1 bg-surface-container-highest rounded-full text-[10px] font-bold text-outline uppercase">
-                        Activities Included
+                        Bao gồm hoạt động
                       </span>
                     </div>
                   </div>
@@ -181,7 +181,7 @@ export default function AdminCreateTourPage() {
                   image
                 </span>
                 <h3 className="text-lg font-bold text-on-surface">
-                  Media Gallery
+                  Thư viện media
                 </h3>
               </div>
               <div className="aspect-video bg-surface-container-low rounded-xl border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center gap-2 group cursor-pointer hover:bg-surface-container-high transition-colors">
@@ -189,7 +189,7 @@ export default function AdminCreateTourPage() {
                   cloud_upload
                 </span>
                 <p className="text-xs font-bold text-outline uppercase">
-                  Upload Hero Image
+                  Tải ảnh nổi bật
                 </p>
               </div>
               <div className="grid grid-cols-3 gap-2">
@@ -224,7 +224,7 @@ export default function AdminCreateTourPage() {
                 </div>
               </div>
             </section>
-            {/*  Departure Generator (Specialized Section)  */}
+            {/*  Trình tạo lịch khởi hành (Specialized Section)  */}
             <section className="bg-primary/5 p-8 rounded-2xl border border-primary/10 space-y-6 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
               <div className="flex items-center gap-3">
@@ -232,28 +232,28 @@ export default function AdminCreateTourPage() {
                   calendar_month
                 </span>
                 <h3 className="text-lg font-bold text-on-surface">
-                  Departure Generator
+                  Trình tạo lịch khởi hành
                 </h3>
               </div>
               <p className="text-xs text-on-surface-variant leading-relaxed">
-                Auto-create recurring instances of this Master Tour across the
-                seasonal calendar.
+                Tự động tạo các lịch khởi hành lặp lại cho Tour gốc này theo
+                lịch mùa vụ.
               </p>
               <div className="space-y-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[10px] font-extrabold text-primary uppercase tracking-widest">
-                    Frequency
+                    Tần suất
                   </label>
                   <select className="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-2.5 text-sm font-semibold text-on-surface focus:ring-2 focus:ring-primary/20">
-                    <option>Weekly (Saturdays)</option>
-                    <option>Bi-Weekly</option>
-                    <option>Monthly (1st Monday)</option>
+                    <option>Hàng tuần (Thứ bảy)</option>
+                    <option>Hai tuần một lần</option>
+                    <option>Hàng tháng (Thứ hai tuần 1)</option>
                   </select>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] font-extrabold text-primary uppercase tracking-widest">
-                      Start Month
+                      Tháng bắt đầu
                     </label>
                     <input
                       className="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-2 text-sm font-semibold text-on-surface"
@@ -263,7 +263,7 @@ export default function AdminCreateTourPage() {
                   </div>
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] font-extrabold text-primary uppercase tracking-widest">
-                      Occurrences
+                      Số lần lặp
                     </label>
                     <input
                       className="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-2 text-sm font-semibold text-on-surface"
@@ -279,14 +279,14 @@ export default function AdminCreateTourPage() {
                     info
                   </span>
                   <p className="text-[10px] font-medium text-tertiary">
-                    This will generate 12 individual tour dates starting May
-                    4th, 2024. Prices and capacity can be edited per departure
-                    later.
+                    Hệ thống sẽ tạo 12 ngày tour riêng lẻ bắt đầu từ 04/05/2024.
+                    Giá và sức chứa có thể chỉnh theo từng lịch khởi hành sau
+                    đó.
                   </p>
                 </div>
               </div>
               <button className="w-full py-3 rounded-xl bg-surface-container-lowest text-primary border border-primary/20 font-bold text-sm hover:bg-primary hover:text-white transition-all shadow-sm">
-                Generate Batch Schedule
+                Tạo lịch hàng loạt
               </button>
             </section>
             {/*  AI Assistant Floating Advice  */}
@@ -299,17 +299,16 @@ export default function AdminCreateTourPage() {
                   psychology
                 </span>
                 <span className="text-xs font-black text-white tracking-widest uppercase">
-                  Concierge Insight
+                  Gợi ý Concierge
                 </span>
               </div>
               <p className="text-xs text-inverse-on-surface leading-normal">
-                &quot;Master Tours with a 7-day duration and a price point under
-                $2,500 currently have a 84% conversion rate for the Amalfi
-                region. Consider adding a &apos;Wine Tasting&apos; tag to boost
-                visibility.&quot;
+                &quot;Các Tour gốc có thời lượng 7 ngày và mức giá dưới $2,500
+                hiện có tỷ lệ chuyển đổi 84% tại khu vực Amalfi. Hãy cân nhắc
+                thêm thẻ &apos;Thử rượu vang&apos; để tăng hiển thị.&quot;
               </p>
               <button className="text-[10px] font-bold text-primary-fixed-dim hover:underline transition-all">
-                Apply Recommendation
+                Áp dụng đề xuất
               </button>
             </div>
           </div>
@@ -317,32 +316,32 @@ export default function AdminCreateTourPage() {
         {/*  Footer (Authority Source: JSON)  */}
         <footer className="w-full py-12 px-8 mt-auto flex flex-col md:flex-row justify-between items-center gap-4 border-t border-slate-200/20 dark:border-slate-800/20 bg-slate-50 dark:bg-slate-950">
           <p className="font-['Inter'] text-xs text-slate-500">
-            © 2024 Smart Travel Management System. All rights reserved.
+            © 2024 Smart Travel Management System. Đã đăng ký mọi quyền.
           </p>
           <div className="flex gap-6">
             <a
               className="font-['Inter'] text-xs text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 transition-colors opacity-80 hover:opacity-100"
               href="#"
             >
-              Privacy Policy
+              Chính sách bảo mật
             </a>
             <a
               className="font-['Inter'] text-xs text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 transition-colors opacity-80 hover:opacity-100"
               href="#"
             >
-              Terms of Service
+              Điều khoản dịch vụ
             </a>
             <a
               className="font-['Inter'] text-xs text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 transition-colors opacity-80 hover:opacity-100"
               href="#"
             >
-              Support Center
+              Trung tâm hỗ trợ
             </a>
             <a
               className="font-['Inter'] text-xs text-slate-500 hover:text-blue-700 dark:hover:text-blue-400 transition-colors opacity-80 hover:opacity-100"
               href="#"
             >
-              Contact
+              Liên hệ
             </a>
           </div>
         </footer>

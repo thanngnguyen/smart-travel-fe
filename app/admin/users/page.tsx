@@ -8,21 +8,21 @@ export default function UsersManagementPage() {
       <header className="flex justify-between items-end mb-8">
         <div>
           <h2 className="text-3xl font-black text-on-surface tracking-tight font-headline">
-            User Management
+            Quản lý người dùng
           </h2>
           <p className="text-on-surface-variant font-medium mt-1">
-            Manage platform access, roles, and security protocols for the STMS
-            ecosystem.
+            Quản lý quyền truy cập, vai trò và quy trình bảo mật trên hệ sinh
+            thái STMS.
           </p>
         </div>
         <div className="flex gap-3">
           <button className="flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest text-on-surface font-semibold rounded-xl shadow-sm border border-outline-variant/20 hover:bg-surface-container-low transition-all">
             <Icon name="file_download" className="text-[20px]" />
-            Export CSV
+            Xuất CSV
           </button>
           <button className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-xl shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
             <Icon name="person_add" className="text-[20px]" />
-            Add New User
+            Thêm người dùng mới
           </button>
         </div>
       </header>
@@ -36,27 +36,27 @@ export default function UsersManagementPage() {
           />
           <input
             className="w-full pl-12 pr-4 py-3 bg-surface-container-lowest border-none rounded-2xl text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all outline-none"
-            placeholder="Search user by name or email..."
+            placeholder="Tìm người dùng theo tên hoặc email..."
             type="text"
           />
         </div>
         <div className="flex items-center gap-2 bg-surface-container-low p-1 rounded-2xl">
           <button className="px-4 py-2 rounded-xl text-sm font-bold bg-white shadow-sm text-primary">
-            All Roles
+            Tất cả vai trò
           </button>
           <button className="px-4 py-2 rounded-xl text-sm font-bold text-outline hover:text-on-surface transition-colors">
-            Admin
+            Quản trị viên
           </button>
           <button className="px-4 py-2 rounded-xl text-sm font-bold text-outline hover:text-on-surface transition-colors">
-            Guide
+            Hướng dẫn viên
           </button>
           <button className="px-4 py-2 rounded-xl text-sm font-bold text-outline hover:text-on-surface transition-colors">
-            Customer
+            Khách hàng
           </button>
         </div>
         <button className="flex items-center gap-2 px-4 py-2 text-on-surface font-bold text-sm bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10">
           <Icon name="filter_list" className="text-[18px]" />
-          Filters
+          Bộ lọc
         </button>
       </div>
 
@@ -66,22 +66,22 @@ export default function UsersManagementPage() {
           <thead>
             <tr className="bg-surface-container-low">
               <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
-                Name
+                Tên
               </th>
               <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
                 Email
               </th>
               <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
-                Role
+                Vai trò
               </th>
               <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
-                Status
+                Trạng thái
               </th>
               <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline">
-                Date Joined
+                Ngày tham gia
               </th>
               <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-outline text-right">
-                Actions
+                Thao tác
               </th>
             </tr>
           </thead>
@@ -106,19 +106,19 @@ export default function UsersManagementPage() {
               </td>
               <td className="px-6 py-5">
                 <span className="px-3 py-1 rounded-full bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-tight">
-                  Admin
+                  Quản trị viên
                 </span>
               </td>
               <td className="px-6 py-5">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                   <span className="text-sm font-medium text-on-surface">
-                    Active
+                    Hoạt động
                   </span>
                 </div>
               </td>
               <td className="px-6 py-5 text-sm text-outline font-medium">
-                Oct 12, 2023
+                12 Th10, 2023
               </td>
               <td className="px-6 py-5 text-right">
                 <button className="p-2 rounded-lg hover:bg-surface-container-high transition-colors opacity-0 group-hover:opacity-100 text-outline">
@@ -148,19 +148,19 @@ export default function UsersManagementPage() {
               </td>
               <td className="px-6 py-5">
                 <span className="px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-[10px] font-bold uppercase tracking-tight">
-                  Tour Guide
+                  Hướng dẫn viên
                 </span>
               </td>
               <td className="px-6 py-5">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-400"></span>
                   <span className="text-sm font-medium text-on-surface">
-                    Pending
+                    Chờ xử lý
                   </span>
                 </div>
               </td>
               <td className="px-6 py-5 text-sm text-outline font-medium">
-                Nov 04, 2023
+                04 Th11, 2023
               </td>
               <td className="px-6 py-5 text-right">
                 <button className="p-2 rounded-lg hover:bg-surface-container-high transition-colors opacity-0 group-hover:opacity-100 text-outline">
@@ -173,7 +173,7 @@ export default function UsersManagementPage() {
 
         <div className="px-6 py-4 flex items-center justify-between bg-surface-container-low/50 border-t border-surface-container-high">
           <span className="text-xs font-bold text-outline uppercase tracking-wider">
-            Showing 1 to 4 of 1,240 users
+            Hiển thị 1 đến 4 trong tổng 1,240 người dùng
           </span>
           <div className="flex gap-2">
             <button className="p-2 rounded-xl bg-white shadow-sm border border-outline-variant/10 text-outline hover:text-on-surface">
@@ -197,12 +197,12 @@ export default function UsersManagementPage() {
         <div className="lg:col-span-2 bg-surface-container-lowest p-8 rounded-3xl shadow-[0_20px_40px_rgba(25,28,30,0.04)] flex flex-col relative overflow-hidden">
           <div className="relative z-10 mb-8">
             <h3 className="text-lg font-headline font-bold text-on-surface mb-2">
-              User Growth Analytics
+              Phân tích tăng trưởng người dùng
             </h3>
             <p className="text-sm text-on-surface-variant max-w-md">
-              Your user base has increased by{" "}
+              Tệp người dùng của bạn đã tăng{" "}
               <span className="text-emerald-600 font-bold">12.5%</span> this
-              month. Most new signups are choosing the 'Adventurer' package.
+              month. Phần lớn lượt đăng ký mới chọn gói "Nhà thám hiểm".
             </p>
           </div>
           <div className="mt-auto flex items-end gap-6 relative z-10">
@@ -233,7 +233,7 @@ export default function UsersManagementPage() {
                 1,240
               </span>
               <span className="text-[10px] font-bold text-outline uppercase tracking-widest mt-1">
-                Total Active Users
+                Tổng người dùng hoạt động
               </span>
             </div>
           </div>
@@ -249,18 +249,18 @@ export default function UsersManagementPage() {
           <div className="flex justify-between items-start mb-6">
             <Icon name="security" className="p-3 bg-white/10 rounded-2xl" />
             <span className="px-3 py-1 bg-error-container text-on-error-container text-[10px] font-bold rounded-lg uppercase tracking-wider">
-              High Risk
+              Rủi ro cao
             </span>
           </div>
           <h3 className="text-xl font-bold font-headline mb-2 text-white">
-            Security Audit
+            Kiểm toán bảo mật
           </h3>
           <p className="text-sm text-slate-300 font-light mb-8">
-            3 users have been flagged by the AI for suspicious login patterns
-            from multiple geo-locations.
+            3 người dùng đã bị AI gắn cờ vì mẫu đăng nhập bất thường từ nhiều vị
+            trí địa lý.
           </p>
           <button className="w-full py-3.5 bg-white text-slate-900 rounded-xl font-bold text-sm hover:bg-slate-100 transition-all active:scale-95 mt-auto shadow-lg shadow-black/20">
-            Review Flags
+            Xem cảnh báo
           </button>
         </div>
       </div>

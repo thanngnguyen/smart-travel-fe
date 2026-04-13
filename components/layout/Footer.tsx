@@ -10,40 +10,72 @@ export default function Footer() {
             STMS
           </span>
           <p className="text-slate-500 text-sm leading-relaxed">
-            Elevating global travel through intelligent management and seamless experiences.
+            Nâng tầm du lịch toàn cầu bằng quản lý thông minh và trải nghiệm
+            liền mạch.
           </p>
         </div>
         <div>
-          <h4 className="font-headline font-bold text-on-surface mb-4">Quick Links</h4>
+          <h4 className="font-headline font-bold text-on-surface mb-4">
+            Liên kết nhanh
+          </h4>
           <ul className="space-y-2">
             <li>
-              <Link className="text-slate-500 hover:text-blue-500 transition-opacity" href="#">Destinations</Link>
+              <Link
+                className="text-slate-500 hover:text-blue-500 transition-opacity"
+                href="#"
+              >
+                Điểm đến
+              </Link>
             </li>
             <li>
-              <Link className="text-slate-500 hover:text-blue-500 transition-opacity" href="#">Tours</Link>
+              <Link
+                className="text-slate-500 hover:text-blue-500 transition-opacity"
+                href="#"
+              >
+                Tour
+              </Link>
             </li>
             <li>
-              <Link className="text-slate-500 hover:text-blue-500 transition-opacity" href="#">AI Guides</Link>
+              <Link
+                className="text-slate-500 hover:text-blue-500 transition-opacity"
+                href="#"
+              >
+                Hướng dẫn AI
+              </Link>
             </li>
           </ul>
         </div>
         <div>
-          <h4 className="font-headline font-bold text-on-surface mb-4">Legal</h4>
+          <h4 className="font-headline font-bold text-on-surface mb-4">
+            Pháp lý
+          </h4>
           <ul className="space-y-2">
             <li>
-              <Link className="text-slate-500 hover:text-blue-500 transition-opacity text-sm" href="#">Privacy Policy</Link>
+              <Link
+                className="text-slate-500 hover:text-blue-500 transition-opacity text-sm"
+                href="#"
+              >
+                Chính sách bảo mật
+              </Link>
             </li>
             <li>
-              <Link className="text-slate-500 hover:text-blue-500 transition-opacity text-sm" href="#">Terms of Service</Link>
+              <Link
+                className="text-slate-500 hover:text-blue-500 transition-opacity text-sm"
+                href="#"
+              >
+                Điều khoản dịch vụ
+              </Link>
             </li>
           </ul>
         </div>
         <div>
-          <h4 className="font-headline font-bold text-on-surface mb-4">Newsletter</h4>
+          <h4 className="font-headline font-bold text-on-surface mb-4">
+            Bản tin
+          </h4>
           <div className="flex gap-2">
-            <input 
-              className="bg-white border-none rounded-xl text-sm w-full focus:ring-2 focus:ring-primary px-4 py-2" 
-              placeholder="Email address" 
+            <input
+              className="bg-white border-none rounded-xl text-sm w-full focus:ring-2 focus:ring-primary px-4 py-2"
+              placeholder="Địa chỉ email"
               type="email"
             />
             <button className="bg-primary text-white p-2 rounded-xl flex items-center justify-center min-w-[40px]">
@@ -53,7 +85,10 @@ export default function Footer() {
         </div>
       </div>
       <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 text-center">
-        <p className="text-slate-500 text-sm">© {new Date().getFullYear()} Smart Travel Management System. All rights reserved.</p>
+        <p className="text-slate-500 text-sm">
+          © {new Date().getFullYear()} Hệ Thống Quản Lý Du Lịch Thông Minh. Bảo
+          lưu mọi quyền.
+        </p>
       </div>
     </footer>
   );

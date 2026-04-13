@@ -12,7 +12,7 @@ export default function CheckoutPage() {
     <div className="pt-24 pb-20 bg-surface min-h-[90vh]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <h1 className="text-3xl md:text-5xl font-black text-on-surface mb-8">
-          Secure Checkout
+          Thanh toán an toàn
         </h1>
 
         <div className="flex justify-between items-center mb-12 relative w-full lg:w-2/3">
@@ -29,7 +29,7 @@ export default function CheckoutPage() {
               1
             </div>
             <span className="text-sm font-bold text-on-surface">
-              Traveler Info
+              Thông tin hành khách
             </span>
           </div>
 
@@ -41,7 +41,9 @@ export default function CheckoutPage() {
             >
               2
             </div>
-            <span className="text-sm font-bold text-on-surface">Payment</span>
+            <span className="text-sm font-bold text-on-surface">
+              Thanh toán
+            </span>
           </div>
 
           <div
@@ -52,9 +54,7 @@ export default function CheckoutPage() {
             >
               3
             </div>
-            <span className="text-sm font-bold text-on-surface">
-              Confirmation
-            </span>
+            <span className="text-sm font-bold text-on-surface">Xác nhận</span>
           </div>
         </div>
 
@@ -63,34 +63,34 @@ export default function CheckoutPage() {
             {step === 1 && (
               <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 shadow-[0_10px_30px_rgba(25,28,30,0.03)] animate-in fade-in duration-500">
                 <h2 className="text-2xl font-black text-on-surface mb-6">
-                  Contact Information
+                  Thông tin liên hệ
                 </h2>
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-bold text-on-surface-variant mb-2">
-                        First Name
+                        Tên
                       </label>
                       <input
                         type="text"
                         className="w-full bg-surface-container-lowest border border-outline-variant/60 rounded-xl px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                        placeholder="John"
+                        placeholder="An"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-on-surface-variant mb-2">
-                        Last Name
+                        Họ
                       </label>
                       <input
                         type="text"
                         className="w-full bg-surface-container-lowest border border-outline-variant/60 rounded-xl px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                        placeholder="Doe"
+                        placeholder="Nguyen"
                       />
                     </div>
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-on-surface-variant mb-2">
-                      Email Address
+                      Địa chỉ email
                     </label>
                     <input
                       type="email"
@@ -100,7 +100,7 @@ export default function CheckoutPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-on-surface-variant mb-2">
-                      Phone Number
+                      Số điện thoại
                     </label>
                     <input
                       type="tel"
@@ -116,7 +116,7 @@ export default function CheckoutPage() {
                     size="lg"
                     onClick={() => setStep(2)}
                   >
-                    Continue to Payment
+                    Tiếp tục thanh toán
                   </Button>
                 </div>
               </div>
@@ -125,7 +125,7 @@ export default function CheckoutPage() {
             {step === 2 && (
               <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 shadow-[0_10px_30px_rgba(25,28,30,0.03)] animate-in fade-in duration-500">
                 <h2 className="text-2xl font-black text-on-surface mb-6">
-                  Payment Method
+                  Phương thức thanh toán
                 </h2>
 
                 <div className="space-y-4 mb-6">
@@ -138,7 +138,7 @@ export default function CheckoutPage() {
                     />
                     <div className="flex-1 flex justify-between items-center">
                       <span className="font-bold text-on-surface text-lg">
-                        Credit Card
+                        Thẻ tín dụng
                       </span>
                       <div className="flex gap-2 text-primary">
                         <Icon name="credit_card" />
@@ -150,7 +150,7 @@ export default function CheckoutPage() {
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-bold text-on-surface-variant mb-2">
-                      Card Number
+                      Số thẻ
                     </label>
                     <input
                       type="text"
@@ -161,7 +161,7 @@ export default function CheckoutPage() {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-bold text-on-surface-variant mb-2">
-                        Expiry Date
+                        Ngày hết hạn
                       </label>
                       <input
                         type="text"
@@ -189,7 +189,7 @@ export default function CheckoutPage() {
                     onClick={() => setStep(1)}
                     className="hover:bg-surface-container"
                   >
-                    <Icon name="arrow_back" className="mr-2" /> Back
+                    <Icon name="arrow_back" className="mr-2" /> Quay lại
                   </Button>
                   <Button
                     variant="primary"
@@ -197,7 +197,7 @@ export default function CheckoutPage() {
                     onClick={() => setStep(3)}
                     className="shadow-xl shadow-primary/20"
                   >
-                    Confirm & Pay
+                    Xác nhận & thanh toán
                   </Button>
                 </div>
               </div>
@@ -209,19 +209,19 @@ export default function CheckoutPage() {
                   <Icon name="check_circle" className="text-5xl" filled />
                 </div>
                 <h2 className="text-3xl font-black text-on-surface mb-4">
-                  Booking Confirmed!
+                  Đặt chỗ thành công!
                 </h2>
                 <p className="text-lg text-on-surface-variant mb-8 max-w-md mx-auto">
-                  Your luxury escape has been secured. Our AI concierge will
-                  reach out shortly to perfect your itinerary.
+                  Chuyến đi cao cấp của bạn đã được xác nhận. Trợ lý AI sẽ sớm
+                  liên hệ để tối ưu lịch trình cho bạn.
                 </p>
                 <p className="inline-block px-4 py-2 bg-surface-container text-on-surface rounded-xl font-mono border border-outline-variant/30 text-sm mb-8">
-                  Booking ID: <span className="font-bold">#STMS-84291-A</span>
+                  Mã đặt chỗ: <span className="font-bold">#STMS-84291-A</span>
                 </p>
                 <div>
                   <Link href="/">
                     <Button variant="primary" size="lg">
-                      Return to Home
+                      Quay về trang chủ
                     </Button>
                   </Link>
                 </div>
@@ -232,7 +232,7 @@ export default function CheckoutPage() {
           <div className="lg:col-span-1">
             <div className="bg-surface-container-highest/20 rounded-3xl p-6 md:p-8 border border-outline-variant/20 sticky top-32">
               <h3 className="text-xl font-black text-on-surface mb-6 border-b border-outline-variant/30 pb-4">
-                Order Summary
+                Tóm tắt đơn hàng
               </h3>
 
               <div className="flex gap-4 mb-6">
@@ -245,7 +245,7 @@ export default function CheckoutPage() {
                 </div>
                 <div>
                   <h4 className="font-bold text-on-surface leading-tight mb-1">
-                    The Maldivian Solitude
+                    Tĩnh Lặng Maldives
                   </h4>
                   <p className="text-xs text-on-surface-variant mb-2">
                     Baa Atoll, Maldives
@@ -258,27 +258,29 @@ export default function CheckoutPage() {
 
               <div className="space-y-3 text-sm text-on-surface-variant mb-6 border-b border-outline-variant/30 pb-6">
                 <div className="flex justify-between">
-                  <span>Dates</span>
+                  <span>Ngày đi</span>
                   <span className="font-bold text-on-surface">
-                    Oct 12 - Oct 17
+                    12 Th10 - 17 Th10
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Travelers</span>
-                  <span className="font-bold text-on-surface">2 Adults</span>
+                  <span>Hành khách</span>
+                  <span className="font-bold text-on-surface">2 người lớn</span>
                 </div>
                 <div className="flex justify-between mt-4">
-                  <span>Base Price (x2)</span>
+                  <span>Giá cơ bản (x2)</span>
                   <span className="font-bold text-on-surface">$10,800.00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Taxes & Fees</span>
+                  <span>Thuế & phí</span>
                   <span className="font-bold text-on-surface">$1,250.00</span>
                 </div>
               </div>
 
               <div className="flex justify-between items-end">
-                <span className="text-lg font-bold text-on-surface">Total</span>
+                <span className="text-lg font-bold text-on-surface">
+                  Tổng cộng
+                </span>
                 <span className="text-3xl font-black text-primary">
                   $12,050
                 </span>

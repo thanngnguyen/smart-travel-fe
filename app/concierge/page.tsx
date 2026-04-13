@@ -8,12 +8,12 @@ export default function ConciergePage() {
   const [messages, setMessages] = useState([
     {
       role: "ai",
-      text: "Good morning! I've analyzed your interest in **Kyoto's traditional architecture**. I see you're planning for **Nov 12th - 18th**. Should we focus on the Gion district or include the Arashiyama bamboo groves?",
-      entities: ["Kyoto", "Nov 12-18"],
+      text: "Chào buổi sáng! Tôi đã phân tích sở thích của bạn về **kiến trúc truyền thống Kyoto**. Tôi thấy bạn đang lên kế hoạch cho **12 - 18 tháng 11**. Chúng ta nên tập trung vào khu Gion hay thêm cả rừng tre Arashiyama?",
+      entities: ["Kyoto", "12-18 thg 11"],
     },
     {
       role: "user",
-      text: "Let's do both, but I want a very private experience. Maybe a tea ceremony with a local master?",
+      text: "Mình muốn cả hai, nhưng cần trải nghiệm thật riêng tư. Có thể có trà đạo với một nghệ nhân bản địa không?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -40,7 +40,7 @@ export default function ConciergePage() {
         ...prev,
         {
           role: "ai",
-          text: "Processing request... I have updated the schedule.",
+          text: "Đang xử lý yêu cầu... Tôi đã cập nhật lịch trình.",
           entities: [],
         },
       ]);
@@ -60,10 +60,10 @@ export default function ConciergePage() {
         </div>
         <div className="mb-10">
           <h2 className="font-headline text-lg font-bold text-on-surface">
-            Welcome back
+            Chào mừng quay lại
           </h2>
           <p className="text-xs text-slate-500 font-medium">
-            Your next adventure awaits
+            Hành trình tiếp theo đang chờ bạn
           </p>
         </div>
         <nav className="flex-1 space-y-2">
@@ -72,39 +72,39 @@ export default function ConciergePage() {
             className="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-all hover:bg-slate-100 dark:hover:bg-slate-900 rounded-xl group"
           >
             <Icon name="home" />
-            <span className="font-semibold">Home</span>
+            <span className="font-semibold">Trang chủ</span>
           </Link>
           <Link
             href="/profile"
             className="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-all hover:bg-slate-100 dark:hover:bg-slate-900 rounded-xl group"
           >
             <Icon name="travel_explore" />
-            <span className="font-semibold">My Trips</span>
+            <span className="font-semibold">Chuyến đi của tôi</span>
           </Link>
           <Link
             href="/saved"
             className="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-all hover:bg-slate-100 dark:hover:bg-slate-900 rounded-xl group"
           >
             <Icon name="bookmark" />
-            <span className="font-semibold">Saved</span>
+            <span className="font-semibold">Đã lưu</span>
           </Link>
           <Link
             href="/concierge"
             className="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-xl font-semibold transition-all scale-105 duration-200"
           >
             <Icon name="smart_toy" filled />
-            <span className="font-semibold">Concierge</span>
+            <span className="font-semibold">Trợ lý AI</span>
           </Link>
           <Link
             href="/settings"
             className="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-all hover:bg-slate-100 dark:hover:bg-slate-900 rounded-xl group"
           >
             <Icon name="settings" />
-            <span className="font-semibold">Settings</span>
+            <span className="font-semibold">Cài đặt</span>
           </Link>
         </nav>
         <button className="mt-auto w-full py-4 bg-gradient-to-r from-primary to-primary-container text-white rounded-3xl font-bold shadow-lg hover:opacity-90 transition-all">
-          Plan New Trip
+          Lên kế hoạch mới
         </button>
       </aside>
 
@@ -121,25 +121,25 @@ export default function ConciergePage() {
                 href="/"
                 className="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors"
               >
-                Destinations
+                Điểm đến
               </Link>
               <Link
                 href="/tours"
                 className="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors"
               >
-                Tours
+                Tour
               </Link>
               <Link
                 href="/tours"
                 className="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors"
               >
-                Deals
+                Ưu đãi
               </Link>
               <Link
                 href="/concierge"
                 className="text-sm font-bold text-primary border-b-2 border-primary pb-1"
               >
-                Concierge
+                Trợ lý AI
               </Link>
             </nav>
           </div>
@@ -162,10 +162,10 @@ export default function ConciergePage() {
         {/* Chat Experience Grid */}
         <div className="mb-12 relative z-10">
           <h1 className="font-headline text-4xl font-extrabold tracking-tight text-primary">
-            AI Concierge
+            AI Trợ lý cá nhân
           </h1>
           <p className="text-on-surface-variant font-medium mt-1">
-            Refining your Kyoto journey with intelligent precision.
+            Tinh chỉnh hành trình Kyoto của bạn bằng độ chính xác thông minh.
           </p>
         </div>
 
@@ -189,7 +189,7 @@ export default function ConciergePage() {
                         {msg.entities && msg.entities.length > 0 && (
                           <div className="flex gap-2 flex-wrap">
                             <span className="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-                              Entity: {msg.entities[0]}
+                              Thực thể: {msg.entities[0]}
                             </span>
                             {msg.entities[1] && (
                               <span className="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
@@ -224,8 +224,8 @@ export default function ConciergePage() {
                 <div className="space-y-6 w-full">
                   <div className="bg-white p-5 rounded-2xl rounded-tl-none shadow-[0_10px_25px_rgba(0,0,0,0.03)] border border-outline-variant/10 max-w-[85%]">
                     <p className="text-on-surface leading-relaxed italic">
-                      Processing request... Found two "Zen-certified" private
-                      ceremonies available during your stay.
+                      Đang xử lý yêu cầu... Tìm thấy hai nghi thức riêng tư
+                      "chuẩn thiền" khả dụng trong thời gian bạn lưu trú.
                     </p>
                   </div>
                   {/* Horizontal Recommended Cards */}
@@ -244,26 +244,26 @@ export default function ConciergePage() {
                               filled
                               className="text-[12px]"
                             />{" "}
-                            AI RECOMMENDED
+                            AI ĐỀ XUẤT
                           </span>
                         </div>
                       </div>
                       <div className="p-5">
                         <div className="flex justify-between items-start mb-2">
                           <h3 className="font-headline font-bold text-lg text-on-surface">
-                            Secret Tea Garden Gion
+                            Vườn trà bí mật Gion
                           </h3>
                           <span className="text-primary font-bold">
                             ¥24,000
                           </span>
                         </div>
                         <p className="text-xs text-on-surface-variant line-clamp-2 mb-4">
-                          A private 17th-century tea house normally closed to
-                          the public. Includes a matcha masterclass with a
-                          4th-generation tea master.
+                          Trà thất riêng tư từ thế kỷ 17 thường đóng cửa với
+                          công chúng. Bao gồm lớp trà matcha cùng nghệ nhân đời
+                          thứ 4.
                         </p>
                         <button className="w-full py-2 bg-primary-fixed text-on-primary-fixed-variant rounded-xl font-bold text-sm transition-colors hover:bg-primary-container hover:text-white">
-                          Add to Itinerary
+                          Thêm vào lịch trình
                         </button>
                       </div>
                     </div>
@@ -281,25 +281,25 @@ export default function ConciergePage() {
                               filled
                               className="text-[12px]"
                             />{" "}
-                            AI RECOMMENDED
+                            AI ĐỀ XUẤT
                           </span>
                         </div>
                       </div>
                       <div className="p-5">
                         <div className="flex justify-between items-start mb-2">
                           <h3 className="font-headline font-bold text-lg text-on-surface">
-                            Morning Zen at Kodai-ji
+                            Thiền buổi sáng tại Kodai-ji
                           </h3>
                           <span className="text-primary font-bold">
                             ¥18,500
                           </span>
                         </div>
                         <p className="text-xs text-on-surface-variant line-clamp-2 mb-4">
-                          Before-hours access to the temple gardens followed by
-                          a private tea offering and meditation session.
+                          Vào khu vườn đền trước giờ mở cửa, tiếp theo là nghi
+                          lễ trà riêng và phiên thiền định.
                         </p>
                         <button className="w-full py-2 bg-primary-fixed text-on-primary-fixed-variant rounded-xl font-bold text-sm transition-colors hover:bg-primary-container hover:text-white">
-                          Add to Itinerary
+                          Thêm vào lịch trình
                         </button>
                       </div>
                     </div>
@@ -315,7 +315,7 @@ export default function ConciergePage() {
               <form onSubmit={handleSend} className="relative">
                 <input
                   className="w-full bg-white border-0 ring-1 ring-outline-variant/30 rounded-3xl py-5 pl-6 pr-28 text-on-surface focus:ring-2 focus:ring-primary focus:ring-offset-0 transition-all font-medium placeholder:text-slate-400 outline-none"
-                  placeholder="Ask anything about your trip..."
+                  placeholder="Hỏi bất cứ điều gì về chuyến đi của bạn..."
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
@@ -338,12 +338,12 @@ export default function ConciergePage() {
               </form>
               <div className="mt-4 flex gap-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-4">
                 <span className="flex items-center gap-1">
-                  <Icon name="check_circle" className="text-[12px]" /> Verified
-                  Partners Only
+                  <Icon name="check_circle" className="text-[12px]" /> Đối tác
+                  đã xác minh
                 </span>
                 <span className="flex items-center gap-1">
-                  <Icon name="security" className="text-[12px]" /> Safe & Secure
-                  Booking
+                  <Icon name="security" className="text-[12px]" /> Đặt chỗ an
+                  toàn & bảo mật
                 </span>
               </div>
             </div>
@@ -360,7 +360,7 @@ export default function ConciergePage() {
                 />
               </div>
               <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-3 py-2 rounded-xl text-[10px] font-bold text-primary shadow-sm tracking-wider">
-                DESTINATION: KYOTO, JP
+                ĐIỂM ĐẾN: KYOTO, NHẬT BẢN
               </div>
             </div>
 
@@ -373,25 +373,25 @@ export default function ConciergePage() {
                   className="text-on-tertiary-container"
                 />
                 <h4 className="font-headline font-bold">
-                  AI Insight: Peak Season
+                  Gợi ý AI: Mùa cao điểm
                 </h4>
               </div>
               <p className="text-sm font-medium leading-relaxed opacity-90">
-                Nov 12-18 coincides with peak autumn foliage. I recommend
-                booking all private tours within the next{" "}
-                <strong>48 hours</strong> as availability is at 12%.
+                Từ 12-18 tháng 11 là giai đoạn cao điểm mùa lá thu. Tôi khuyên
+                bạn nên đặt tất cả tour riêng trong <strong>48 giờ</strong> tới
+                vì tỷ lệ còn chỗ chỉ còn 12%.
               </p>
             </div>
 
             {/* Quick Action List */}
             <div className="bg-surface-container-high rounded-3xl p-6 flex-1 space-y-6">
               <h4 className="font-headline font-bold text-on-surface">
-                Suggested Follow-ups
+                Gợi ý tiếp theo
               </h4>
               <div className="space-y-3">
                 <button className="w-full text-left p-4 bg-surface-container-lowest rounded-2xl flex items-center justify-between group hover:shadow-md transition-all text-on-surface cursor-pointer border-none outline-none">
                   <span className="text-sm font-semibold">
-                    Find dinner reservations
+                    Tìm chỗ đặt bữa tối
                   </span>
                   <Icon
                     name="chevron_right"
@@ -400,7 +400,7 @@ export default function ConciergePage() {
                 </button>
                 <button className="w-full text-left p-4 bg-surface-container-lowest rounded-2xl flex items-center justify-between group hover:shadow-md transition-all text-on-surface cursor-pointer border-none outline-none">
                   <span className="text-sm font-semibold">
-                    Check flight prices
+                    Kiểm tra giá chuyến bay
                   </span>
                   <Icon
                     name="chevron_right"
@@ -408,9 +408,7 @@ export default function ConciergePage() {
                   />
                 </button>
                 <button className="w-full text-left p-4 bg-surface-container-lowest rounded-2xl flex items-center justify-between group hover:shadow-md transition-all text-on-surface cursor-pointer border-none outline-none">
-                  <span className="text-sm font-semibold">
-                    Visa requirements
-                  </span>
+                  <span className="text-sm font-semibold">Yêu cầu visa</span>
                   <Icon
                     name="chevron_right"
                     className="text-primary group-hover:translate-x-1 transition-transform"
@@ -421,7 +419,7 @@ export default function ConciergePage() {
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
                   <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">
-                    Global Travel Pulse: Active
+                    Nhịp du lịch toàn cầu: Đang hoạt động
                   </span>
                 </div>
                 <div className="space-y-2">
@@ -429,8 +427,8 @@ export default function ConciergePage() {
                     <div className="h-full bg-primary w-3/4 rounded-full"></div>
                   </div>
                   <p className="text-[10px] text-on-surface-variant font-medium italic">
-                    Assistant is optimizing for 'Luxury' & 'Privacy' preference
-                    profile.
+                    Trợ lý đang tối ưu theo hồ sơ ưu tiên "Cao cấp" và "Riêng
+                    tư".
                   </p>
                 </div>
               </div>

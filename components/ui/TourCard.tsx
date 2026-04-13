@@ -44,7 +44,7 @@ export default function TourCard({
         {seatsLeft && (
           <div className="absolute top-6 right-6 bg-tertiary-container text-on-tertiary-container px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2">
             <Icon name="bolt" filled className="text-sm" />
-            {seatsLeft} Seats Left
+            Còn {seatsLeft} chỗ
           </div>
         )}
 
@@ -52,7 +52,7 @@ export default function TourCard({
           <div className="flex items-center gap-2 mb-3">
             {featured && (
               <span className="bg-primary/20 backdrop-blur-md text-white px-3 py-1 rounded-lg text-xs font-bold border border-white/20">
-                AI Recommended
+                AI đề xuất
               </span>
             )}
             <div className="flex gap-0.5 text-yellow-400">
@@ -69,7 +69,7 @@ export default function TourCard({
             <p className="text-white/80 mb-6 max-w-md">{description}</p>
           )}
           <Button variant="white" size="lg">
-            Book Experience
+            Đặt trải nghiệm
           </Button>
         </div>
       </Link>
