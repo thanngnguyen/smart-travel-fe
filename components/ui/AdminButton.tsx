@@ -33,7 +33,7 @@ const variantClasses: Record<AdminButtonVariant, string> = {
 const sizeClasses: Record<AdminButtonSize, string> = {
   sm: "px-4 py-2 rounded-xl text-sm",
   md: "px-5 py-2.5 rounded-xl text-sm",
-  lg: "px-6 py-3 rounded-xl text-sm",
+  lg: "px-6 py-3 rounded-full text-sm",
   icon: "w-10 h-10 rounded-lg",
 };
 

@@ -18,11 +18,11 @@ export default function ToursHeader({ title, description }: ToursHeaderProps) {
       <div className="flex gap-4">
         <Link
           href="/admin/tours/create"
-          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white shadow-lg shadow-primary/20 hover:bg-primary-container transition-colors font-bold mr-3"
+          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-primary text-white shadow-lg shadow-primary/20 hover:bg-primary-container transition-colors font-bold mr-3"
         >
           <span className="material-symbols-outlined">add</span> Tạo tour
         </Link>
-        <AdminButton variant="surface" size="md" className="font-semibold">
+        <AdminButton variant="surface" size="lg" className="font-semibold">
           <span className="material-symbols-outlined">download</span>
           Xuất danh sách chuyến
         </AdminButton>

@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import Icon from "@/components/ui/Icon";
 import TourCard from "@/components/ui/TourCard";
+import UiSelect from "@/components/ui/UiSelect";
 import { CustomerListingTour, ToursSortOption } from "@/types/customer-tours";
 
 interface ToursResultsSectionProps {
@@ -12,6 +13,11 @@ export default function ToursResultsSection({
   tours,
   sortOptions,
 }: ToursResultsSectionProps) {
+  const sortSelectOptions = sortOptions.map((option) => ({
+    value: option.value,
+    label: option.label,
+  }));
+
   return (
     <section className="flex-1 px-4 lg:px-8 xl:pr-12 w-full max-w-300">
       <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-outline-variant/30">
@@ -37,17 +43,13 @@ export default function ToursResultsSection({
           <span className="text-xs font-bold text-outline uppercase tracking-wider hidden sm:inline-block">
             Sắp xếp theo:
           </span>
-          <div className="relative">
-            <select className="appearance-none border border-outline-variant/40 rounded-full px-5 py-2.5 pr-10 text-sm font-bold text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm hover:border-outline-variant/80 transition-colors cursor-pointer relative z-10 bg-transparent">
-              {sortOptions.map((option) => (
-                <option key={option.value}>{option.label}</option>
-              ))}
-            </select>
-            <Icon
-              name="expand_more"
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none z-0"
-            />
-          </div>
+          <UiSelect
+            options={sortSelectOptions}
+            defaultValue={sortSelectOptions[0]?.value}
+            size="lg"
+            variant="surface"
+            className="rounded-full bg-transparent border-outline-variant/40 py-2.5 pl-5 pr-10 font-bold hover:border-outline-variant/80"
+          />
         </div>
       </div>
 
@@ -74,7 +76,7 @@ export default function ToursResultsSection({
         <Button
           variant="secondary"
           size="lg"
-          className="border-outline-variant/40 bg-surface-container-lowest hover:bg-surface-container shadow-sm px-10"
+          className="border-outline-variant/40 bg-surface-tint hover:bg-surface-tint/80 shadow-sm px-10"
         >
           <Icon name="refresh" className="mr-2" /> Tải thêm hành trình
         </Button>

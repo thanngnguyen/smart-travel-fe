@@ -10,7 +10,7 @@ export default function HeroSection() {
           alt="Cinematic wide angle view of a sleek passenger jet flying through soft ethereal white clouds at sunset"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJemsNMvicFYo3odDpPw9Ta5Bhr0bLYHUeSHHGT6t-SJcVfCxaqVjKi_n1Rg1SklC83eLs-vgittYjj1MohSSKpJfknm_Ug1QArEOImRy_daSNlZWGE-pczMuxL_5OeVV5NMkgGwpsh8bE1aoRjLOYPgVvYPn0qUIAV0wFdv5aRLq_N4QGyyO7yCG0GZu3vMyPwCIhFZePDryTVrZqKCw5qhpaXzZM4UNniDME_XidfE0Yq1lUZIPMCKBbksbjVt0AyOLXsyPmRTA"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-surface" />
+        <div className="absolute inset-0 bg-linear-to-b from-primary/30 via-transparent to-surface" />
       </div>
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <h1 className="text-white text-6xl md:text-8xl font-extrabold tracking-tighter mb-6 leading-tight">
@@ -23,7 +23,7 @@ export default function HeroSection() {
           tay.
         </p>
       </div>
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-full max-w-5xl px-6 z-20">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-full max-w-6xl px-6 z-20">
         <SearchBar />
       </div>
     </section>

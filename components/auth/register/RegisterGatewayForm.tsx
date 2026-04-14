@@ -1,4 +1,5 @@
 import Icon from "@/components/ui/Icon";
+import UiSelect from "@/components/ui/UiSelect";
 import Link from "next/link";
 import { AuthRoleOption, RegisterFormData } from "@/types/auth";
 
@@ -18,6 +19,11 @@ export default function RegisterGatewayForm({
   onFieldChange,
   onSubmit,
 }: RegisterGatewayFormProps) {
+  const roleSelectOptions = roleOptions.map((option) => ({
+    value: option.value,
+    label: option.label,
+  }));
+
   return (
     <div className="w-full max-w-xl mx-auto flex flex-col items-center">
       <div className="w-full bg-surface-container-lowest shadow-[0_20px_40px_rgba(25,28,30,0.06)] rounded-[2.5rem] p-8 md:p-12 border border-slate-100">
@@ -61,7 +67,7 @@ export default function RegisterGatewayForm({
                   name="groups"
                   className="absolute left-4 top-1/2 -translate-y-1/2 text-outline text-sm transition-colors group-focus-within:text-primary z-10"
                 />
-                <select
+                <UiSelect
                   value={formData.role}
                   onChange={(e) =>
                     onFieldChange(
@@ -69,17 +75,9 @@ export default function RegisterGatewayForm({
                       e.target.value as RegisterFormData["role"],
                     )
                   }
-                  className="w-full bg-surface-container-low border border-transparent rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-on-surface transition-all font-medium focus:outline-none appearance-none"
-                >
-                  {roleOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-                <Icon
-                  name="expand_more"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none"
+                  options={roleSelectOptions}
+                  size="lg"
+                  className="bg-surface-container-low border-transparent pl-12 py-4 pr-10 text-on-surface font-medium"
                 />
               </div>
             </div>

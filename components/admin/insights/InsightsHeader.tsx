@@ -12,7 +12,7 @@ export default function InsightsHeader() {
         </p>
       </div>
       <div className="flex gap-3">
-        <AdminButton variant="surfaceMuted" size="sm">
+        <AdminButton variant="surfaceMuted" size="lg">
           <span className="material-symbols-outlined text-sm">
             calendar_today
           </span>

@@ -44,7 +44,7 @@ const SIDEBAR_NAV: ConciergeNavItem[] = [
 const TOP_NAV: ConciergeTopNavItem[] = [
   { id: "destinations", label: "Điểm đến", href: "/" },
   { id: "tours", label: "Tour", href: "/tours" },
-  { id: "offers", label: "Ưu đãi", href: "/tours" },
+  { id: "offers", label: "Ưu đãi", href: "/deals" },
   { id: "assistant", label: "Trợ lý AI", href: "/concierge", isActive: true },
 ];
 

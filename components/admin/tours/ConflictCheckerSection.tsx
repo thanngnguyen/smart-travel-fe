@@ -13,7 +13,7 @@ interface ConflictCheckerSectionProps {
 function getConflictStyles(theme: ConflictCard["theme"]) {
   if (theme === "error") {
     return {
-      wrapper: "bg-error-container/10 border-l-4 border-error",
+      wrapper: "border-error bg-error/10",
       icon: "text-error",
       badge: "text-error",
       primaryAction: "text-error",
@@ -22,7 +22,7 @@ function getConflictStyles(theme: ConflictCard["theme"]) {
   }
 
   return {
-    wrapper: "bg-tertiary-container/10 border-l-4 border-tertiary",
+    wrapper: "border-tertiary bg-tertiary/10",
     icon: "text-tertiary",
     badge: "text-tertiary",
     primaryAction: "text-tertiary",

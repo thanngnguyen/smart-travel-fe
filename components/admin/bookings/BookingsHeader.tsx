@@ -10,7 +10,7 @@ export default function BookingsHeader() {
       className="mb-8"
       actions={
         <>
-          <AdminButton variant="surface" size="md" className="font-semibold">
+          <AdminButton variant="surface" size="lg" className="font-semibold">
             <Icon name="file_download" className="text-[20px]" />
             Xuất CSV
           </AdminButton>

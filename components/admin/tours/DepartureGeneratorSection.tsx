@@ -1,5 +1,6 @@
 import { RecurringDayOption, SelectOption } from "@/types/admin-tours";
 import AdminButton from "@/components/ui/AdminButton";
+import UiSelect from "@/components/ui/UiSelect";
 
 interface DepartureGeneratorSectionProps {
   targetItineraryOptions: SelectOption[];
@@ -12,6 +13,15 @@ export default function DepartureGeneratorSection({
   recurringDays,
   guideOptions,
 }: DepartureGeneratorSectionProps) {
+  const itinerarySelectOptions = targetItineraryOptions.map((option) => ({
+    value: option.value,
+    label: option.label,
+  }));
+  const guideSelectOptions = guideOptions.map((option) => ({
+    value: option.value,
+    label: option.label,
+  }));
+
   return (
     <section className="col-span-12 lg:col-span-4 bg-surface-container rounded-2xl p-6 border border-outline-variant/10">
       <div className="flex items-center gap-2 mb-6">
@@ -27,13 +37,10 @@ export default function DepartureGeneratorSection({
           <label className="block text-xs font-bold uppercase text-on-surface-variant mb-2">
             Lịch trình mục tiêu
           </label>
-          <select className="w-full bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary py-3">
-            {targetItineraryOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <UiSelect
+            options={itinerarySelectOptions}
+            className="rounded-lg border-none bg-surface-container-lowest py-3 text-sm focus:ring-2 focus:ring-primary"
+          />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
@@ -82,13 +89,10 @@ export default function DepartureGeneratorSection({
           <label className="block text-xs font-bold uppercase text-on-surface-variant mb-2">
             Hướng dẫn viên phụ trách
           </label>
-          <select className="w-full bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary py-3">
-            {guideOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <UiSelect
+            options={guideSelectOptions}
+            className="rounded-lg border-none bg-surface-container-lowest py-3 text-sm focus:ring-2 focus:ring-primary"
+          />
         </div>
 
         <AdminButton

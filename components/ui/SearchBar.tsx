@@ -3,11 +3,18 @@
 import React, { useState } from "react";
 import Icon from "./Icon";
 import Button from "./Button";
+import UiSelect from "./UiSelect";
 
 export default function SearchBar() {
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState("");
   const [budget, setBudget] = useState("");
+  const budgetOptions = [
+    { value: "", label: "Chọn khoảng ngân sách", disabled: true, hidden: true },
+    { value: "economy", label: "Tiết kiệm ($0 - $1,000)" },
+    { value: "standard", label: "Tiêu chuẩn ($1,000 - $3,000)" },
+    { value: "luxury", label: "Cao cấp ($3,000+)" },
+  ];
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,26 +70,19 @@ export default function SearchBar() {
       {/* Budget Field */}
       <div className="flex-1 flex items-center px-6 py-2 hover:bg-surface-container-low rounded-2xl transition-colors group cursor-pointer relative">
         <Icon name="payments" className="text-primary mr-4" />
-        <div className="flex flex-col text-left w-full relative">
+        <div className="flex flex-col text-left w-full">
           <label className="text-xs font-bold text-outline uppercase tracking-wider mb-1 cursor-pointer">
             Ngân sách
           </label>
-          <select
-            className="bg-transparent border-none p-0 outline-none ring-0 w-full text-on-surface font-medium focus:ring-0 cursor-pointer appearance-none"
+          <UiSelect
+            variant="ghost"
+            size="sm"
+            options={budgetOptions}
+            dropdownPlacement="top"
             value={budget}
             onChange={(e) => setBudget(e.target.value)}
-          >
-            <option value="" disabled hidden>
-              Chọn khoảng ngân sách
-            </option>
-            <option value="economy">Tiết kiệm ($0 - $1,000)</option>
-            <option value="standard">Tiêu chuẩn ($1,000 - $3,000)</option>
-            <option value="luxury">Cao cấp ($3,000+)</option>
-          </select>
-          {/* Custom Dropdown Arrow */}
-          <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 opacity-50">
-            <Icon name="expand_more" />
-          </div>
+            className="p-0 pl-0 pr-8 text-on-surface font-medium"
+          />
         </div>
       </div>
 

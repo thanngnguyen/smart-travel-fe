@@ -4,10 +4,17 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import Icon from "@/components/ui/Icon";
 import Button from "@/components/ui/Button";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const navLinkClass = (isActive: boolean) =>
+    isActive
+      ? "text-blue-700 dark:text-blue-400 font-bold border-b-2 border-blue-700 dark:border-blue-400 pb-1 text-sm uppercase tracking-wider"
+      : "text-slate-600 dark:text-slate-400 font-medium hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm uppercase tracking-wider";
 
   // Hook để theo dõi trạng thái cuộn trang
   useEffect(() => {
@@ -36,28 +43,24 @@ export default function Header() {
               STMS
             </Link>
 
-            {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8">
-              <Link
-                className="text-blue-700 dark:text-blue-400 font-bold border-b-2 border-blue-700 dark:border-blue-400 pb-1 text-sm uppercase tracking-wider"
-                href="/"
-              >
+              <Link className={navLinkClass(pathname === "/")} href="/">
                 Điểm đến
               </Link>
               <Link
-                className="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm uppercase tracking-wider"
+                className={navLinkClass(pathname.startsWith("/tours"))}
                 href="/tours"
               >
                 Tour
               </Link>
               <Link
-                className="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm uppercase tracking-wider"
-                href="/tours"
+                className={navLinkClass(pathname.startsWith("/deals"))}
+                href="/deals"
               >
                 Ưu đãi
               </Link>
               <Link
-                className="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm uppercase tracking-wider"
+                className={navLinkClass(pathname.startsWith("/guide-portal"))}
                 href="/guide-portal"
               >
                 Hướng dẫn viên
@@ -115,6 +118,12 @@ export default function Header() {
               className="font-medium text-lg text-slate-600 py-2 border-b border-slate-100 dark:border-slate-800"
             >
               Tour
+            </Link>
+            <Link
+              href="/deals"
+              className="font-medium text-lg text-slate-600 py-2 border-b border-slate-100 dark:border-slate-800"
+            >
+              Ưu đãi
             </Link>
             <Link
               href="/profile"

@@ -4,43 +4,61 @@ import { CheckoutProgressStep, CheckoutStep } from "@/types/customer-checkout";
 interface CheckoutStepIndicatorProps {
   step: CheckoutStep;
   steps: CheckoutProgressStep[];
+  onStepSelect: (targetStep: CheckoutStep) => void;
 }
 
 export default function CheckoutStepIndicator({
   step,
   steps,
+  onStepSelect,
 }: CheckoutStepIndicatorProps) {
-  const progressWidth = step === 1 ? "50%" : "100%";
-
   return (
-    <div className="flex justify-between items-center mb-12 relative w-full lg:w-2/3">
-      <div className="absolute top-1/2 -translate-y-1/2 left-0 w-full h-1 bg-outline-variant/30 rounded-full z-0"></div>
-      <div
-        className="absolute top-1/2 -translate-y-1/2 left-0 h-1 bg-primary rounded-full z-0 transition-all duration-500"
-        style={{ width: progressWidth }}
-      ></div>
+    <div className="mb-12 border-b border-outline-variant/20">
+      <div className="flex flex-wrap items-center gap-4 md:gap-8">
+        {steps.map((item) => {
+          const isActive = step === item.id;
+          const isCompleted = step > item.id;
 
-      {steps.map((item) => (
-        <div
-          key={item.id}
-          className={`relative z-10 flex flex-col items-center gap-2 transition-opacity ${step >= item.id ? "opacity-100" : "opacity-50"}`}
-        >
-          <div
-            className={`w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-lg transition-colors duration-500 ${step >= item.id ? "bg-primary text-white" : "bg-surface-container-highest text-on-surface-variant"}`}
-          >
-            {item.id}
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => onStepSelect(item.id)}
+              className={`pb-4 flex items-center gap-2 transition-all ${
+                isActive
+                  ? "text-primary font-bold border-b-2 border-primary"
+                  : isCompleted
+                    ? "text-on-surface font-semibold"
+                    : "text-on-surface-variant opacity-50"
+              }`}
+            >
+              <span
+                className={`w-6 h-6 rounded-full text-[12px] flex items-center justify-center font-bold ${
+                  isActive
+                    ? "bg-primary text-on-primary"
+                    : isCompleted
+                      ? "bg-primary-fixed text-on-primary-fixed"
+                      : "bg-outline-variant text-on-primary"
+                }`}
+              >
+                {item.id}
+              </span>
+              <span className="font-headline text-sm md:text-base">
+                {item.label}
+              </span>
+            </button>
+          );
+        })}
+
+        {step === 3 ? (
+          <div className="pb-4 ml-auto hidden md:flex items-center gap-2 text-primary">
+            <Icon name="shield_lock" className="text-xl" />
+            <span className="text-xs font-bold uppercase tracking-wider">
+              Thanh toán bảo mật
+            </span>
           </div>
-          <span className="text-sm font-bold text-on-surface">
-            {item.label}
-          </span>
-        </div>
-      ))}
-
-      {step === 3 ? (
-        <div className="absolute right-[-3.5rem] top-1/2 -translate-y-1/2 text-primary hidden lg:block">
-          <Icon name="check_circle" filled className="text-2xl" />
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </div>
   );
 }

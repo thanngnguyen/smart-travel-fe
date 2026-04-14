@@ -1,4 +1,5 @@
 import { FrequencyOption } from "@/types/admin-create-tour";
+import UiSelect from "@/components/ui/UiSelect";
 
 interface DepartureGeneratorCardProps {
   frequencyOptions: FrequencyOption[];
@@ -7,6 +8,11 @@ interface DepartureGeneratorCardProps {
 export default function DepartureGeneratorCard({
   frequencyOptions,
 }: DepartureGeneratorCardProps) {
+  const frequencySelectOptions = frequencyOptions.map((option) => ({
+    value: option.value,
+    label: option.label,
+  }));
+
   return (
     <section className="bg-primary/5 p-8 rounded-2xl border border-primary/10 space-y-6 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
@@ -29,13 +35,11 @@ export default function DepartureGeneratorCard({
           <label className="text-[10px] font-extrabold text-primary uppercase tracking-widest">
             Tần suất
           </label>
-          <select className="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-2.5 text-sm font-semibold text-on-surface focus:ring-2 focus:ring-primary/20">
-            {frequencyOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <UiSelect
+            options={frequencySelectOptions}
+            size="sm"
+            className="rounded-xl border-none bg-surface-container-lowest px-4 py-2.5 text-sm font-semibold text-on-surface focus:ring-2 focus:ring-primary/20"
+          />
         </div>
 
         <div className="grid grid-cols-2 gap-3">

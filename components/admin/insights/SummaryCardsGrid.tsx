@@ -10,7 +10,7 @@ export default function SummaryCardsGrid({ cards }: SummaryCardsGridProps) {
       {cards.map((card) => (
         <div
           key={card.id}
-          className="col-span-3 bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-outline-variant/15 flex flex-col gap-3"
+          className="col-span-3 bg-surface-container-lowest p-5 rounded-2xl shadow-2xs border border-outline-variant/15 flex flex-col gap-3"
         >
           <div
             className={`w-10 h-10 rounded-full flex items-center justify-center ${card.iconContainerClassName} ${card.iconClassName}`}

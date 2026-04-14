@@ -22,7 +22,7 @@ export default function Footer() {
             <li>
               <Link
                 className="text-slate-500 hover:text-blue-500 transition-opacity"
-                href="#"
+                href="/"
               >
                 Điểm đến
               </Link>
@@ -30,7 +30,7 @@ export default function Footer() {
             <li>
               <Link
                 className="text-slate-500 hover:text-blue-500 transition-opacity"
-                href="#"
+                href="/tours"
               >
                 Tour
               </Link>
@@ -38,7 +38,15 @@ export default function Footer() {
             <li>
               <Link
                 className="text-slate-500 hover:text-blue-500 transition-opacity"
-                href="#"
+                href="/deals"
+              >
+                Ưu đãi
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="text-slate-500 hover:text-blue-500 transition-opacity"
+                href="/concierge"
               >
                 Hướng dẫn AI
               </Link>

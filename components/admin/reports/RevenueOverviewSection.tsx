@@ -8,6 +8,10 @@ interface RevenueOverviewSectionProps {
   margin: string;
 }
 
+function clampPercent(value: number) {
+  return Math.max(0, Math.min(100, value));
+}
+
 export default function RevenueOverviewSection({
   bars,
   totalRevenue,
@@ -42,27 +46,32 @@ export default function RevenueOverviewSection({
           </div>
         </div>
 
-        <div className="flex items-end justify-between h-64 px-4">
-          {bars.map((bar) => (
-            <div
-              key={bar.id}
-              className="flex flex-col items-center gap-3 w-16 group"
-            >
-              <div className="w-full flex items-end gap-1 h-full">
-                <div
-                  className="w-1/2 bg-linear-to-b from-primary to-primary-container rounded-t-lg group-hover:opacity-90 transition-opacity"
-                  style={{ height: `${bar.currentHeightPercent}%` }}
-                ></div>
-                <div
-                  className="w-1/2 bg-surface-container-high rounded-t-lg"
-                  style={{ height: `${bar.previousHeightPercent}%` }}
-                ></div>
+        <div className="flex h-64 items-end justify-between px-4">
+          {bars.map((bar) => {
+            const currentHeight = clampPercent(bar.currentHeightPercent);
+            const previousHeight = clampPercent(bar.previousHeightPercent);
+
+            return (
+              <div
+                key={bar.id}
+                className="group flex h-full w-16 flex-col items-center justify-end gap-3"
+              >
+                <div className="flex h-52 w-full items-end gap-1">
+                  <div
+                    className="w-1/2 rounded-t-lg bg-linear-to-b from-primary to-primary-container transition-opacity group-hover:opacity-90"
+                    style={{ height: `${currentHeight}%` }}
+                  ></div>
+                  <div
+                    className="w-1/2 rounded-t-lg bg-secondary-container"
+                    style={{ height: `${previousHeight}%` }}
+                  ></div>
+                </div>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+                  {bar.label}
+                </span>
               </div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-                {bar.label}
-              </span>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </AdminCard>
 
