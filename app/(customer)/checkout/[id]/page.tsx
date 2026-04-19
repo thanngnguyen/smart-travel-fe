@@ -31,6 +31,7 @@ export default function CheckoutPage() {
     flashMessage,
     orderSummary,
     bookingCode,
+    chatGroupId,
     seatProtectionTime,
     seatProtectionProgressPercent,
     isSeatProtectionExpired,
@@ -71,6 +72,7 @@ export default function CheckoutPage() {
           {isCompleted ? (
             <CheckoutSuccessStep
               bookingCode={bookingCode}
+              chatGroupId={chatGroupId}
               onCreateNewBooking={restartCheckout}
             />
           ) : null}

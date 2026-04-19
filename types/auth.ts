@@ -1,4 +1,11 @@
-export type AuthRole = "customer" | "admin";
+export type AuthRole = "customer" | "guide" | "admin";
+
+export interface AuthSession {
+  email: string;
+  displayName: string;
+  role: AuthRole;
+  loginAtIso: string;
+}
 
 export interface AuthCredentials {
   email: string;

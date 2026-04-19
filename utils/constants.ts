@@ -8,6 +8,7 @@ export const ROUTES = {
   REGISTER: "/register",
   PROFILE: "/profile",
   TOURS: "/tours",
+  TOUR_CHAT: "/tour-chat",
   GUIDE: "/guide-portal",
   CONCIERGE: "/concierge",
   ADMIN_DASHBOARD: "/admin",

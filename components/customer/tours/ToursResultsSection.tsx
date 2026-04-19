@@ -48,7 +48,8 @@ export default function ToursResultsSection({
             defaultValue={sortSelectOptions[0]?.value}
             size="lg"
             variant="surface"
-            className="rounded-full bg-transparent border-outline-variant/40 py-2.5 pl-5 pr-10 font-bold hover:border-outline-variant/80"
+            iconName="filter_list"
+            className="rounded-full bg-transparent border-outline-variant/40 py-2.5 pl-5 pr-10 hover:border-outline-variant/80"
           />
         </div>
       </div>

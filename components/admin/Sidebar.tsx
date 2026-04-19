@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { path: "/admin/tours", icon: "map", label: "Quản lý tour" },
   { path: "/admin/bookings", icon: "confirmation_number", label: "Đặt chỗ" },
   { path: "/admin/operations", icon: "build", label: "Vận hành" },
+  { path: "/admin/chat", icon: "forum", label: "Quản trị chat" },
   { path: "/admin/customers", icon: "people", label: "Quản lý khách hàng" },
   { path: "/admin/personnel", icon: "badge", label: "Quản lý nhân sự" },
   { path: "/admin/reports", icon: "monitoring", label: "Báo cáo & phân tích" },

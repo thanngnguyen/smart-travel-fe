@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { ensureTourChatEnrollment } from "@/lib/customer-tour-chat";
 import { formatCurrency } from "@/utils/formatters";
 import {
   CheckoutAddOnItem,
@@ -160,6 +161,7 @@ export function useCustomerCheckout(bookingId?: string) {
   const [flashMessage, setFlashMessage] = useState<CheckoutFlashMessage | null>(
     null,
   );
+  const [chatGroupId, setChatGroupId] = useState<string | null>(null);
 
   useEffect(() => {
     if (isCompleted || remainingSeatProtectionSeconds <= 0) {
@@ -344,10 +346,21 @@ export function useCustomerCheckout(bookingId?: string) {
       return;
     }
 
+    const enrollment = ensureTourChatEnrollment({
+      tourId: bookingId,
+      bookingCode,
+      primaryTravelerName: passengerInfo.primaryTraveler,
+      companionTravelerName: passengerInfo.companionTraveler,
+      email: passengerInfo.email,
+      phone: passengerInfo.phone,
+    });
+
+    setChatGroupId(enrollment.groupId);
+
     setIsCompleted(true);
     setFlashMessage({
       tone: "success",
-      text: "Thanh toán thành công. Mã đặt chỗ của bạn đã được kích hoạt.",
+      text: "Thanh toán thành công. Bạn đã được thêm tự động vào nhóm chat của tour.",
     });
   };
 
@@ -361,6 +374,7 @@ export function useCustomerCheckout(bookingId?: string) {
     setIsTermsAccepted(false);
     setRemainingSeatProtectionSeconds(SEAT_PROTECTION_INITIAL_SECONDS);
     setFlashMessage(null);
+    setChatGroupId(null);
   };
 
   return {
@@ -378,6 +392,7 @@ export function useCustomerCheckout(bookingId?: string) {
     flashMessage,
     orderSummary,
     bookingCode,
+    chatGroupId,
     seatProtectionTime: formatCountdown(remainingSeatProtectionSeconds),
     seatProtectionProgressPercent,
     isSeatProtectionExpired: remainingSeatProtectionSeconds <= 0,

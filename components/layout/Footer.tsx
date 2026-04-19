@@ -46,6 +46,14 @@ export default function Footer() {
             <li>
               <Link
                 className="text-slate-500 hover:text-blue-500 transition-opacity"
+                href="/tour-chat"
+              >
+                Nhóm chat tour
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="text-slate-500 hover:text-blue-500 transition-opacity"
                 href="/concierge"
               >
                 Hướng dẫn AI

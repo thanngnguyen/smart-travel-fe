@@ -10,9 +10,10 @@ export default function CustomerLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isCheckoutFlow = pathname.startsWith("/checkout/");
+  const isImmersiveFlow =
+    pathname.startsWith("/checkout/") || pathname.startsWith("/tour-chat");
 
-  if (isCheckoutFlow) {
+  if (isImmersiveFlow) {
     return <>{children}</>;
   }
 

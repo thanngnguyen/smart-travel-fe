@@ -6,9 +6,13 @@ interface IconProps {
   filled?: boolean;
 }
 
-export default function Icon({ name, className = "", filled = false }: IconProps) {
+export default function Icon({
+  name,
+  className = "",
+  filled = false,
+}: IconProps) {
   return (
-    <span 
+    <span
       className={`material-symbols-outlined ${className}`}
       style={filled ? { fontVariationSettings: "'FILL' 1" } : undefined}
     >

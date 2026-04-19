@@ -87,6 +87,13 @@ export default function LoginGatewayForm({
             <Icon name="arrow_forward" className="text-sm" />
           </button>
           <button
+            onClick={(e) => onLogin(e, "guide")}
+            className="w-full bg-secondary-fixed hover:bg-secondary-fixed-dim text-on-secondary-fixed py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-colors flex gap-2 justify-center items-center"
+          >
+            <Icon name="explore" className="text-sm" />
+            Đăng nhập hướng dẫn viên
+          </button>
+          <button
             onClick={(e) => onLogin(e, "admin")}
             className="w-full bg-surface-container hover:bg-surface-container-high text-on-surface py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-colors flex gap-2 justify-center items-center"
           >

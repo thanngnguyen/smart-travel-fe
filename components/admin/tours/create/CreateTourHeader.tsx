@@ -16,7 +16,7 @@ export default function CreateTourHeader() {
         </nav>
       </div>
       <div className="flex items-center gap-4">
-        <AdminButton variant="surface" size="md" className="font-semibold">
+        <AdminButton variant="surface" size="lg" className="font-semibold">
           Hủy bản nháp
         </AdminButton>
         <AdminButton

@@ -232,7 +232,7 @@ export default function UiSelect({
         }}
         onKeyDown={handleTriggerKeyDown}
         className={cn(
-          "w-full text-left rounded-2xl text-on-surface font-semibold outline-none transition-all disabled:cursor-not-allowed disabled:opacity-60",
+          "w-full text-left rounded-2xl text-on-surface font-bold outline-none transition-all disabled:cursor-not-allowed disabled:opacity-60",
           variantClasses[variant],
           sizeClasses[size],
           "disabled:pointer-events-none",

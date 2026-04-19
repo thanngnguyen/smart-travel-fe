@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AuthRoleOption, RegisterFormData } from "@/types/auth";
+import { resolveAuthHomePath, saveAuthSession } from "@/lib/auth-session";
 
 const DEFAULT_REGISTER_FORM: RegisterFormData = {
   name: "",
@@ -13,6 +14,7 @@ const DEFAULT_REGISTER_FORM: RegisterFormData = {
 
 const ROLE_OPTIONS: AuthRoleOption[] = [
   { value: "customer", label: "Khách hàng" },
+  { value: "guide", label: "Hướng dẫn viên" },
   { value: "admin", label: "Quản trị viên" },
 ];
 
@@ -31,8 +33,12 @@ export function useAuthRegister() {
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    const target = formData.role === "admin" ? "/admin" : "/";
-    router.push(target);
+    saveAuthSession({
+      email: formData.email,
+      role: formData.role,
+      displayName: formData.name,
+    });
+    router.push(resolveAuthHomePath(formData.role));
   };
 
   return {

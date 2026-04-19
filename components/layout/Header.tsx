@@ -60,6 +60,12 @@ export default function Header() {
                 Ưu đãi
               </Link>
               <Link
+                className={navLinkClass(pathname.startsWith("/tour-chat"))}
+                href="/tour-chat"
+              >
+                Nhóm chat
+              </Link>
+              <Link
                 className={navLinkClass(pathname.startsWith("/guide-portal"))}
                 href="/guide-portal"
               >
@@ -130,6 +136,12 @@ export default function Header() {
               className="font-medium text-lg text-slate-600 py-2 border-b border-slate-100 dark:border-slate-800"
             >
               Chuyến đi của tôi
+            </Link>
+            <Link
+              href="/tour-chat"
+              className="font-medium text-lg text-slate-600 py-2 border-b border-slate-100 dark:border-slate-800"
+            >
+              Nhóm chat tour
             </Link>
             <Link
               href="/guide-portal"

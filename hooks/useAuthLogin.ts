@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AuthRole } from "@/types/auth";
+import { resolveAuthHomePath, saveAuthSession } from "@/lib/auth-session";
 
 export function useAuthLogin() {
   const router = useRouter();
@@ -11,7 +12,11 @@ export function useAuthLogin() {
 
   const handleLogin = (e: React.FormEvent, role: AuthRole) => {
     e.preventDefault();
-    router.push(role === "admin" ? "/admin" : "/");
+    saveAuthSession({
+      email,
+      role,
+    });
+    router.push(resolveAuthHomePath(role));
   };
 
   return {
