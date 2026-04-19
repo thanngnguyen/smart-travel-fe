@@ -13,13 +13,13 @@ import {
 export function useAdminBookingDetailsData() {
   const header: BookingHeaderData = {
     bookingCode: "Đặt chỗ #STMS-882910",
-    confirmationText: "Đã xác nhận ngày 24 Th10, 2024",
+    confirmationText: "Booking status: CONFIRMED (24 Th10, 2024)",
   };
 
   const tourHighlight: TourHighlightData = {
     imageUrl:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBbT3LNTtKsWPmZC93CfclJzFmKb04EWaQGLPBF7CetnNQIsKY39LEL1gXX9U2XZfXOPHb_mnbtVQ7W-kjEgrczHSnnCspb75GJ7BLPQkdscYzdCt5HsIZnIMJwqqnKRwaGNSU3MMY7RRuiCkyyOaMeZeLJrOsqz3r-vvZVcygJpLFJ3vJG5ctuVSCDE4gYOcR3Eghy1cYSw2x4Go4PjFUQh3WU4z-dk_yioOT2TBmLv4VRkiruOnIMhh3n8wyfqxobB6EZt3iF1bI",
-    statusLabel: "Tour đang hoạt động",
+    statusLabel: "Departure status: OPEN",
     title: "Thám hiểm dãy Alps Thụy Sĩ: 7 ngày đỉnh núi & thung lũng",
     tierLabel: "CAO CẤP",
     departureDate: "12 Th12, 2024",
@@ -87,7 +87,7 @@ export function useAdminBookingDetailsData() {
 
   const payment: BookingPaymentBreakdown = {
     paidAmount: "$4,850.00",
-    statusLabel: "ĐÃ THANH TOÁN ĐỦ",
+    statusLabel: "Payment SUCCESS · Booking CONFIRMED",
     subtotal: "$4,500.00",
     feesAndTaxes: "$350.00",
     total: "$4,850.00",

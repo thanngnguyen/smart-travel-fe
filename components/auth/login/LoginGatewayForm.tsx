@@ -1,18 +1,21 @@
 import Icon from "@/components/ui/Icon";
 import Link from "next/link";
-import { AuthRole } from "@/types/auth";
 
 interface LoginGatewayFormProps {
   email: string;
   password: string;
+  isSubmitting: boolean;
+  errorMessage?: string | null;
   onEmailChange: (value: string) => void;
   onPasswordChange: (value: string) => void;
-  onLogin: (e: React.FormEvent, role: AuthRole) => void;
+  onLogin: (e: React.SyntheticEvent) => void;
 }
 
 export default function LoginGatewayForm({
   email,
   password,
+  isSubmitting,
+  errorMessage,
   onEmailChange,
   onPasswordChange,
   onLogin,
@@ -28,7 +31,7 @@ export default function LoginGatewayForm({
         </p>
       </div>
 
-      <form className="space-y-6">
+      <form className="space-y-6" onSubmit={onLogin}>
         <div className="flex flex-col space-y-2">
           <label className="text-xs uppercase tracking-widest text-on-surface-variant font-bold px-1">
             Địa chỉ email
@@ -80,26 +83,23 @@ export default function LoginGatewayForm({
 
         <div className="pt-6 flex flex-col gap-3">
           <button
-            onClick={(e) => onLogin(e, "customer")}
+            type="submit"
+            disabled={isSubmitting}
             className="w-full bg-primary hover:bg-primary/90 text-on-primary py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-colors shadow-lg shadow-primary/20 flex gap-2 justify-center items-center"
           >
-            Đăng nhập khách hàng
+            {isSubmitting ? "Đang xác thực..." : "Đăng nhập"}
             <Icon name="arrow_forward" className="text-sm" />
           </button>
-          <button
-            onClick={(e) => onLogin(e, "guide")}
-            className="w-full bg-secondary-fixed hover:bg-secondary-fixed-dim text-on-secondary-fixed py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-colors flex gap-2 justify-center items-center"
-          >
-            <Icon name="explore" className="text-sm" />
-            Đăng nhập hướng dẫn viên
-          </button>
-          <button
-            onClick={(e) => onLogin(e, "admin")}
-            className="w-full bg-surface-container hover:bg-surface-container-high text-on-surface py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-colors flex gap-2 justify-center items-center"
-          >
-            <Icon name="shield_person" className="text-sm" />
-            Đăng nhập quản trị viên
-          </button>
+          <p className="rounded-xl bg-surface-container px-4 py-3 text-xs font-medium text-on-surface-variant">
+            Vai trò sẽ được backend trả về theo tài khoản (USER/GUIDE/ADMIN)
+            thay vì chọn thủ công trên form.
+          </p>
+
+          {errorMessage ? (
+            <p className="rounded-xl bg-error-container px-4 py-3 text-sm font-semibold text-on-error-container">
+              {errorMessage}
+            </p>
+          ) : null}
         </div>
       </form>
 

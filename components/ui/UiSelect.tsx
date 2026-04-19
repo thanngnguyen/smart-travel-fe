@@ -3,6 +3,7 @@
 import {
   KeyboardEvent,
   SelectHTMLAttributes,
+  useCallback,
   useEffect,
   useId,
   useMemo,
@@ -106,7 +107,7 @@ export default function UiSelect({
     options[0] ??
     null;
 
-  const calculatePlacement = () => {
+  const calculatePlacement = useCallback(() => {
     if (dropdownPlacement === "top" || dropdownPlacement === "bottom") {
       setActivePlacement(dropdownPlacement);
       return;
@@ -129,7 +130,7 @@ export default function UiSelect({
     }
 
     setActivePlacement("bottom");
-  };
+  }, [dropdownPlacement, visibleOptions.length]);
 
   const handleSelect = (nextValue: string) => {
     if (!isControlled) {
@@ -192,8 +193,14 @@ export default function UiSelect({
       return;
     }
 
-    calculatePlacement();
-  }, [isOpen, dropdownPlacement, visibleOptions.length]);
+    const placementTimer = window.setTimeout(() => {
+      calculatePlacement();
+    }, 0);
+
+    return () => {
+      window.clearTimeout(placementTimer);
+    };
+  }, [calculatePlacement, isOpen]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -209,7 +216,7 @@ export default function UiSelect({
     return () => {
       window.removeEventListener("resize", handleWindowResize);
     };
-  }, [isOpen, dropdownPlacement, visibleOptions.length]);
+  }, [calculatePlacement, isOpen]);
 
   return (
     <div ref={containerRef} className={cn("relative", containerClassName)}>
@@ -220,6 +227,7 @@ export default function UiSelect({
         aria-controls={listboxId}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
+        aria-required={required || undefined}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
         disabled={disabled}

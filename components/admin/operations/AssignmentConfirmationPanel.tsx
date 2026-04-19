@@ -27,7 +27,7 @@ export default function AssignmentConfirmationPanel({
         </h3>
         <p className="text-sm text-on-surface-variant mt-1 leading-relaxed">
           HDV xem danh sách đoàn, lịch trình, yêu cầu đặc biệt và xác nhận nhiệm
-          vụ. Sau xác nhận, trạng thái HDV chuyển sang "Đang đi tour".
+          vụ. Sau xác nhận, trạng thái HDV chuyển sang &quot;Đang đi tour&quot;.
         </p>
       </div>
 

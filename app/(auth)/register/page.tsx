@@ -3,15 +3,29 @@ import RegisterGatewayForm from "@/components/auth/register/RegisterGatewayForm"
 import { useAuthRegister } from "@/hooks/useAuthRegister";
 
 export default function RegisterPage() {
-  const { formData, roleOptions, updateField, handleRegister } =
-    useAuthRegister();
+  const {
+    step,
+    formData,
+    isSubmitting,
+    notice,
+    updateField,
+    submitRegister,
+    verifyOtp,
+    resendOtp,
+    goBackToRegister,
+  } = useAuthRegister();
 
   return (
     <RegisterGatewayForm
+      step={step}
       formData={formData}
-      roleOptions={roleOptions}
+      isSubmitting={isSubmitting}
+      notice={notice}
       onFieldChange={updateField}
-      onSubmit={handleRegister}
+      onSubmitRegister={submitRegister}
+      onVerifyOtp={verifyOtp}
+      onResendOtp={resendOtp}
+      onBackToRegister={goBackToRegister}
     />
   );
 }

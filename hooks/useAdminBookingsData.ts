@@ -39,9 +39,9 @@ export function useAdminBookingsData() {
 
   const filterTabs: BookingFilterTab[] = [
     { id: "all", label: "Tất cả", isActive: true },
-    { id: "paid", label: "Đã thanh toán" },
-    { id: "pending", label: "Chờ xử lý" },
-    { id: "cancelled", label: "Đã hủy" },
+    { id: "CONFIRMED", label: "CONFIRMED" },
+    { id: "PENDING", label: "PENDING" },
+    { id: "CANCELLED", label: "CANCELLED" },
   ];
 
   const rows: BookingRow[] = [
@@ -55,7 +55,8 @@ export function useAdminBookingsData() {
       departureDate: "12 Th10, 2024",
       departureMeta: "Cổng 4B • Phổ thông",
       amount: "$2,450.00",
-      statusLabel: "Đã thanh toán",
+      status: "CONFIRMED",
+      statusLabel: "CONFIRMED · Payment SUCCESS",
       statusTone: "success",
     },
     {
@@ -68,7 +69,8 @@ export function useAdminBookingsData() {
       departureDate: "05 Th11, 2024",
       departureMeta: "Zurich HB • Hạng nhất",
       amount: "$5,120.00",
-      statusLabel: "Chờ xử lý",
+      status: "PENDING",
+      statusLabel: "PENDING · Chờ thanh toán",
       statusTone: "info",
     },
     {
@@ -81,7 +83,8 @@ export function useAdminBookingsData() {
       departureDate: "29 Th10, 2024",
       departureMeta: "Osaka Intl • Boutique",
       amount: "$1,890.00",
-      statusLabel: "Đã hủy",
+      status: "CANCELLED",
+      statusLabel: "CANCELLED",
       statusTone: "error",
     },
     {
@@ -94,7 +97,8 @@ export function useAdminBookingsData() {
       departureDate: "14 Th12, 2024",
       departureMeta: "Sân bay JRO • Khu nghỉ dưỡng",
       amount: "$3,900.00",
-      statusLabel: "Đã thanh toán",
+      status: "CONFIRMED",
+      statusLabel: "CONFIRMED · Payment SUCCESS",
       statusTone: "success",
     },
   ];

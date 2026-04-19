@@ -37,13 +37,14 @@ const PROGRESS_STEPS: CheckoutProgressStep[] = [
 ];
 
 const PAYMENT_METHOD_OPTIONS: CheckoutPaymentMethodOption[] = [
-  { id: "card", label: "Thẻ tín dụng", icon: "credit_card" },
+  { id: "VNPAY", label: "VNPay", icon: "qr_code_2" },
   {
-    id: "bank-transfer",
+    id: "BANK_TRANSFER",
     label: "Chuyển khoản ngân hàng",
     icon: "account_balance",
   },
-  { id: "wallet", label: "Ví điện tử", icon: "qr_code_2" },
+  { id: "MOMO", label: "Ví MoMo", icon: "account_balance_wallet" },
+  { id: "CASH", label: "Tiền mặt", icon: "payments" },
 ];
 
 const TRIP_OVERVIEW: CheckoutTripOverview = {
@@ -77,10 +78,9 @@ const INITIAL_PASSENGER_INFO: CheckoutPassengerInfo = {
 };
 
 const INITIAL_PAYMENT_FORM: CheckoutPaymentForm = {
-  cardholderName: "Julian Alexander Vance",
-  cardNumberTokenized: "•••• •••• •••• 9924",
-  expiryDate: "",
-  cvv: "",
+  transferReference: "THANH TOAN TOUR STMS",
+  payerNote: "",
+  transactionId: "",
 };
 
 const INITIAL_ADD_ONS: CheckoutAddOnItem[] = [
@@ -132,16 +132,15 @@ function isPaymentValid(
   method: CheckoutPaymentMethod,
   paymentForm: CheckoutPaymentForm,
 ) {
-  if (method !== "card") {
-    return true;
+  if (method === "BANK_TRANSFER") {
+    return paymentForm.transferReference.trim().length >= 6;
   }
 
-  const expiryValid = /^((0[1-9])|(1[0-2]))\/[0-9]{2}$/.test(
-    paymentForm.expiryDate,
-  );
-  const cvvValid = /^[0-9]{3,4}$/.test(paymentForm.cvv);
+  if (method === "CASH") {
+    return paymentForm.payerNote.trim().length >= 4;
+  }
 
-  return expiryValid && cvvValid;
+  return true;
 }
 
 export function useCustomerCheckout(bookingId?: string) {
@@ -152,7 +151,7 @@ export function useCustomerCheckout(bookingId?: string) {
   );
   const [addOns, setAddOns] = useState<CheckoutAddOnItem[]>(INITIAL_ADD_ONS);
   const [paymentMethod, setPaymentMethod] =
-    useState<CheckoutPaymentMethod>("card");
+    useState<CheckoutPaymentMethod>("VNPAY");
   const [paymentForm, setPaymentForm] =
     useState<CheckoutPaymentForm>(INITIAL_PAYMENT_FORM);
   const [isTermsAccepted, setIsTermsAccepted] = useState(false);
@@ -179,10 +178,14 @@ export function useCustomerCheckout(bookingId?: string) {
 
   useEffect(() => {
     if (remainingSeatProtectionSeconds === 0 && !isCompleted) {
-      setFlashMessage({
-        tone: "error",
-        text: "Giữ chỗ đã hết hạn. Vui lòng làm mới lại phiên thanh toán.",
-      });
+      const seatExpiredTimer = window.setTimeout(() => {
+        setFlashMessage({
+          tone: "error",
+          text: "Giữ chỗ đã hết hạn. Vui lòng làm mới lại phiên thanh toán.",
+        });
+      }, 0);
+
+      return () => window.clearTimeout(seatExpiredTimer);
     }
   }, [isCompleted, remainingSeatProtectionSeconds]);
 
@@ -224,6 +227,23 @@ export function useCustomerCheckout(bookingId?: string) {
 
     return `STMS-${bookingId.toUpperCase()}`;
   }, [bookingId]);
+
+  useEffect(() => {
+    const syncTransferReferenceTimer = window.setTimeout(() => {
+      setPaymentForm((previous) => {
+        if (previous.transferReference !== "THANH TOAN TOUR STMS") {
+          return previous;
+        }
+
+        return {
+          ...previous,
+          transferReference: `THANH TOAN TOUR ${bookingCode}`,
+        };
+      });
+    }, 0);
+
+    return () => window.clearTimeout(syncTransferReferenceTimer);
+  }, [bookingCode]);
 
   const seatProtectionProgressPercent = useMemo(() => {
     return Math.round(
@@ -341,7 +361,7 @@ export function useCustomerCheckout(bookingId?: string) {
     if (!isPaymentValid(paymentMethod, paymentForm)) {
       setFlashMessage({
         tone: "error",
-        text: "Thông tin thanh toán chưa hợp lệ. Vui lòng kiểm tra ngày hết hạn và mã CVV.",
+        text: "Thông tin thanh toán chưa hợp lệ cho phương thức đã chọn. Vui lòng kiểm tra lại mã tham chiếu hoặc ghi chú thanh toán.",
       });
       return;
     }
@@ -360,7 +380,7 @@ export function useCustomerCheckout(bookingId?: string) {
     setIsCompleted(true);
     setFlashMessage({
       tone: "success",
-      text: "Thanh toán thành công. Bạn đã được thêm tự động vào nhóm chat của tour.",
+      text: "Thanh toán mô phỏng thành công (Payment: SUCCESS). Booking đã chuyển từ PENDING sang CONFIRMED và bạn đã được thêm vào nhóm chat tour.",
     });
   };
 
@@ -369,7 +389,7 @@ export function useCustomerCheckout(bookingId?: string) {
     setStep(1);
     setPassengerInfo(INITIAL_PASSENGER_INFO);
     setAddOns(INITIAL_ADD_ONS);
-    setPaymentMethod("card");
+    setPaymentMethod("VNPAY");
     setPaymentForm(INITIAL_PAYMENT_FORM);
     setIsTermsAccepted(false);
     setRemainingSeatProtectionSeconds(SEAT_PROTECTION_INITIAL_SECONDS);

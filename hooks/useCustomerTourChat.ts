@@ -234,10 +234,12 @@ export function useCustomerTourChat(groupId?: string) {
   const [auditLogs, setAuditLogs] = useState<TourChatAuditLogEntry[]>(() => []);
 
   useEffect(() => {
-    const persistedGroups = loadTourChatGroups();
-    setGroups(persistedGroups);
-    setAuditLogs(loadTourChatAuditLogs());
-    setAuthSession(loadAuthSession());
+    const bootstrapTimer = window.setTimeout(() => {
+      const persistedGroups = loadTourChatGroups();
+      setGroups(persistedGroups);
+      setAuditLogs(loadTourChatAuditLogs());
+      setAuthSession(loadAuthSession());
+    }, 0);
 
     const handleStorage = (event: StorageEvent) => {
       if (!event.key || event.key === AUTH_SESSION_STORAGE_KEY) {
@@ -247,6 +249,7 @@ export function useCustomerTourChat(groupId?: string) {
 
     window.addEventListener("storage", handleStorage);
     return () => {
+      window.clearTimeout(bootstrapTimer);
       window.removeEventListener("storage", handleStorage);
     };
   }, []);
@@ -314,18 +317,22 @@ export function useCustomerTourChat(groupId?: string) {
   }, [activeActor, activeActorParticipant, activeGroup]);
 
   useEffect(() => {
-    if (!activeGroup) {
-      setActionMessage(null);
-      return;
-    }
+    const blockedReason = !activeGroup
+      ? null
+      : buildSendBlockedMessage(
+          activeActor,
+          activeGroup.channelState,
+          activeActorParticipant,
+          authSession,
+        );
 
-    const blockedReason = buildSendBlockedMessage(
-      activeActor,
-      activeGroup.channelState,
-      activeActorParticipant,
-      authSession,
-    );
-    setActionMessage(blockedReason);
+    const syncActionMessageTimer = window.setTimeout(() => {
+      setActionMessage(blockedReason);
+    }, 0);
+
+    return () => {
+      window.clearTimeout(syncActionMessageTimer);
+    };
   }, [activeActor, activeActorParticipant, activeGroup, authSession]);
 
   const commitGroupsUpdate = (

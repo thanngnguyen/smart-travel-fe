@@ -107,8 +107,14 @@ export function useAdminChatManagement(initialTourId?: string) {
   const adminDisplayName = authSession?.displayName || "Admin van hanh";
 
   useEffect(() => {
-    setGroups(loadTourChatGroups());
-    setAuditLogs(loadTourChatAuditLogs());
+    const bootstrapTimer = window.setTimeout(() => {
+      setGroups(loadTourChatGroups());
+      setAuditLogs(loadTourChatAuditLogs());
+    }, 0);
+
+    return () => {
+      window.clearTimeout(bootstrapTimer);
+    };
   }, []);
 
   useEffect(() => {
@@ -156,19 +162,31 @@ export function useAdminChatManagement(initialTourId?: string) {
   }, [groups, searchQuery, selectedChannelState, selectedTourId]);
 
   useEffect(() => {
+    let nextSelectedGroupId = selectedGroupId;
+
     if (filteredGroups.length === 0) {
-      setSelectedGroupId("");
+      nextSelectedGroupId = "";
+    } else {
+      const stillExists = filteredGroups.some(
+        (group) => group.id === selectedGroupId,
+      );
+
+      if (!stillExists) {
+        nextSelectedGroupId = filteredGroups[0].id;
+      }
+    }
+
+    if (nextSelectedGroupId === selectedGroupId) {
       return;
     }
 
-    const stillExists = filteredGroups.some(
-      (group) => group.id === selectedGroupId,
-    );
-    if (stillExists) {
-      return;
-    }
+    const syncSelectionTimer = window.setTimeout(() => {
+      setSelectedGroupId(nextSelectedGroupId);
+    }, 0);
 
-    setSelectedGroupId(filteredGroups[0].id);
+    return () => {
+      window.clearTimeout(syncSelectionTimer);
+    };
   }, [filteredGroups, selectedGroupId]);
 
   const selectedGroup = useMemo(() => {

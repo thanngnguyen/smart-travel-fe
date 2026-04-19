@@ -5,9 +5,16 @@ import TourOverviewSection from "@/components/customer/tour-details/TourOverview
 import TourTimelineSection from "@/components/customer/tour-details/TourTimelineSection";
 import { useCustomerTourDetailsData } from "@/hooks/useCustomerTourDetailsData";
 
-export default function TourDetailsPage() {
+interface TourDetailsPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function TourDetailsPage({ params }: TourDetailsPageProps) {
+  const tourSlug = params?.id;
   const { meta, gallery, highlights, timeline, booking } =
-    useCustomerTourDetailsData();
+    useCustomerTourDetailsData(tourSlug);
 
   return (
     <div className="pt-24 pb-20 bg-surface">

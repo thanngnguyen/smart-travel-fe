@@ -34,27 +34,6 @@ interface PaymentStepProps {
   onConfirm: () => void;
 }
 
-const WALLET_OPTIONS = [
-  {
-    id: "momo",
-    label: "MoMo",
-    description: "Thanh toán tức thì qua QR hoặc app",
-    accentClassName: "bg-pink-100 text-pink-700",
-  },
-  {
-    id: "zalopay",
-    label: "ZaloPay",
-    description: "Hỗ trợ quét mã và deep-link ứng dụng",
-    accentClassName: "bg-blue-100 text-blue-700",
-  },
-  {
-    id: "vnpay",
-    label: "VNPay",
-    description: "Kết nối trực tiếp ngân hàng nội địa",
-    accentClassName: "bg-indigo-100 text-indigo-700",
-  },
-] as const;
-
 export default function PaymentStep({
   passengerInfo,
   paymentMethod,
@@ -73,15 +52,13 @@ export default function PaymentStep({
   onTermsChange,
   onConfirm,
 }: PaymentStepProps) {
-  const [selectedWallet, setSelectedWallet] =
-    useState<(typeof WALLET_OPTIONS)[number]["id"]>("momo");
   const [isCopiedBankAccount, setIsCopiedBankAccount] = useState(false);
 
-  const transferReference = `${tripOverview.routeFromCode}${tripOverview.routeToCode}-${Math.round(orderSummary.grandTotal)}`;
+  const transferReference = paymentForm.transferReference;
 
   const handleCopyBankAccount = async () => {
     try {
-      await navigator.clipboard.writeText("0381000999248");
+      await navigator.clipboard.writeText("001205008813");
       setIsCopiedBankAccount(true);
       window.setTimeout(() => setIsCopiedBankAccount(false), 1600);
     } catch {
@@ -208,7 +185,7 @@ export default function PaymentStep({
         </div>
 
         <div className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
             {paymentOptions.map((option) => {
               const isSelected = paymentMethod === option.id;
 
@@ -232,94 +209,60 @@ export default function PaymentStep({
             })}
           </div>
 
-          {paymentMethod === "card" ? (
+          {paymentMethod === "VNPAY" ? (
             <SurfaceCard
               tone="white"
               border="outline"
               shadow="elevated"
               radius="2xl"
-              className="p-6 relative overflow-hidden"
+              className="p-6 space-y-5"
             >
-              <div className="absolute top-0 right-0 p-4">
-                <span className="material-symbols-outlined text-primary/20 text-6xl">
-                  lock
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h4 className="text-lg font-headline font-bold text-on-surface">
+                  Thanh toán qua VNPay
+                </h4>
+                <span className="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold uppercase tracking-wider">
+                  /api/payments/create_url
                 </span>
               </div>
 
-              <div className="grid grid-cols-12 gap-4 relative z-10">
-                <div className="col-span-12">
-                  <label className="block text-sm font-semibold text-on-surface-variant mb-2">
-                    Cardholder Name
-                  </label>
-                  <input
-                    className="w-full bg-surface-container-low rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/30 text-on-surface"
-                    type="text"
-                    value={paymentForm.cardholderName}
-                    onChange={(event) =>
-                      onPaymentFieldChange("cardholderName", event.target.value)
-                    }
-                  />
-                </div>
+              <div className="rounded-2xl bg-surface-container-low p-4 space-y-3">
+                <p className="text-sm text-on-surface-variant leading-relaxed">
+                  Frontend sẽ tạo payment URL và redirect người dùng sang VNPay.
+                  Sau callback thành công, payment status sẽ là SUCCESS.
+                </p>
 
-                <div className="col-span-12">
-                  <label className="block text-sm font-semibold text-on-surface-variant mb-2">
-                    Card Number
-                  </label>
-                  <div className="relative">
-                    <input
-                      className="w-full bg-surface-container-low rounded-xl px-4 py-3 text-on-surface tracking-[0.2em]"
-                      type="text"
-                      value={paymentForm.cardNumberTokenized}
-                      readOnly
-                    />
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                      <span className="text-[10px] font-bold text-primary px-2 py-1 bg-primary-fixed rounded">
-                        TOKENIZED
-                      </span>
-                      <span
-                        className="material-symbols-outlined text-green-600 text-sm"
-                        style={{ fontVariationSettings: "'FILL' 1" }}
-                      >
-                        check_circle
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <p className="text-sm text-on-surface-variant">
+                  Số tiền thanh toán:
+                  <span className="ml-1 font-bold text-on-surface">
+                    {formatCurrency(orderSummary.grandTotal)}
+                  </span>
+                </p>
+              </div>
 
-                <div className="col-span-6">
-                  <label className="block text-sm font-semibold text-on-surface-variant mb-2">
-                    Expiry Date
-                  </label>
-                  <input
-                    className="w-full bg-surface-container-low rounded-xl px-4 py-3 text-on-surface"
-                    placeholder="MM/YY"
-                    type="text"
-                    value={paymentForm.expiryDate}
-                    onChange={(event) =>
-                      onPaymentFieldChange("expiryDate", event.target.value)
-                    }
-                  />
-                </div>
-
-                <div className="col-span-6">
-                  <label className="block text-sm font-semibold text-on-surface-variant mb-2">
-                    Security Code (CVV)
-                  </label>
-                  <input
-                    className="w-full bg-surface-container-low rounded-xl px-4 py-3 text-on-surface"
-                    placeholder="•••"
-                    type="password"
-                    value={paymentForm.cvv}
-                    onChange={(event) =>
-                      onPaymentFieldChange("cvv", event.target.value)
-                    }
-                  />
-                </div>
+              <div className="rounded-2xl bg-secondary-fixed/30 p-4">
+                <p className="text-xs uppercase tracking-widest font-bold text-on-secondary-fixed-variant mb-2">
+                  Luồng backend
+                </p>
+                <ul className="space-y-2 text-sm text-on-surface-variant">
+                  <li className="flex items-center gap-2">
+                    <Icon name="looks_one" className="text-base text-primary" />
+                    GET /api/payments/create_url?amount=&bookingId=
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Icon name="looks_two" className="text-base text-primary" />
+                    Redirect sang VNPay để người dùng thanh toán
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Icon name="looks_3" className="text-base text-primary" />
+                    VNPay callback về /api/payments/vnpay-return
+                  </li>
+                </ul>
               </div>
             </SurfaceCard>
           ) : null}
 
-          {paymentMethod === "bank-transfer" ? (
+          {paymentMethod === "BANK_TRANSFER" ? (
             <SurfaceCard
               tone="white"
               border="outline"
@@ -343,20 +286,18 @@ export default function PaymentStep({
                   </p>
                   <p className="text-sm text-on-surface-variant">
                     Ngân hàng:{" "}
-                    <span className="font-bold text-on-surface">
-                      Vietcombank
-                    </span>
+                    <span className="font-bold text-on-surface">MB Bank</span>
                   </p>
                   <p className="text-sm text-on-surface-variant">
                     Chủ tài khoản:{" "}
                     <span className="font-bold text-on-surface">
-                      CONG TY STMS TRAVEL
+                      DO DUC MINH QUANG
                     </span>
                   </p>
                   <p className="text-sm text-on-surface-variant">
                     Số tài khoản:{" "}
                     <span className="font-bold text-on-surface">
-                      0381000999248
+                      001205008813
                     </span>
                   </p>
                   <Button
@@ -378,12 +319,20 @@ export default function PaymentStep({
                   <p className="text-xs uppercase tracking-widest font-bold text-outline">
                     Nội dung chuyển khoản
                   </p>
-                  <p className="text-sm text-on-surface-variant">
-                    Mã tham chiếu:{" "}
-                    <span className="font-bold text-primary">
-                      {transferReference}
-                    </span>
-                  </p>
+                  <label className="block text-sm text-on-surface-variant">
+                    Mã tham chiếu
+                  </label>
+                  <input
+                    className="w-full rounded-xl bg-white/90 px-3 py-2 text-sm font-semibold text-on-surface focus:ring-2 focus:ring-primary/30"
+                    value={transferReference}
+                    onChange={(event) =>
+                      onPaymentFieldChange(
+                        "transferReference",
+                        event.target.value,
+                      )
+                    }
+                    placeholder="THANH TOAN TOUR STMS-XXXX"
+                  />
                   <p className="text-sm text-on-surface-variant">
                     Số tiền:{" "}
                     <span className="font-bold text-on-surface">
@@ -391,8 +340,8 @@ export default function PaymentStep({
                     </span>
                   </p>
                   <p className="text-xs text-on-surface-variant leading-relaxed">
-                    Hệ thống sẽ tự động xác nhận trong vòng 1-3 phút sau khi
-                    ngân hàng ghi nhận giao dịch.
+                    Hệ thống backend đối soát theo bookingId + nội dung chuyển
+                    khoản để xác nhận giao dịch.
                   </p>
                 </div>
               </div>
@@ -412,14 +361,15 @@ export default function PaymentStep({
                   </li>
                   <li className="flex items-center gap-2">
                     <Icon name="looks_3" className="text-base text-primary" />
-                    Nhấn "Hoàn tất đặt chỗ" để hệ thống chờ đối soát tự động.
+                    Nhấn &quot;Hoàn tất đặt chỗ&quot; để hệ thống chờ đối soát
+                    tự động.
                   </li>
                 </ul>
               </div>
             </SurfaceCard>
           ) : null}
 
-          {paymentMethod === "wallet" ? (
+          {paymentMethod === "MOMO" ? (
             <SurfaceCard
               tone="white"
               border="outline"
@@ -429,39 +379,11 @@ export default function PaymentStep({
             >
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h4 className="text-lg font-headline font-bold text-on-surface">
-                  Thanh toán bằng ví điện tử
+                  Thanh toán bằng ví điện tử MoMo
                 </h4>
                 <span className="px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold uppercase tracking-wider">
-                  QR / App Link
+                  MOMO
                 </span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                {WALLET_OPTIONS.map((wallet) => {
-                  const isActiveWallet = selectedWallet === wallet.id;
-
-                  return (
-                    <button
-                      key={wallet.id}
-                      type="button"
-                      onClick={() => setSelectedWallet(wallet.id)}
-                      className={`rounded-2xl p-4 text-left transition-all ${
-                        isActiveWallet
-                          ? "bg-primary/10 shadow-[0_20px_40px_rgba(25,28,30,0.06)]"
-                          : "bg-surface-container-low hover:bg-surface-container"
-                      }`}
-                    >
-                      <span
-                        className={`inline-flex px-2.5 py-1 rounded-lg text-xs font-bold ${wallet.accentClassName}`}
-                      >
-                        {wallet.label}
-                      </span>
-                      <p className="text-sm text-on-surface-variant mt-2 leading-relaxed">
-                        {wallet.description}
-                      </p>
-                    </button>
-                  );
-                })}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -477,25 +399,63 @@ export default function PaymentStep({
 
                 <div className="rounded-2xl bg-surface-container-low p-4 space-y-3">
                   <p className="text-xs uppercase tracking-widest font-bold text-outline">
-                    Nhà cung cấp ví đã chọn
+                    Kênh thanh toán
                   </p>
-                  <p className="text-lg font-black text-on-surface">
-                    {
-                      WALLET_OPTIONS.find(
-                        (wallet) => wallet.id === selectedWallet,
-                      )?.label
-                    }
-                  </p>
+                  <p className="text-lg font-black text-on-surface">MoMo</p>
                   <p className="text-sm text-on-surface-variant leading-relaxed">
-                    Sau khi hoàn tất trong ứng dụng ví, hệ thống sẽ tự động nhận
-                    callback và xác nhận thanh toán.
+                    Sau khi hoàn tất trong ứng dụng, hệ thống sẽ nhận callback
+                    và ghi nhận transactionId từ cổng ví.
                   </p>
-                  <Button variant="white" size="md" className="w-full">
+
+                  <input
+                    className="w-full rounded-xl bg-white/90 px-3 py-2 text-sm text-on-surface focus:ring-2 focus:ring-primary/30"
+                    value={paymentForm.transactionId}
+                    onChange={(event) =>
+                      onPaymentFieldChange("transactionId", event.target.value)
+                    }
+                    placeholder="MOMO_TXN_123456 (tùy chọn)"
+                  />
+
+                  <Button variant="white" size="md" className="w-full" disabled>
                     <Icon name="open_in_new" className="mr-2 text-base" />
-                    Mở ứng dụng ví
+                    Mở ứng dụng MoMo (mock)
                   </Button>
                 </div>
               </div>
+            </SurfaceCard>
+          ) : null}
+
+          {paymentMethod === "CASH" ? (
+            <SurfaceCard
+              tone="white"
+              border="outline"
+              shadow="elevated"
+              radius="2xl"
+              className="p-6 space-y-4"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <h4 className="text-lg font-headline font-bold text-on-surface">
+                  Thanh toán tiền mặt
+                </h4>
+                <span className="px-3 py-1 rounded-full bg-surface-container text-on-surface text-[10px] font-bold uppercase tracking-wider">
+                  CASH
+                </span>
+              </div>
+
+              <p className="text-sm text-on-surface-variant leading-relaxed">
+                Trạng thái booking sẽ giữ PENDING cho đến khi nhân sự vận hành
+                xác nhận thu tiền và tạo bản ghi payment SUCCESS.
+              </p>
+
+              <textarea
+                rows={3}
+                className="w-full rounded-xl bg-surface-container-low px-3 py-2 text-sm text-on-surface focus:ring-2 focus:ring-primary/30"
+                value={paymentForm.payerNote}
+                onChange={(event) =>
+                  onPaymentFieldChange("payerNote", event.target.value)
+                }
+                placeholder="Ghi chú người nộp tiền / thời điểm hẹn thu tiền..."
+              />
             </SurfaceCard>
           ) : null}
         </div>

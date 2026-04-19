@@ -1,3 +1,5 @@
+import { BackendBookingStatus } from "@/types/backend-contract";
+
 export type AdminBadgeTone =
   | "success"
   | "warning"
@@ -32,6 +34,7 @@ export interface BookingRow {
   departureDate: string;
   departureMeta: string;
   amount: string;
+  status: BackendBookingStatus;
   statusLabel: string;
   statusTone: AdminBadgeTone;
 }

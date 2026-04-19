@@ -1,6 +1,8 @@
+import { BackendPaymentMethod } from "@/types/backend-contract";
+
 export type CheckoutStep = 1 | 2 | 3;
 
-export type CheckoutPaymentMethod = "card" | "bank-transfer" | "wallet";
+export type CheckoutPaymentMethod = BackendPaymentMethod;
 
 export interface CheckoutProgressStep {
   id: CheckoutStep;
@@ -26,10 +28,9 @@ export interface CheckoutAddOnItem {
 }
 
 export interface CheckoutPaymentForm {
-  cardholderName: string;
-  cardNumberTokenized: string;
-  expiryDate: string;
-  cvv: string;
+  transferReference: string;
+  payerNote: string;
+  transactionId: string;
 }
 
 export interface CheckoutPaymentMethodOption {

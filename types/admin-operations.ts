@@ -1,7 +1,10 @@
 export type DepartureLifecycleStatus =
-  | "scheduled"
-  | "departing-soon"
-  | "in-progress";
+  | "PLANNING"
+  | "OPEN"
+  | "LOCKED"
+  | "IN_PROGRESS"
+  | "COMPLETED"
+  | "CANCELLED";
 
 export type GuideAssignmentStatus = "pending-confirmation" | "on-tour";
 

@@ -29,9 +29,9 @@ export default function CheckoutSuccessStep({
         Đặt chỗ thành công
       </h2>
       <p className="text-lg text-on-surface-variant mb-8 max-w-md mx-auto">
-        Chuyến đi của bạn đã được xác nhận và hệ thống đã gửi email vé điện tử.
-        Concierge sẽ liên hệ trong vòng 15 phút để tối ưu lịch trình và bạn đã
-        được thêm tự động vào nhóm chat của tour.
+        Backend đã ghi nhận payment trạng thái SUCCESS và chuyển booking từ
+        PENDING sang CONFIRMED. Concierge sẽ liên hệ trong vòng 15 phút để tối
+        ưu lịch trình và bạn đã được thêm tự động vào nhóm chat của tour.
       </p>
       <p className="inline-block px-4 py-2 bg-surface-container text-on-surface rounded-xl font-mono border border-outline-variant/30 text-sm mb-8">
         Mã đặt chỗ: <span className="font-bold">#{bookingCode}</span>

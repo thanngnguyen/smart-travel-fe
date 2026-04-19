@@ -27,7 +27,7 @@ const INITIAL_DEPARTURES: TourDeparture[] = [
     tourType: "culture",
     startDate: "2026-05-12",
     endDate: "2026-05-17",
-    departureStatus: "departing-soon",
+    departureStatus: "OPEN",
     groupLanguage: "Japanese",
     minPassengersRequired: 40,
     passengerCount: 64,
@@ -64,7 +64,7 @@ const INITIAL_DEPARTURES: TourDeparture[] = [
     tourType: "adventure",
     startDate: "2026-05-20",
     endDate: "2026-05-27",
-    departureStatus: "scheduled",
+    departureStatus: "PLANNING",
     groupLanguage: "English",
     minPassengersRequired: 30,
     passengerCount: 31,
@@ -92,7 +92,7 @@ const INITIAL_DEPARTURES: TourDeparture[] = [
     tourType: "leisure",
     startDate: "2026-06-02",
     endDate: "2026-06-05",
-    departureStatus: "scheduled",
+    departureStatus: "PLANNING",
     groupLanguage: "Vietnamese",
     minPassengersRequired: 25,
     passengerCount: 22,
@@ -116,7 +116,7 @@ const INITIAL_DEPARTURES: TourDeparture[] = [
     tourType: "adventure",
     startDate: "2026-06-10",
     endDate: "2026-06-18",
-    departureStatus: "scheduled",
+    departureStatus: "PLANNING",
     groupLanguage: "English",
     minPassengersRequired: 50,
     passengerCount: 95,
@@ -276,7 +276,12 @@ export function useAdminOperationsData() {
   const departureQueue = useMemo<DepartureQueueItem[]>(() => {
     return departures
       .map((departure) => toDepartureQueueItem(departure))
-      .filter((departure) => departure.departureStatus !== "in-progress")
+      .filter(
+        (departure) =>
+          departure.departureStatus !== "IN_PROGRESS" &&
+          departure.departureStatus !== "COMPLETED" &&
+          departure.departureStatus !== "CANCELLED",
+      )
       .sort(
         (left, right) =>
           new Date(left.startDate).getTime() -
@@ -307,7 +312,11 @@ export function useAdminOperationsData() {
     const fallbackDeparture = actionableDepartures[0] ?? departureQueue[0];
 
     if (fallbackDeparture) {
-      setSelectedDepartureId(fallbackDeparture.id);
+      const syncSelectionTimer = window.setTimeout(() => {
+        setSelectedDepartureId(fallbackDeparture.id);
+      }, 0);
+
+      return () => window.clearTimeout(syncSelectionTimer);
     }
   }, [actionableDepartures, departureQueue, selectedDepartureId]);
 
@@ -555,8 +564,8 @@ export function useAdminOperationsData() {
           ...item,
           assignments: nextAssignments,
           departureStatus:
-            item.departureStatus === "departing-soon"
-              ? "in-progress"
+            item.departureStatus === "OPEN" || item.departureStatus === "LOCKED"
+              ? "IN_PROGRESS"
               : item.departureStatus,
         };
       }),

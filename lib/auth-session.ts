@@ -1,4 +1,5 @@
 import { AuthRole, AuthSession } from "@/types/auth";
+import { BackendAuthRole } from "@/types/backend-contract";
 
 export const AUTH_SESSION_STORAGE_KEY = "stms-auth-session-v1";
 
@@ -6,6 +7,18 @@ const ROLE_HOME_PATH: Record<AuthRole, string> = {
   customer: "/",
   guide: "/guide-portal",
   admin: "/admin",
+};
+
+const BACKEND_TO_APP_ROLE: Record<BackendAuthRole, AuthRole> = {
+  USER: "customer",
+  GUIDE: "guide",
+  ADMIN: "admin",
+};
+
+const APP_TO_BACKEND_ROLE: Record<AuthRole, BackendAuthRole> = {
+  customer: "USER",
+  guide: "GUIDE",
+  admin: "ADMIN",
 };
 
 const DEFAULT_ROLE_DISPLAY_NAME: Record<AuthRole, string> = {
@@ -33,25 +46,43 @@ function createDisplayNameFromEmail(email: string) {
     .join(" ");
 }
 
+function isBackendAuthRole(value: unknown): value is BackendAuthRole {
+  return value === "USER" || value === "GUIDE" || value === "ADMIN";
+}
+
+export function resolveFrontendRoleFromBackendRole(
+  backendRole: BackendAuthRole,
+) {
+  return BACKEND_TO_APP_ROLE[backendRole];
+}
+
+export function resolveBackendRoleFromFrontendRole(role: AuthRole) {
+  return APP_TO_BACKEND_ROLE[role];
+}
+
 export function resolveAuthHomePath(role: AuthRole) {
   return ROLE_HOME_PATH[role];
 }
 
 export function saveAuthSession(payload: {
   email: string;
-  role: AuthRole;
+  backendRole: BackendAuthRole;
+  token: string;
   displayName?: string;
 }) {
   const normalizedEmail = normalizeEmail(payload.email);
+  const role = resolveFrontendRoleFromBackendRole(payload.backendRole);
 
   const session: AuthSession = {
     email: normalizedEmail,
-    role: payload.role,
+    role,
+    backendRole: payload.backendRole,
+    token: payload.token,
     displayName:
       payload.displayName?.trim() ||
       (normalizedEmail
         ? createDisplayNameFromEmail(normalizedEmail)
-        : DEFAULT_ROLE_DISPLAY_NAME[payload.role]),
+        : DEFAULT_ROLE_DISPLAY_NAME[role]),
     loginAtIso: new Date().toISOString(),
   };
 
@@ -76,19 +107,39 @@ export function loadAuthSession() {
   }
 
   try {
-    const parsed = JSON.parse(raw) as AuthSession;
+    const parsed = JSON.parse(raw) as
+      | (Partial<AuthSession> & { backendRole?: unknown; role?: unknown })
+      | null;
     if (!parsed || typeof parsed !== "object") {
       return null;
     }
 
-    if (!parsed.role || !ROLE_HOME_PATH[parsed.role]) {
+    const backendRole = isBackendAuthRole(parsed.backendRole)
+      ? parsed.backendRole
+      : parsed.role === "admin"
+        ? "ADMIN"
+        : parsed.role === "guide"
+          ? "GUIDE"
+          : parsed.role === "customer"
+            ? "USER"
+            : null;
+
+    if (!backendRole) {
       return null;
     }
+
+    const role = resolveFrontendRoleFromBackendRole(backendRole);
 
     return {
       ...parsed,
       email: normalizeEmail(parsed.email || ""),
-      displayName: parsed.displayName || DEFAULT_ROLE_DISPLAY_NAME[parsed.role],
+      role,
+      backendRole,
+      token:
+        typeof parsed.token === "string" && parsed.token.trim().length > 0
+          ? parsed.token
+          : "mock-legacy-token",
+      displayName: parsed.displayName || DEFAULT_ROLE_DISPLAY_NAME[role],
       loginAtIso: parsed.loginAtIso || new Date(0).toISOString(),
     };
   } catch {

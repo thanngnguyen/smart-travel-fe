@@ -1,6 +1,6 @@
 export const APP_NAME = "Smart Travel Management System";
-// export const API_BASE_URL =
-//   process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
+export const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8081/api";
 
 export const ROUTES = {
   HOME: "/",
@@ -29,8 +29,24 @@ export const BOOKING_STATUS = {
   COMPLETED: "COMPLETED",
 };
 
-export const TOUR_STATUS = {
-  ACTIVE: "ACTIVE",
-  INACTIVE: "INACTIVE",
-  DRAFT: "DRAFT",
+export const DEPARTURE_STATUS = {
+  PLANNING: "PLANNING",
+  OPEN: "OPEN",
+  LOCKED: "LOCKED",
+  IN_PROGRESS: "IN_PROGRESS",
+  COMPLETED: "COMPLETED",
+  CANCELLED: "CANCELLED",
+};
+
+export const PAYMENT_METHOD = {
+  CASH: "CASH",
+  BANK_TRANSFER: "BANK_TRANSFER",
+  VNPAY: "VNPAY",
+  MOMO: "MOMO",
+};
+
+export const BACKEND_ROLE = {
+  USER: "USER",
+  GUIDE: "GUIDE",
+  ADMIN: "ADMIN",
 };

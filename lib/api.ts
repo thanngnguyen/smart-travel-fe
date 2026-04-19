@@ -1,45 +1,81 @@
-// import { API_BASE_URL } from "@/utils/constants";
+import { BackendErrorResponse } from "@/types/backend-contract";
+import { API_BASE_URL } from "@/utils/constants";
 
-// interface FetchOptions extends RequestInit {
-//   token?: string;
-// }
+interface FetchOptions extends RequestInit {
+  token?: string;
+}
 
-// export async function fetcher<T>(
-//   endpoint: string,
-//   options: FetchOptions = {},
-// ): Promise<T> {
-//   const { token, headers, ...restOptions } = options;
-//   const url = endpoint.startsWith("http")
-//     ? endpoint
-//     : `${API_BASE_URL}${endpoint}`;
+export class ApiRequestError extends Error {
+  status: number;
+  payload?: BackendErrorResponse | null;
 
-//   const defaultHeaders: HeadersInit = {
-//     "Content-Type": "application/json",
-//   };
+  constructor(
+    status: number,
+    message: string,
+    payload?: BackendErrorResponse | null,
+  ) {
+    super(message);
+    this.name = "ApiRequestError";
+    this.status = status;
+    this.payload = payload;
+  }
+}
 
-//   if (token) {
-//     defaultHeaders.Authorization = `Bearer ${token}`;
-//   }
+function resolveErrorMessage(status: number, errorData: unknown) {
+  if (errorData && typeof errorData === "object" && "message" in errorData) {
+    const payload = errorData as BackendErrorResponse;
+    if (typeof payload.message === "string") {
+      return payload.message;
+    }
 
-//   const res = await fetch(url, {
-//     headers: {
-//       ...defaultHeaders,
-//       ...headers,
-//     },
-//     ...restOptions,
-//   });
+    if (payload.message && typeof payload.message === "object") {
+      return Object.values(payload.message).join(" | ");
+    }
+  }
 
-//   if (!res.ok) {
-//     const errorData = await res.json().catch(() => ({}));
-//     throw new Error(
-//       errorData.message || `API request failed with status: ${res.status}`,
-//     );
-//   }
+  return `API request failed with status: ${status}`;
+}
 
-//   // Handle empty responses (like 204 No Content)
-//   if (res.status === 204) {
-//     return {} as T;
-//   }
+export async function fetcher<T>(
+  endpoint: string,
+  options: FetchOptions = {},
+): Promise<T> {
+  const { token, headers, ...restOptions } = options;
+  const url = endpoint.startsWith("http")
+    ? endpoint
+    : `${API_BASE_URL}${endpoint}`;
 
-//   return res.json() as Promise<T>;
-// }
+  const defaultHeaders: HeadersInit = {
+    "Content-Type": "application/json",
+  };
+
+  if (token) {
+    defaultHeaders.Authorization = `Bearer ${token}`;
+  }
+
+  const res = await fetch(url, {
+    headers: {
+      ...defaultHeaders,
+      ...headers,
+    },
+    ...restOptions,
+  });
+
+  if (!res.ok) {
+    const errorData = (await res
+      .json()
+      .catch(() => null)) as BackendErrorResponse | null;
+
+    throw new ApiRequestError(
+      res.status,
+      resolveErrorMessage(res.status, errorData),
+      errorData,
+    );
+  }
+
+  if (res.status === 204) {
+    return {} as T;
+  }
+
+  return res.json() as Promise<T>;
+}

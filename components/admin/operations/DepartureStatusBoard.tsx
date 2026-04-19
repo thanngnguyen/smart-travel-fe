@@ -21,6 +21,22 @@ function formatDateLabel(startDate: string, endDate: string) {
 }
 
 function resolveDepartureTone(departure: DepartureQueueItem) {
+  if (departure.departureStatus === "PLANNING") {
+    return {
+      statusLabel: "PLANNING",
+      statusTone: "info" as const,
+      hint: "Chuyến đang ở giai đoạn lập kế hoạch mở bán",
+    };
+  }
+
+  if (departure.departureStatus === "LOCKED") {
+    return {
+      statusLabel: "LOCKED",
+      statusTone: "warning" as const,
+      hint: "Đang khóa bán thêm, chờ vận hành điều phối",
+    };
+  }
+
   if (!departure.isReadyForAssignment) {
     return {
       statusLabel: "Chưa đủ khách",
@@ -89,6 +105,9 @@ export default function DepartureStatusBoard({
                   </p>
                   <p className="mt-1 text-lg font-black text-on-surface">
                     {departure.tourName}
+                  </p>
+                  <p className="text-[11px] uppercase tracking-wide text-outline mt-1">
+                    Backend status: {departure.departureStatus}
                   </p>
                   <p className="mt-1 text-sm text-on-surface-variant">
                     {formatDateLabel(departure.startDate, departure.endDate)}
