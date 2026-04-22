@@ -12,16 +12,26 @@ interface TourBookingWidgetProps {
   booking: TourBookingSummary;
 }
 
-function parsePriceFromLabel(value: string) {
-  const numeric = Number(value.replace(/[^0-9.]/g, ""));
+// Thêm | number | undefined vào type để hàm chấp nhận cả kiểu số và kiểu trống
+function parsePriceFromLabel(value: string | number | undefined) {
+  // 1. Nếu không có giá trị truyền vào (undefined/null/rỗng) -> Trả về 0
+  if (!value) return 0;
+
+  // 2. Nếu Spring Boot đã trả về số chuẩn luôn rồi -> Trả về số đó luôn, khỏi cần replace
+  if (typeof value === "number") return value;
+
+  // 3. Nếu là chuỗi (VD: "35,000,000 VNĐ") -> Ép về chuỗi rồi mới replace để cắt chữ
+  const numeric = Number(value.toString().replace(/[^0-9.]/g, ""));
+  
   if (!Number.isFinite(numeric) || numeric <= 0) {
     return 0;
   }
-
   return numeric;
 }
 
 function parseCountFromLabel(value: string, keyword: string, fallback: number) {
+  if (!value) return fallback;
+
   const pattern = new RegExp(`(\\d+)\\s*${keyword}`, "i");
   const match = value.match(pattern);
 

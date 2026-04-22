@@ -1,3 +1,6 @@
+"use client"; // 1. THÊM DÒNG NÀY ĐỂ BIẾN THÀNH CLIENT COMPONENT
+
+import React from "react"; // 2. IMPORT REACT ĐỂ DÙNG React.use()
 import TourBookingWidget from "@/components/customer/tour-details/TourBookingWidget";
 import TourDetailsHero from "@/components/customer/tour-details/TourDetailsHero";
 import TourHighlightsSection from "@/components/customer/tour-details/TourHighlightsSection";
@@ -6,15 +9,27 @@ import TourTimelineSection from "@/components/customer/tour-details/TourTimeline
 import { useCustomerTourDetailsData } from "@/hooks/useCustomerTourDetailsData";
 
 interface TourDetailsPageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>; // 3. KHAI BÁO PARAMS LÀ MỘT PROMISE
 }
 
 export default function TourDetailsPage({ params }: TourDetailsPageProps) {
-  const tourSlug = params?.id;
-  const { meta, gallery, highlights, timeline, booking } =
+  // 4. BÓC TÁCH PARAMS BẰNG React.use() CHUẨN NEXT.JS 15+
+  const resolvedParams = React.use(params);
+  const tourSlug = resolvedParams.id;
+  
+  const { meta, gallery, highlights, timeline, booking, isLoading } =
     useCustomerTourDetailsData(tourSlug);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-surface pt-24">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+          <p className="text-blue-600 font-medium animate-pulse">Đang chuẩn bị chuyến đi cho bạn...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-24 pb-20 bg-surface">
