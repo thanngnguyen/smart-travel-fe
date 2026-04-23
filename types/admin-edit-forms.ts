@@ -1,6 +1,10 @@
 import { CustomerSegment, CustomerStatus } from "@/types/admin-customers";
 import { PersonnelRole, PersonnelStatus } from "@/types/admin-personnel";
-import { BackendBookingStatus } from "@/types/backend-contract";
+import {
+  BackendBookingStatus,
+  BackendPaymentMethod,
+  BackendPaymentStatus,
+} from "@/types/backend-contract";
 
 export interface AdminBookingEditFormState {
   customerName: string;
@@ -9,6 +13,8 @@ export interface AdminBookingEditFormState {
   departureDate: string;
   amount: string;
   status: BackendBookingStatus;
+  paymentStatus: BackendPaymentStatus;
+  paymentMethod: BackendPaymentMethod;
   adminNote: string;
 }
 

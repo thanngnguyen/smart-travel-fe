@@ -1,3 +1,14 @@
+"use client";
+
+import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  ADMIN_BOOKINGS_STORAGE_KEY,
+  ADMIN_BOOKINGS_UPDATED_EVENT,
+  applyBookingMutation,
+  loadAdminBookingRecords,
+  saveAdminBookingRecords,
+  toBookingRow,
+} from "@/lib/admin-bookings-store";
 import {
   BookingActivityLogItem,
   BookingAiInsight,
@@ -5,136 +16,242 @@ import {
   BookingItineraryMap,
   BookingPaymentBreakdown,
   BookingQuickAction,
+  BookingQuickActionId,
   PassengerInfo,
   SpecialRequestItem,
   TourHighlightData,
 } from "@/types/admin-booking-details";
+import { formatCurrency } from "@/utils/formatters";
 
-export function useAdminBookingDetailsData() {
+const DEFAULT_MAP_IMAGE =
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuDWCQixtElx0_lIKUH0oy5ExCEY22P0EsBQwIw102dPbiFgEC1HVEiUNwdQ8A32OyCHhyH2aCjlYy5uu9a1MLuircOLEmk0EI8h-wFK0JZ6cEuDjq54jKgBlpbh-4HXtEvu-pqzXZAf_gOZVbd4IaX2XOLiKXOmH8XacF8MJjsy--ZJCBNkiMSO4pLU3uiKngP0KNUkQ4kKcfLKCFwv8Y7ze5D8A3TvQGHVSSdBLJpQxRuSjNev84PdJFygzb4WCaw99vsEr1P675U";
+const DEFAULT_TOUR_IMAGE =
+  "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=80";
+
+export function useAdminBookingDetailsData(bookingId?: string) {
+  const [records, setRecords] = useState(() => loadAdminBookingRecords());
+  const [notice, setNotice] = useState<string | null>(null);
+
+  const refreshFromStorage = useCallback(() => {
+    setRecords(loadAdminBookingRecords());
+  }, []);
+
+  useEffect(() => {
+    const handleStorage = (event: StorageEvent) => {
+      if (!event.key || event.key === ADMIN_BOOKINGS_STORAGE_KEY) {
+        refreshFromStorage();
+      }
+    };
+
+    const handleLocalEvent = () => {
+      refreshFromStorage();
+    };
+
+    window.addEventListener("storage", handleStorage);
+    window.addEventListener(ADMIN_BOOKINGS_UPDATED_EVENT, handleLocalEvent);
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener(
+        ADMIN_BOOKINGS_UPDATED_EVENT,
+        handleLocalEvent,
+      );
+    };
+  }, [refreshFromStorage]);
+
+  const activeRecord = useMemo(() => {
+    if (!records.length) {
+      return null;
+    }
+
+    if (!bookingId) {
+      return records[0];
+    }
+
+    return records.find((record) => record.id === bookingId) ?? null;
+  }, [bookingId, records]);
+
+  const bookingRow = useMemo(() => {
+    if (!activeRecord) {
+      return null;
+    }
+
+    return toBookingRow(activeRecord, 0);
+  }, [activeRecord]);
+
+  const runQuickAction = useCallback(
+    (actionId: BookingQuickActionId) => {
+      if (!activeRecord) {
+        setNotice("Khong tim thay booking de xu ly.");
+        return;
+      }
+
+      setRecords((previous) => {
+        const result = applyBookingMutation(
+          previous,
+          activeRecord.id,
+          actionId,
+        );
+
+        if (result.changed) {
+          saveAdminBookingRecords(result.nextRecords);
+        }
+
+        setNotice(result.message || "No changes applied.");
+        return result.nextRecords;
+      });
+    },
+    [activeRecord],
+  );
+
+  if (!bookingRow) {
+    const emptyHeader: BookingHeaderData = {
+      bookingCode: "Booking not found",
+      confirmationText: "No record available",
+    };
+
+    return {
+      bookingRow,
+      header: emptyHeader,
+      tourHighlight: null,
+      primaryPassenger: null,
+      specialRequests: [] as SpecialRequestItem[],
+      activityLogs: [] as BookingActivityLogItem[],
+      payment: null,
+      aiInsight: null,
+      quickActions: [] as BookingQuickAction[],
+      itineraryMap: null,
+      notice,
+      runQuickAction,
+    };
+  }
+
+  const subtotalAmount = bookingRow.amountValue * 0.92;
+  const feeAmount = bookingRow.amountValue - subtotalAmount;
+
   const header: BookingHeaderData = {
-    bookingCode: "Đặt chỗ #STMS-882910",
-    confirmationText: "Booking status: CONFIRMED (24 Th10, 2024)",
+    bookingCode: `Booking #${bookingRow.bookingCode}`,
+    confirmationText: `${bookingRow.status} • Payment ${bookingRow.paymentStatus}`,
   };
 
   const tourHighlight: TourHighlightData = {
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBbT3LNTtKsWPmZC93CfclJzFmKb04EWaQGLPBF7CetnNQIsKY39LEL1gXX9U2XZfXOPHb_mnbtVQ7W-kjEgrczHSnnCspb75GJ7BLPQkdscYzdCt5HsIZnIMJwqqnKRwaGNSU3MMY7RRuiCkyyOaMeZeLJrOsqz3r-vvZVcygJpLFJ3vJG5ctuVSCDE4gYOcR3Eghy1cYSw2x4Go4PjFUQh3WU4z-dk_yioOT2TBmLv4VRkiruOnIMhh3n8wyfqxobB6EZt3iF1bI",
-    statusLabel: "Departure status: OPEN",
-    title: "Thám hiểm dãy Alps Thụy Sĩ: 7 ngày đỉnh núi & thung lũng",
-    tierLabel: "CAO CẤP",
-    departureDate: "12 Th12, 2024",
-    returnDate: "19 Th12, 2024",
-    groupSize: "12 khách",
-    location: "St. Moritz, Thụy Sĩ",
+    imageUrl: DEFAULT_TOUR_IMAGE,
+    statusLabel: `Booking status: ${bookingRow.status}`,
+    title: bookingRow.tourName,
+    tierLabel: bookingRow.paymentMethod,
+    departureDate: bookingRow.departureDate,
+    returnDate: "TBD",
+    groupSize: "2-4 pax",
+    location: bookingRow.departureMeta,
   };
 
   const primaryPassenger: PassengerInfo = {
-    id: "primary-passenger",
-    name: "Elena Rodriguez",
-    passengerId: "P-9912",
-    email: "e.rodriguez@example.com",
-    phone: "+34 612 990 123",
-    nationality: "Tây Ban Nha",
-    passportMasked: "P88****12",
+    id: `passenger-${bookingRow.id}`,
+    name: bookingRow.customerName,
+    passengerId: bookingRow.bookingCode,
+    email: bookingRow.customerEmail,
+    phone: "+84 900 000 000",
+    nationality: "Unknown",
+    passportMasked: "N/A",
   };
 
   const specialRequests: SpecialRequestItem[] = [
     {
-      id: "dietary",
-      title: "Dinh dưỡng",
-      description:
-        "Dị ứng nặng với hạt. Cần lựa chọn bữa ăn thuần chay cho tất cả chuyến bay và bữa tối theo đoàn.",
-      styleClassName: "bg-tertiary-fixed/30",
-      titleClassName: "text-tertiary",
-    },
-    {
-      id: "accessibility",
-      title: "Hỗ trợ tiếp cận",
-      description:
-        "Yêu cầu phòng tầng thấp khi có thể (ưu tiên không dùng cầu thang).",
-      styleClassName: "bg-surface-container-low",
-      titleClassName: "text-outline",
+      id: "ops-note",
+      title: "Ops note",
+      description: bookingRow.isHighRisk
+        ? "Booking dang duoc gan co can manual review do payment risk."
+        : "Chua co yeu cau dac biet tu khach.",
+      styleClassName: bookingRow.isHighRisk
+        ? "bg-tertiary-fixed/30"
+        : "bg-surface-container-low",
+      titleClassName: bookingRow.isHighRisk ? "text-tertiary" : "text-outline",
     },
   ];
 
   const activityLogs: BookingActivityLogItem[] = [
     {
-      id: "confirmed",
-      icon: "check",
+      id: `${bookingRow.id}-latest`,
+      icon: "history",
       iconClassName: "bg-primary",
-      title: "Đặt chỗ đã xác nhận",
-      description: "Thanh toán đã xác thực qua Stripe (Ref: ch_91283)",
-      timestamp: "24 TH10, 2024 • 14:32 • Hệ thống",
+      title: "Cap nhat gan nhat",
+      description: `Booking ${bookingRow.bookingCode} dang o trang thai ${bookingRow.status}.`,
+      timestamp: `${bookingRow.updatedAtLabel} • Frontend mock store`,
     },
     {
-      id: "passenger-update",
-      icon: "edit",
+      id: `${bookingRow.id}-payment`,
+      icon: "payments",
       iconClassName: "bg-secondary-container",
-      title: "Đã cập nhật thông tin hành khách",
-      description: "Ngày hết hạn hộ chiếu đã được chỉnh về 2029-05-15.",
-      timestamp: "25 TH10, 2024 • 09:12 • Quản trị: Sarah J.",
-    },
-    {
-      id: "documents-sent",
-      icon: "mail",
-      iconClassName: "bg-tertiary-container",
-      title: "Đã gửi bộ tài liệu trước chuyến đi",
-      description:
-        "Lịch trình số và hướng dẫn visa đã gửi tới email hành khách chính.",
-      timestamp: "01 TH11, 2024 • 10:00 • Tác vụ tự động",
+      title: "Trang thai payment",
+      description: `Payment ${bookingRow.paymentStatus} qua ${bookingRow.paymentMethod}.`,
+      timestamp: `${bookingRow.updatedAtLabel} • Payment sync`,
     },
   ];
 
   const payment: BookingPaymentBreakdown = {
-    paidAmount: "$4,850.00",
-    statusLabel: "Payment SUCCESS · Booking CONFIRMED",
-    subtotal: "$4,500.00",
-    feesAndTaxes: "$350.00",
-    total: "$4,850.00",
+    bookingId: bookingRow.id,
+    bookingStatus: bookingRow.status,
+    paymentStatus: bookingRow.paymentStatus,
+    paymentMethod: bookingRow.paymentMethod,
+    paidAmount: bookingRow.amount,
+    statusLabel: `${bookingRow.paymentStatus} • ${bookingRow.status}`,
+    subtotal: formatCurrency(subtotalAmount),
+    feesAndTaxes: formatCurrency(feeAmount),
+    total: bookingRow.amount,
   };
 
   const aiInsight: BookingAiInsight = {
-    recommendationTitle: "Khuyến nghị hành trình",
+    recommendationTitle: "Ops Recommendation",
     recommendationDescription:
-      "Chặng nối chuyến tại Zurich có xác suất trễ 12% theo xu hướng thời tiết mùa đông. Hệ thống đang theo dõi thời tiết theo thời gian thực.",
-    urgentActionTitle: "Hành động khẩn",
+      bookingRow.paymentStatus === "FAILED"
+        ? "Uu tien lien he khach de cap nhat phuong thuc thanh toan truoc khi giu cho het han."
+        : "Theo doi thay doi departure va thong bao concierge neu co chenh lech lich trinh.",
+    urgentActionTitle: "Next Action",
     urgentActionDescription:
-      "Cần xác minh visa cho chặng 2. Hạn chót: 15 Th11.",
+      bookingRow.status === "PENDING"
+        ? "Can payment SUCCESS de chuyen booking sang CONFIRMED."
+        : "Theo doi nhu cau bo sung va cap nhat docs truoc ngay khoi hanh.",
   };
 
   const quickActions: BookingQuickAction[] = [
     {
-      id: "resend",
-      label: "Gửi lại",
-      icon: "send",
+      id: "mark-payment-success",
+      label: "Mark Paid",
+      icon: "credit_score",
       textClassName: "text-primary",
     },
     {
-      id: "duplicate",
-      label: "Nhân bản",
-      icon: "content_copy",
+      id: "confirm-booking",
+      label: "Confirm",
+      icon: "task_alt",
       textClassName: "text-primary",
     },
     {
-      id: "refund",
-      label: "Hoàn tiền",
+      id: "refund-booking",
+      label: "Refund",
       icon: "sync",
       textClassName: "text-primary",
     },
     {
-      id: "cancel",
-      label: "Hủy",
+      id: "cancel-booking",
+      label: "Cancel",
       icon: "cancel",
       textClassName: "text-error",
+    },
+    {
+      id: bookingRow.isHighRisk ? "clear-risk" : "flag-risk",
+      label: bookingRow.isHighRisk ? "Clear Risk" : "Flag Risk",
+      icon: bookingRow.isHighRisk ? "shield" : "warning",
+      textClassName: bookingRow.isHighRisk ? "text-primary" : "text-tertiary",
     },
   ];
 
   const itineraryMap: BookingItineraryMap = {
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDWCQixtElx0_lIKUH0oy5ExCEY22P0EsBQwIw102dPbiFgEC1HVEiUNwdQ8A32OyCHhyH2aCjlYy5uu9a1MLuircOLEmk0EI8h-wFK0JZ6cEuDjq54jKgBlpbh-4HXtEvu-pqzXZAf_gOZVbd4IaX2XOLiKXOmH8XacF8MJjsy--ZJCBNkiMSO4pLU3uiKngP0KNUkQ4kKcfLKCFwv8Y7ze5D8A3TvQGHVSSdBLJpQxRuSjNev84PdJFygzb4WCaw99vsEr1P675U",
+    imageUrl: DEFAULT_MAP_IMAGE,
   };
 
   return {
+    bookingRow,
     header,
     tourHighlight,
     primaryPassenger,
@@ -144,5 +261,7 @@ export function useAdminBookingDetailsData() {
     aiInsight,
     quickActions,
     itineraryMap,
+    notice,
+    runQuickAction,
   };
 }

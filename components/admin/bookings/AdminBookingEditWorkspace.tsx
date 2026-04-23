@@ -10,23 +10,32 @@ import PillBadge from "@/components/ui/PillBadge";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { useAdminBookingDetailsData } from "@/hooks/useAdminBookingDetailsData";
 import { useAdminBookingEditForm } from "@/hooks/useAdminBookingEditForm";
-import { useAdminBookingsData } from "@/hooks/useAdminBookingsData";
 import { resolveRouteParam } from "@/lib/route-param";
-import { BackendBookingStatus } from "@/types/backend-contract";
+import {
+  BackendBookingStatus,
+  BackendPaymentMethod,
+  BackendPaymentStatus,
+} from "@/types/backend-contract";
 
 export default function AdminBookingEditWorkspace() {
   const params = useParams<{ id: string | string[] }>();
   const routeId = resolveRouteParam(params?.id);
 
-  const { rows } = useAdminBookingsData();
-  const { tourHighlight, primaryPassenger, specialRequests } =
-    useAdminBookingDetailsData();
+  const {
+    bookingRow,
+    tourHighlight,
+    primaryPassenger,
+    specialRequests,
+    notice: detailNotice,
+  } = useAdminBookingDetailsData(routeId);
 
-  const booking = rows.find((item) => item.id === routeId);
+  const booking = bookingRow ?? undefined;
   const { form, notice, setField, handleSubmit } =
     useAdminBookingEditForm(booking);
 
-  if (!booking) {
+  const activeNotice = notice || detailNotice;
+
+  if (!booking || !tourHighlight || !primaryPassenger) {
     return (
       <AdminCard className="space-y-4" radius="3xl">
         <h1 className="text-2xl font-black text-on-surface">
@@ -80,9 +89,9 @@ export default function AdminBookingEditWorkspace() {
         </AdminButton>
       </header>
 
-      {notice ? (
+      {activeNotice ? (
         <AdminCard padding="sm" className="bg-primary/10 text-on-surface">
-          <p className="text-sm font-bold">{notice}</p>
+          <p className="text-sm font-bold">{activeNotice}</p>
         </AdminCard>
       ) : null}
 
@@ -178,6 +187,53 @@ export default function AdminBookingEditWorkspace() {
                   <option value="CANCELLED">CANCELLED</option>
                 </select>
               </label>
+
+              <label className="space-y-1.5">
+                <span className="text-xs font-bold uppercase tracking-wide text-on-surface-variant">
+                  Payment status
+                </span>
+                <select
+                  value={form.paymentStatus}
+                  onChange={(event) =>
+                    setField(
+                      "paymentStatus",
+                      event.target.value as BackendPaymentStatus,
+                    )
+                  }
+                  className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
+                >
+                  <option value="PENDING">PENDING</option>
+                  <option value="SUCCESS">SUCCESS</option>
+                  <option value="FAILED">FAILED</option>
+                  <option value="REFUNDED">REFUNDED</option>
+                </select>
+              </label>
+
+              <label className="space-y-1.5">
+                <span className="text-xs font-bold uppercase tracking-wide text-on-surface-variant">
+                  Payment method
+                </span>
+                <select
+                  value={form.paymentMethod}
+                  onChange={(event) =>
+                    setField(
+                      "paymentMethod",
+                      event.target.value as BackendPaymentMethod,
+                    )
+                  }
+                  className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
+                >
+                  <option value="VNPAY">VNPAY</option>
+                  <option value="BANK_TRANSFER">BANK_TRANSFER</option>
+                  <option value="MOMO">MOMO</option>
+                  <option value="CASH">CASH</option>
+                </select>
+              </label>
+            </div>
+
+            <div className="rounded-xl border border-outline-variant/20 bg-surface-container-low p-3 text-xs text-on-surface-variant">
+              Rule backend: booking CONFIRMED chi hop le khi payment SUCCESS.
+              Neu payment REFUNDED, booking se tu dong ve CANCELLED.
             </div>
 
             <label className="space-y-1.5">

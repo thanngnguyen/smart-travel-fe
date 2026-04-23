@@ -1,3 +1,9 @@
+import {
+  BackendBookingStatus,
+  BackendPaymentMethod,
+  BackendPaymentStatus,
+} from "@/types/backend-contract";
+
 export interface BookingHeaderData {
   bookingCode: string;
   confirmationText: string;
@@ -42,12 +48,24 @@ export interface BookingActivityLogItem {
 }
 
 export interface BookingPaymentBreakdown {
+  bookingId: string;
+  bookingStatus: BackendBookingStatus;
+  paymentStatus: BackendPaymentStatus;
+  paymentMethod: BackendPaymentMethod;
   paidAmount: string;
   statusLabel: string;
   subtotal: string;
   feesAndTaxes: string;
   total: string;
 }
+
+export type BookingQuickActionId =
+  | "mark-payment-success"
+  | "confirm-booking"
+  | "cancel-booking"
+  | "refund-booking"
+  | "flag-risk"
+  | "clear-risk";
 
 export interface BookingAiInsight {
   recommendationTitle: string;
@@ -57,7 +75,7 @@ export interface BookingAiInsight {
 }
 
 export interface BookingQuickAction {
-  id: string;
+  id: BookingQuickActionId;
   label: string;
   icon: string;
   textClassName: string;

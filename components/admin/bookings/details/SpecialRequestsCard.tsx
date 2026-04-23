@@ -9,7 +9,7 @@ export default function SpecialRequestsCard({
   requests,
 }: SpecialRequestsCardProps) {
   return (
-    <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border-l-4 border-tertiary">
+    <div className="bg-red-100 p-6 rounded-2xl shadow-sm">
       <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
         <Icon name="priority_high" className="text-tertiary" />
         Yêu cầu đặc biệt

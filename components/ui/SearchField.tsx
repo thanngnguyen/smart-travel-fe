@@ -1,8 +1,12 @@
+"use client";
+
 import React from "react";
 import Icon from "./Icon";
 
 interface SearchFieldProps {
   placeholder: string;
+  value?: string;
+  onChange?: (value: string) => void;
   className?: string;
   iconClassName?: string;
   inputClassName?: string;
@@ -10,6 +14,8 @@ interface SearchFieldProps {
 
 export default function SearchField({
   placeholder,
+  value,
+  onChange,
   className = "",
   iconClassName = "",
   inputClassName = "",
@@ -24,6 +30,8 @@ export default function SearchField({
         className={`w-full pl-12 pr-4 py-3 bg-surface-container-lowest border-none rounded-2xl text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all outline-none ${inputClassName}`}
         placeholder={placeholder}
         type="text"
+        value={value}
+        onChange={(event) => onChange?.(event.target.value)}
       />
     </div>
   );

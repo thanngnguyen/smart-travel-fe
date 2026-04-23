@@ -3,11 +3,13 @@ import Link from "next/link";
 import Icon from "@/components/ui/Icon";
 
 interface BookingDetailsTopBarProps {
+  bookingId: string;
   bookingCode: string;
   confirmationText: string;
 }
 
 export default function BookingDetailsTopBar({
+  bookingId,
   bookingCode,
   confirmationText,
 }: BookingDetailsTopBarProps) {
@@ -36,7 +38,7 @@ export default function BookingDetailsTopBar({
           size="sm"
           className="text-primary font-semibold"
         >
-          <Link href={`/admin/bookings/${bookingCode}/edit`}>
+          <Link href={`/admin/bookings/${bookingId}/edit`}>
             Chỉnh sửa đặt chỗ
           </Link>
         </AdminButton>

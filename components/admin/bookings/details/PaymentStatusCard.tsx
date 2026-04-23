@@ -3,9 +3,17 @@ import { BookingPaymentBreakdown } from "@/types/admin-booking-details";
 
 interface PaymentStatusCardProps {
   payment: BookingPaymentBreakdown;
+  onMarkPaymentSuccess: () => void;
 }
 
-export default function PaymentStatusCard({ payment }: PaymentStatusCardProps) {
+export default function PaymentStatusCard({
+  payment,
+  onMarkPaymentSuccess,
+}: PaymentStatusCardProps) {
+  const canMarkPaid =
+    payment.paymentStatus !== "SUCCESS" &&
+    payment.bookingStatus !== "CANCELLED";
+
   return (
     <div className="bg-primary text-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
       <div className="absolute -right-12 -top-12 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
@@ -17,9 +25,12 @@ export default function PaymentStatusCard({ payment }: PaymentStatusCardProps) {
           <h3 className="text-3xl font-black mt-1">{payment.paidAmount}</h3>
         </div>
         <div className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold">
-          {payment.statusLabel}
+          {payment.paymentStatus} • {payment.paymentMethod}
         </div>
       </div>
+      <p className="text-[11px] font-bold uppercase tracking-widest text-primary-container mb-4 relative z-10">
+        Booking status: {payment.bookingStatus}
+      </p>
       <div className="space-y-3 relative z-10">
         <div className="flex justify-between text-xs font-medium">
           <span className="opacity-70">Tạm tính</span>
@@ -34,9 +45,22 @@ export default function PaymentStatusCard({ payment }: PaymentStatusCardProps) {
           <span>{payment.total}</span>
         </div>
       </div>
-      <AdminButton variant="white" size="lg" fullWidth className="mt-6 py-3">
-        Tải hóa đơn
-      </AdminButton>
+
+      <div className="mt-6 grid grid-cols-1 gap-2">
+        <AdminButton
+          variant="white"
+          size="lg"
+          fullWidth
+          className="py-3 disabled:opacity-60"
+          disabled={!canMarkPaid}
+          onClick={onMarkPaymentSuccess}
+        >
+          Mark Payment SUCCESS
+        </AdminButton>
+        <AdminButton variant="surface" size="md" fullWidth className="py-2.5">
+          Tải hóa đơn
+        </AdminButton>
+      </div>
     </div>
   );
 }

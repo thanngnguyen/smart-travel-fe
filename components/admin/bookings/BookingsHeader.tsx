@@ -2,25 +2,41 @@ import AdminPageHeader from "@/components/ui/AdminPageHeader";
 import AdminButton from "@/components/ui/AdminButton";
 import Icon from "@/components/ui/Icon";
 
-export default function BookingsHeader() {
+interface BookingsHeaderProps {
+  onExportCsv: () => void;
+  pendingRecordsReadyToConfirm: number;
+  pendingRecordsCanMarkPaid: number;
+}
+
+export default function BookingsHeader({
+  onExportCsv,
+  pendingRecordsReadyToConfirm,
+  pendingRecordsCanMarkPaid,
+}: BookingsHeaderProps) {
   return (
     <AdminPageHeader
       title="Quản lý đặt chỗ"
-      description="Theo dõi và xử lý các đơn đặt chỗ du lịch toàn cầu"
+      description={`Ready to confirm: ${pendingRecordsReadyToConfirm} • Need payment update: ${pendingRecordsCanMarkPaid}`}
       className="mb-8"
       actions={
         <>
-          <AdminButton variant="surface" size="lg" className="font-semibold">
+          <AdminButton
+            variant="surface"
+            size="lg"
+            className="font-semibold"
+            onClick={onExportCsv}
+          >
             <Icon name="file_download" className="text-[20px]" />
             Xuất CSV
           </AdminButton>
           <AdminButton
-            variant="gradient"
+            variant="surfaceMuted"
             size="lg"
-            className="py-2.5 hover:shadow-primary/20 active:scale-95"
+            className="py-2.5"
+            disabled
           >
             <Icon name="add_circle" className="text-[20px]" />
-            Đặt chỗ mới
+            Đặt chỗ mới (sắp có)
           </AdminButton>
         </>
       }

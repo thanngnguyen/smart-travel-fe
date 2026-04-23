@@ -1,4 +1,8 @@
-import { BackendBookingStatus } from "@/types/backend-contract";
+import {
+  BackendBookingStatus,
+  BackendPaymentMethod,
+  BackendPaymentStatus,
+} from "@/types/backend-contract";
 
 export type AdminBadgeTone =
   | "success"
@@ -19,13 +23,15 @@ export interface BookingMetric {
 }
 
 export interface BookingFilterTab {
-  id: string;
+  id: "all" | BackendBookingStatus;
   label: string;
+  count?: number;
   isActive?: boolean;
 }
 
 export interface BookingRow {
   id: string;
+  bookingCode: string;
   initials: string;
   avatarToneClassName: string;
   customerName: string;
@@ -34,13 +40,26 @@ export interface BookingRow {
   departureDate: string;
   departureMeta: string;
   amount: string;
+  amountValue: number;
   status: BackendBookingStatus;
   statusLabel: string;
   statusTone: AdminBadgeTone;
+  paymentStatus: BackendPaymentStatus;
+  paymentStatusLabel: string;
+  paymentTone: AdminBadgeTone;
+  paymentMethod: BackendPaymentMethod;
+  updatedAtLabel: string;
+  canConfirm: boolean;
+  canCancel: boolean;
+  canMarkPaymentSuccess: boolean;
+  canRefund: boolean;
+  isHighRisk: boolean;
 }
 
 export interface BookingsPagination {
   summaryLabel: string;
   currentPage: number;
   pages: number[];
+  totalItems: number;
+  pageSize: number;
 }
