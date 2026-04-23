@@ -8,6 +8,14 @@ export interface CustomerFilterOption {
   isActive?: boolean;
 }
 
+/**
+ * View-model cho dòng khách hàng trong bảng admin.
+ * Mapping từ BackendCustomerResponse:
+ *   id ← id (number → string), name ← fullName, email ← user.email,
+ *   phone ← phone, avatarUrl ← avatarUrl
+ * FE-computed/enriched: segment, lifetimeValue, totalTrips,
+ *   assignedConcierge, lastBookingDate, customerCode
+ */
 export interface AdminCustomerRow {
   id: string;
   name: string;

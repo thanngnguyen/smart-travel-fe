@@ -1,3 +1,13 @@
+/**
+ * View-model cho dòng tour trong bảng admin.
+ * Mapping từ BackendTourResponse:
+ *   id ← id (number → string)
+ *   title ← title
+ *   basePrice ← adultPrice (formatted)
+ *   imageUrl ← images[0].imageUrl (primary image)
+ *   duration ← `${durationDays}N${durationNights}Đ`
+ * FE-computed: code (from slug), activeDepartures (count from departures API)
+ */
 export interface AdminTourRow {
   id: string;
   title: string;

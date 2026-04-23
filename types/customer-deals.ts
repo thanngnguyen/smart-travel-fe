@@ -21,6 +21,15 @@ export interface CustomerDealsNewsletterContent {
   backgroundImageUrl: string;
 }
 
+/**
+ * View-model cho deal/khuyến mãi.
+ * Mapping từ BackendPromotionResponse:
+ *   id ← id (number → string), promoCode ← code,
+ *   discountLabel ← discountPercentage (formatted),
+ *   validUntil ← validUntil (formatted)
+ * FE-computed: title, categoryId, location, imageUrl, shortDescription,
+ *   originalPrice, discountedPrice (cần tour data để tính)
+ */
 export interface CustomerDeal {
   id: string;
   title: string;

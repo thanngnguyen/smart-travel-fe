@@ -36,6 +36,14 @@ export interface TourChatMessageCard {
   ctaLabel: string;
 }
 
+/**
+ * View-model tin nhắn chat tour.
+ * Mapping từ BackendChatMessageResponse:
+ *   id ← id, body ← content, sentAtLabel ← sentAt (formatted)
+ *   senderId ← sender.id, role cần resolve từ User.role
+ *   (BE ChatMessageResponse.SenderDto chỉ có id + email, chưa có role)
+ * FE-only: senderName (cần join), card, isReadByCurrentUser
+ */
 export interface TourChatMessage {
   id: string;
   role: TourChatMessageRole;
@@ -63,6 +71,12 @@ export interface TourChatDocument {
   iconName: string;
 }
 
+/**
+ * View-model nhóm chat theo departure.
+ * Mapping từ BackendChatRoomResponse:
+ *   id ← id, title ← name, channelState ← FE-managed
+ * Departure + Tour data cần join thêm từ BackendDepartureResponse + BackendTourResponse
+ */
 export interface TourChatGroup {
   id: string;
   tourId: string;

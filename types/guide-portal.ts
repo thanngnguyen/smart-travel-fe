@@ -26,6 +26,17 @@ export type GuideMessageRole = "system" | "guide" | "customer" | "admin";
 
 export type GuideSyncTone = "info" | "success" | "warning";
 
+/**
+ * View-model cho profile hướng dẫn viên.
+ *
+ * Mapping từ BE:
+ * - `id`          ← BackendTourGuideResponse.id (number → string)
+ * - `fullName`    ← BackendTourGuideResponse.fullName
+ * - `languages`   ← BackendTourGuideResponse.languages.split(", ")
+ * - Các trường còn lại (avatarInitials, roleLabel, baseLocation, expertise,
+ *   rating, monthlyWorkloadDays, monthlyWorkloadLimit) là FE-computed hoặc
+ *   cần BE bổ sung endpoint.
+ */
 export interface GuideProfile {
   id: string;
   fullName: string;
@@ -39,6 +50,13 @@ export interface GuideProfile {
   monthlyWorkloadLimit: number;
 }
 
+/**
+ * View-model hành khách.
+ * Mapping: BookingPassenger entity → fullName, phone
+ *          Booking entity → bookingStatus, bookingCode
+ *          Payment entity → paymentStatus
+ * FE-only: emergencyContact, specialRequest, checkInStatus, checkInAtIso
+ */
 export interface GuideTaskPassenger {
   id: string;
   bookingCode: string;
@@ -62,6 +80,14 @@ export interface GuideTaskCheckpoint {
   updatedAtIso?: string;
 }
 
+/**
+ * View-model tin nhắn tour.
+ * Mapping từ BackendChatMessageResponse:
+ *   id ← id, content ← content, sentAtIso ← sentAt
+ *   senderRole cần resolve từ User.role (BE ChatMessageResponse
+ *   chỉ trả sender.id + sender.email, chưa trả role)
+ * FE-only: senderName (cần join User/Customer/TourGuide), isUnreadByGuide
+ */
 export interface GuideTaskMessage {
   id: string;
   roomId: string;

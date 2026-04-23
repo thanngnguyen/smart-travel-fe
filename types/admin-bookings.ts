@@ -29,6 +29,15 @@ export interface BookingFilterTab {
   isActive?: boolean;
 }
 
+/**
+ * View-model cho dòng booking trong bảng admin.
+ * Mapping từ BackendBookingResponse:
+ *   id ← id (number → string), status ← status,
+ *   amount ← finalPrice (formatted), tourName ← tourTitle
+ * FE-computed: bookingCode, initials, customerName/Email (join Customer),
+ *   departureDate/Meta (join Departure), paymentStatus (join Payment),
+ *   isHighRisk, canConfirm, canCancel, canMarkPaymentSuccess, canRefund
+ */
 export interface BookingRow {
   id: string;
   bookingCode: string;

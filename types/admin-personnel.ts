@@ -19,6 +19,14 @@ export interface PersonnelFilterOption {
   isActive?: boolean;
 }
 
+/**
+ * View-model cho nhân sự trong admin panel.
+ * Mapping từ BackendTourGuideResponse:
+ *   id ← id (number → string), fullName ← fullName,
+ *   phone ← phone, languages ← languages.split(", ")
+ * FE-computed: staffCode, department, certifications,
+ *   assignedTours, monthlyWorkloadDays, performanceScore
+ */
 export interface PersonnelMember {
   id: string;
   fullName: string;
