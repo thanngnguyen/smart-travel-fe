@@ -8,6 +8,8 @@ import AdminCard from "@/components/ui/AdminCard";
 import Icon from "@/components/ui/Icon";
 import PillBadge from "@/components/ui/PillBadge";
 import StatusBadge from "@/components/ui/StatusBadge";
+import CustomerFlashMessageBanner from "@/components/admin/customers/CustomerFlashMessageBanner";
+import CustomerNotFoundCard from "@/components/admin/customers/CustomerNotFoundCard";
 import { useAdminCustomersData } from "@/hooks/useAdminCustomersData";
 import {
   resolveAdminCustomerSegmentTone,
@@ -32,18 +34,11 @@ export default function AdminCustomerDetailsWorkspace() {
 
   if (!customer) {
     return (
-      <AdminCard className="space-y-4" radius="3xl">
-        <h1 className="text-2xl font-black text-on-surface">
-          Không tìm thấy khách hàng
-        </h1>
-        <Link
-          href="/admin/customers"
-          className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white"
-        >
-          <Icon name="arrow_back" className="text-base" />
-          Quay lại quản lý khách hàng
-        </Link>
-      </AdminCard>
+      <CustomerNotFoundCard
+        title="Không tìm thấy khách hàng"
+        backHref="/admin/customers"
+        backLabel="Quay lại quản lý khách hàng"
+      />
     );
   }
 
@@ -91,27 +86,10 @@ export default function AdminCustomerDetailsWorkspace() {
       </header>
 
       {flashMessage ? (
-        <AdminCard
-          padding="sm"
-          className={
-            flashMessage.tone === "success"
-              ? "bg-green-100 text-green-800"
-              : flashMessage.tone === "error"
-                ? "bg-red-100 text-red-800"
-                : "bg-primary/10 text-primary"
-          }
-        >
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-sm font-bold">{flashMessage.text}</p>
-            <button
-              type="button"
-              onClick={clearFlashMessage}
-              className="text-xs font-bold uppercase tracking-wider opacity-80 hover:opacity-100"
-            >
-              Đóng
-            </button>
-          </div>
-        </AdminCard>
+        <CustomerFlashMessageBanner
+          message={flashMessage}
+          onClose={clearFlashMessage}
+        />
       ) : null}
 
       <div className="grid grid-cols-12 gap-6">

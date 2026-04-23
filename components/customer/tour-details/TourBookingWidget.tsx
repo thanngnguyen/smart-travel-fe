@@ -151,9 +151,9 @@ export default function TourBookingWidget({ booking }: TourBookingWidgetProps) {
                 </option>
               ))}
             </select>
-          </div>
-          <div className="flex items-center justify-end">
-            <Icon name="calendar_month" className="text-primary" />
+            <div className="flex items-center justify-end">
+              <Icon name="calendar_month" className="text-primary" />
+            </div>
           </div>
         </div>
 

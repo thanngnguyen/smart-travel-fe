@@ -36,7 +36,9 @@ export default function BookingDetailsTopBar({
           size="sm"
           className="text-primary font-semibold"
         >
-          Chỉnh sửa đặt chỗ
+          <Link href={`/admin/bookings/${bookingCode}/edit`}>
+            Chỉnh sửa đặt chỗ
+          </Link>
         </AdminButton>
         <AdminButton
           variant="gradient"

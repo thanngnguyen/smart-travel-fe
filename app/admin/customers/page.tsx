@@ -1,6 +1,6 @@
 "use client";
 
-import AdminCard from "@/components/ui/AdminCard";
+import CustomerFlashMessageBanner from "@/components/admin/customers/CustomerFlashMessageBanner";
 import CustomersFilterBar from "@/components/admin/customers/CustomersFilterBar";
 import CustomersHeader from "@/components/admin/customers/CustomersHeader";
 import CustomersInsightsSection from "@/components/admin/customers/CustomersInsightsSection";
@@ -64,27 +64,10 @@ export default function CustomersManagementPage() {
       />
 
       {flashMessage ? (
-        <AdminCard
-          padding="sm"
-          className={
-            flashMessage.tone === "success"
-              ? "bg-green-100 text-green-800"
-              : flashMessage.tone === "error"
-                ? "bg-red-100 text-red-800"
-                : "bg-primary/10 text-primary"
-          }
-        >
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-sm font-bold">{flashMessage.text}</p>
-            <button
-              type="button"
-              onClick={clearFlashMessage}
-              className="text-xs font-bold uppercase tracking-wider opacity-80 hover:opacity-100"
-            >
-              Đóng
-            </button>
-          </div>
-        </AdminCard>
+        <CustomerFlashMessageBanner
+          message={flashMessage}
+          onClose={clearFlashMessage}
+        />
       ) : null}
 
       <CustomersFilterBar

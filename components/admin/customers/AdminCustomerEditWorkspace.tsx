@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import AdminButton from "@/components/ui/AdminButton";
 import AdminCard from "@/components/ui/AdminCard";
 import Icon from "@/components/ui/Icon";
+import CustomerNotFoundCard from "@/components/admin/customers/CustomerNotFoundCard";
 import { useAdminCustomerEditForm } from "@/hooks/useAdminCustomerEditForm";
 import { useAdminCustomersData } from "@/hooks/useAdminCustomersData";
 import { resolveRouteParam } from "@/lib/route-param";
@@ -37,18 +38,11 @@ export default function AdminCustomerEditWorkspace() {
 
   if (!customer) {
     return (
-      <AdminCard className="space-y-4" radius="3xl">
-        <h1 className="text-2xl font-black text-on-surface">
-          Không tìm thấy khách hàng để chỉnh sửa
-        </h1>
-        <Link
-          href="/admin/customers"
-          className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white"
-        >
-          <Icon name="arrow_back" className="text-base" />
-          Quay lại danh sách
-        </Link>
-      </AdminCard>
+      <CustomerNotFoundCard
+        title="Không tìm thấy khách hàng để chỉnh sửa"
+        backHref="/admin/customers"
+        backLabel="Quay lại danh sách"
+      />
     );
   }
 
