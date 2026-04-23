@@ -1,51 +1,17 @@
 "use client";
 
-import { FormEvent, useState } from "react";
 import Image from "next/image";
 import SurfaceCard from "@/components/ui/SurfaceCard";
 import Icon from "@/components/ui/Icon";
 import PillBadge from "@/components/ui/PillBadge";
+import {
+  CONTACT_OFFICE_POINTS,
+  CONTACT_TOPICS,
+} from "@/lib/customer-contact-data";
+import { useCustomerContactForm } from "@/hooks/useCustomerContactForm";
 
-const CONTACT_TOPICS = [
-  "Tư vấn chuyến đi cá nhân hóa",
-  "Hỗ trợ booking đã đặt",
-  "Đề xuất hợp tác doanh nghiệp",
-  "Phản hồi trải nghiệm dịch vụ",
-];
-
-const OFFICE_POINTS = [
-  {
-    id: "hcm",
-    city: "TP. Hồ Chí Minh",
-    address: "125 Lê Lợi, Quận 1",
-    imageUrl:
-      "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Ho Chi Minh city skyline at sunset",
-  },
-  {
-    id: "hn",
-    city: "Hà Nội",
-    address: "88 Tràng Tiền, Hoàn Kiếm",
-    imageUrl:
-      "https://images.unsplash.com/photo-1557750255-c76072a7aad1?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Hanoi old quarter with lake and trees",
-  },
-];
-
-export default function CustomerContactPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [topic, setTopic] = useState(CONTACT_TOPICS[0]);
-  const [message, setMessage] = useState("");
-  const [notice, setNotice] = useState<string | null>(null);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setNotice(
-      "Yêu cầu của bạn đã được ghi nhận. Concierge sẽ liên hệ trong 30 phút (demo frontend).",
-    );
-  };
+export default function CustomerContactWorkspace() {
+  const { form, notice, setField, handleSubmit } = useCustomerContactForm();
 
   return (
     <div className="bg-surface min-h-screen pt-28 pb-20">
@@ -139,8 +105,8 @@ export default function CustomerContactPage() {
                       Họ tên
                     </span>
                     <input
-                      value={name}
-                      onChange={(event) => setName(event.target.value)}
+                      value={form.name}
+                      onChange={(event) => setField("name", event.target.value)}
                       required
                       className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                       placeholder="Ví dụ: Nguyễn Minh Anh"
@@ -152,8 +118,10 @@ export default function CustomerContactPage() {
                       Email
                     </span>
                     <input
-                      value={email}
-                      onChange={(event) => setEmail(event.target.value)}
+                      value={form.email}
+                      onChange={(event) =>
+                        setField("email", event.target.value)
+                      }
                       required
                       type="email"
                       className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-semibold text-on-surface outline-none focus:border-primary"
@@ -166,8 +134,10 @@ export default function CustomerContactPage() {
                       Số điện thoại
                     </span>
                     <input
-                      value={phone}
-                      onChange={(event) => setPhone(event.target.value)}
+                      value={form.phone}
+                      onChange={(event) =>
+                        setField("phone", event.target.value)
+                      }
                       className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                       placeholder="+84 ..."
                     />
@@ -178,8 +148,10 @@ export default function CustomerContactPage() {
                       Chủ đề cần hỗ trợ
                     </span>
                     <select
-                      value={topic}
-                      onChange={(event) => setTopic(event.target.value)}
+                      value={form.topic}
+                      onChange={(event) =>
+                        setField("topic", event.target.value)
+                      }
                       className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                     >
                       {CONTACT_TOPICS.map((item) => (
@@ -196,8 +168,10 @@ export default function CustomerContactPage() {
                     Nội dung
                   </span>
                   <textarea
-                    value={message}
-                    onChange={(event) => setMessage(event.target.value)}
+                    value={form.message}
+                    onChange={(event) =>
+                      setField("message", event.target.value)
+                    }
                     rows={5}
                     required
                     className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-medium text-on-surface outline-none focus:border-primary"
@@ -263,7 +237,7 @@ export default function CustomerContactPage() {
             Văn phòng hỗ trợ
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {OFFICE_POINTS.map((office) => (
+            {CONTACT_OFFICE_POINTS.map((office) => (
               <SurfaceCard
                 key={office.id}
                 tone="white"

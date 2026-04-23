@@ -9,19 +9,12 @@ import Icon from "@/components/ui/Icon";
 import PillBadge from "@/components/ui/PillBadge";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { useAdminToursData } from "@/hooks/useAdminToursData";
-import { ConflictCard } from "@/types/admin-tours";
+import { resolveTourConflictTone } from "@/lib/admin-view-resolvers";
+import { resolveRouteParam } from "@/lib/route-param";
 
-function resolveConflictTone(theme: ConflictCard["theme"]) {
-  if (theme === "error") {
-    return "error" as const;
-  }
-
-  return "warning" as const;
-}
-
-export default function AdminTourDetailsPage() {
+export default function AdminTourDetailsWorkspace() {
   const params = useParams<{ id: string | string[] }>();
-  const routeId = Array.isArray(params?.id) ? params.id[0] : params?.id;
+  const routeId = resolveRouteParam(params?.id);
 
   const { tourRows, conflictLegend, conflictCards, yieldSuggestions } =
     useAdminToursData();
@@ -161,7 +154,7 @@ export default function AdminTourDetailsPage() {
 
                     <StatusBadge
                       label={conflict.badge}
-                      tone={resolveConflictTone(conflict.theme)}
+                      tone={resolveTourConflictTone(conflict.theme)}
                       className="shrink-0"
                     />
                   </div>

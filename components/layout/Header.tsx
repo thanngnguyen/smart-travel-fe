@@ -66,17 +66,18 @@ export default function Header() {
                 Nhóm chat
               </Link>
               <Link
-                className={navLinkClass(pathname.startsWith("/guide-portal"))}
-                href="/guide-portal"
-              >
-                Hướng dẫn viên
-              </Link>
-              <Link
                 className="flex items-center gap-1.5 text-primary dark:text-blue-400 font-bold hover:opacity-80 transition-opacity text-sm uppercase tracking-wider bg-primary/5 px-3 py-1 rounded-full"
                 href="/concierge"
               >
                 <Icon name="smart_toy" className="text-lg" />
                 Trợ lý AI
+              </Link>
+              <Link
+                className="flex items-center gap-1.5 text-primary dark:text-blue-400 font-bold hover:opacity-80 transition-opacity text-sm uppercase tracking-wider bg-primary/5 px-3 py-1 rounded-full"
+                href="/contact"
+              >
+                <Icon name="phone" className="text-lg" />
+                Liên hệ
               </Link>
             </div>
           </div>

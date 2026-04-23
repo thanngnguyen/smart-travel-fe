@@ -1,6 +1,5 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -9,6 +8,8 @@ import AdminCard from "@/components/ui/AdminCard";
 import Icon from "@/components/ui/Icon";
 import PillBadge from "@/components/ui/PillBadge";
 import { useAdminPersonnelData } from "@/hooks/useAdminPersonnelData";
+import { useAdminPersonnelEditForm } from "@/hooks/useAdminPersonnelEditForm";
+import { resolveRouteParam } from "@/lib/route-param";
 import { PersonnelRole, PersonnelStatus } from "@/types/admin-personnel";
 
 const ROLE_OPTIONS: Array<{ value: PersonnelRole; label: string }> = [
@@ -26,69 +27,15 @@ const STATUS_OPTIONS: Array<{ value: PersonnelStatus; label: string }> = [
   { value: "suspended", label: "Tạm khóa" },
 ];
 
-export default function AdminPersonnelEditPage() {
+export default function AdminPersonnelEditWorkspace() {
   const params = useParams<{ id: string | string[] }>();
-  const routeId = Array.isArray(params?.id) ? params.id[0] : params?.id;
+  const routeId = resolveRouteParam(params?.id);
 
   const { members } = useAdminPersonnelData();
   const member = members.find((item) => item.id === routeId);
 
-  const [fullName, setFullName] = useState("");
-  const [staffCode, setStaffCode] = useState("");
-  const [department, setDepartment] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [joinedDate, setJoinedDate] = useState("");
-  const [role, setRole] = useState<PersonnelRole>("support");
-  const [status, setStatus] = useState<PersonnelStatus>("active");
-  const [assignedTours, setAssignedTours] = useState(0);
-  const [monthlyWorkloadDays, setMonthlyWorkloadDays] = useState(0);
-  const [monthlyWorkloadLimit, setMonthlyWorkloadLimit] = useState(24);
-  const [performanceScore, setPerformanceScore] = useState(80);
-  const [avatarUrl, setAvatarUrl] = useState("");
-  const [certificationsText, setCertificationsText] = useState("");
-  const [languagesText, setLanguagesText] = useState("");
-  const [notice, setNotice] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!member) {
-      return;
-    }
-
-    setFullName(member.fullName);
-    setStaffCode(member.staffCode);
-    setDepartment(member.department);
-    setEmail(member.email);
-    setPhone(member.phone);
-    setJoinedDate(member.joinedDate);
-    setRole(member.role);
-    setStatus(member.status);
-    setAssignedTours(member.assignedTours);
-    setMonthlyWorkloadDays(member.monthlyWorkloadDays);
-    setMonthlyWorkloadLimit(member.monthlyWorkloadLimit);
-    setPerformanceScore(member.performanceScore);
-    setAvatarUrl(
-      member.avatarUrl ||
-        "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=900&q=80",
-    );
-    setCertificationsText(member.certifications.join(", "));
-    setLanguagesText(member.languages.join(", "));
-  }, [member]);
-
-  const workloadPercent = useMemo(() => {
-    if (!monthlyWorkloadLimit) {
-      return 0;
-    }
-
-    return Math.round((monthlyWorkloadDays / monthlyWorkloadLimit) * 100);
-  }, [monthlyWorkloadDays, monthlyWorkloadLimit]);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setNotice(
-      "Đã lưu thay đổi nhân sự (demo frontend). Chưa gửi request cập nhật backend.",
-    );
-  };
+  const { form, notice, workloadPercent, setField, handleSubmit } =
+    useAdminPersonnelEditForm(member);
 
   if (!member) {
     return (
@@ -158,8 +105,8 @@ export default function AdminPersonnelEditPage() {
                   Họ tên
                 </span>
                 <input
-                  value={fullName}
-                  onChange={(event) => setFullName(event.target.value)}
+                  value={form.fullName}
+                  onChange={(event) => setField("fullName", event.target.value)}
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -169,8 +116,10 @@ export default function AdminPersonnelEditPage() {
                   Mã nhân sự
                 </span>
                 <input
-                  value={staffCode}
-                  onChange={(event) => setStaffCode(event.target.value)}
+                  value={form.staffCode}
+                  onChange={(event) =>
+                    setField("staffCode", event.target.value)
+                  }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -180,8 +129,10 @@ export default function AdminPersonnelEditPage() {
                   Phòng ban
                 </span>
                 <input
-                  value={department}
-                  onChange={(event) => setDepartment(event.target.value)}
+                  value={form.department}
+                  onChange={(event) =>
+                    setField("department", event.target.value)
+                  }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -191,8 +142,10 @@ export default function AdminPersonnelEditPage() {
                   Ngày gia nhập
                 </span>
                 <input
-                  value={joinedDate}
-                  onChange={(event) => setJoinedDate(event.target.value)}
+                  value={form.joinedDate}
+                  onChange={(event) =>
+                    setField("joinedDate", event.target.value)
+                  }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -202,8 +155,8 @@ export default function AdminPersonnelEditPage() {
                   Email
                 </span>
                 <input
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  value={form.email}
+                  onChange={(event) => setField("email", event.target.value)}
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -213,8 +166,8 @@ export default function AdminPersonnelEditPage() {
                   Điện thoại
                 </span>
                 <input
-                  value={phone}
-                  onChange={(event) => setPhone(event.target.value)}
+                  value={form.phone}
+                  onChange={(event) => setField("phone", event.target.value)}
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -224,9 +177,9 @@ export default function AdminPersonnelEditPage() {
                   Vai trò
                 </span>
                 <select
-                  value={role}
+                  value={form.role}
                   onChange={(event) =>
-                    setRole(event.target.value as PersonnelRole)
+                    setField("role", event.target.value as PersonnelRole)
                   }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 >
@@ -243,9 +196,9 @@ export default function AdminPersonnelEditPage() {
                   Trạng thái
                 </span>
                 <select
-                  value={status}
+                  value={form.status}
                   onChange={(event) =>
-                    setStatus(event.target.value as PersonnelStatus)
+                    setField("status", event.target.value as PersonnelStatus)
                   }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 >
@@ -264,9 +217,9 @@ export default function AdminPersonnelEditPage() {
                 <input
                   type="number"
                   min={0}
-                  value={assignedTours}
+                  value={form.assignedTours}
                   onChange={(event) =>
-                    setAssignedTours(Number(event.target.value))
+                    setField("assignedTours", Number(event.target.value))
                   }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
@@ -280,9 +233,9 @@ export default function AdminPersonnelEditPage() {
                   type="number"
                   min={0}
                   max={100}
-                  value={performanceScore}
+                  value={form.performanceScore}
                   onChange={(event) =>
-                    setPerformanceScore(Number(event.target.value))
+                    setField("performanceScore", Number(event.target.value))
                   }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
@@ -295,9 +248,9 @@ export default function AdminPersonnelEditPage() {
                 <input
                   type="number"
                   min={0}
-                  value={monthlyWorkloadDays}
+                  value={form.monthlyWorkloadDays}
                   onChange={(event) =>
-                    setMonthlyWorkloadDays(Number(event.target.value))
+                    setField("monthlyWorkloadDays", Number(event.target.value))
                   }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
@@ -310,9 +263,9 @@ export default function AdminPersonnelEditPage() {
                 <input
                   type="number"
                   min={1}
-                  value={monthlyWorkloadLimit}
+                  value={form.monthlyWorkloadLimit}
                   onChange={(event) =>
-                    setMonthlyWorkloadLimit(Number(event.target.value))
+                    setField("monthlyWorkloadLimit", Number(event.target.value))
                   }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
@@ -324,8 +277,10 @@ export default function AdminPersonnelEditPage() {
                 Chứng chỉ (phân tách bằng dấu phẩy)
               </span>
               <input
-                value={certificationsText}
-                onChange={(event) => setCertificationsText(event.target.value)}
+                value={form.certificationsText}
+                onChange={(event) =>
+                  setField("certificationsText", event.target.value)
+                }
                 className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
               />
             </label>
@@ -335,8 +290,10 @@ export default function AdminPersonnelEditPage() {
                 Ngôn ngữ (phân tách bằng dấu phẩy)
               </span>
               <input
-                value={languagesText}
-                onChange={(event) => setLanguagesText(event.target.value)}
+                value={form.languagesText}
+                onChange={(event) =>
+                  setField("languagesText", event.target.value)
+                }
                 className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
               />
             </label>
@@ -352,16 +309,16 @@ export default function AdminPersonnelEditPage() {
                 URL ảnh
               </span>
               <input
-                value={avatarUrl}
-                onChange={(event) => setAvatarUrl(event.target.value)}
+                value={form.avatarUrl}
+                onChange={(event) => setField("avatarUrl", event.target.value)}
                 className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
               />
             </label>
 
             <div className="relative h-60 overflow-hidden rounded-2xl border border-outline-variant/20">
               <Image
-                src={avatarUrl}
-                alt={fullName || "Personnel avatar"}
+                src={form.avatarUrl}
+                alt={form.fullName || "Personnel avatar"}
                 fill
                 sizes="(max-width: 1280px) 100vw, 30vw"
                 className="object-cover"
@@ -392,7 +349,7 @@ export default function AdminPersonnelEditPage() {
               />
             </div>
             <PillBadge tone="surface" size="xs" uppercase>
-              {monthlyWorkloadDays}/{monthlyWorkloadLimit} ngày công
+              {form.monthlyWorkloadDays}/{form.monthlyWorkloadLimit} ngày công
             </PillBadge>
           </AdminCard>
         </aside>

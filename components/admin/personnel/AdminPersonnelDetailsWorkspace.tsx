@@ -9,39 +9,15 @@ import Icon from "@/components/ui/Icon";
 import PillBadge from "@/components/ui/PillBadge";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { useAdminPersonnelData } from "@/hooks/useAdminPersonnelData";
-import { PersonnelMember } from "@/types/admin-personnel";
+import {
+  resolveAdminPersonnelRoleTone,
+  resolveAdminPersonnelStatusTone,
+} from "@/lib/admin-view-resolvers";
+import { resolveRouteParam } from "@/lib/route-param";
 
-function resolveStatusTone(status: PersonnelMember["status"]) {
-  switch (status) {
-    case "active":
-      return "success" as const;
-    case "on-tour":
-      return "primary" as const;
-    case "off-duty":
-      return "info" as const;
-    case "on-leave":
-      return "warning" as const;
-    default:
-      return "error" as const;
-  }
-}
-
-function resolveRoleTone(role: PersonnelMember["role"]) {
-  switch (role) {
-    case "admin":
-      return "primary-soft" as const;
-    case "guide":
-      return "tertiary-fixed" as const;
-    case "operator":
-      return "surface-glass" as const;
-    default:
-      return "surface" as const;
-  }
-}
-
-export default function AdminPersonnelDetailsPage() {
+export default function AdminPersonnelDetailsWorkspace() {
   const params = useParams<{ id: string | string[] }>();
-  const routeId = Array.isArray(params?.id) ? params.id[0] : params?.id;
+  const routeId = resolveRouteParam(params?.id);
 
   const {
     members,
@@ -107,12 +83,16 @@ export default function AdminPersonnelDetailsPage() {
             <PillBadge tone="primary-soft" size="xs" uppercase>
               {member.staffCode}
             </PillBadge>
-            <PillBadge tone={resolveRoleTone(member.role)} size="xs" uppercase>
+            <PillBadge
+              tone={resolveAdminPersonnelRoleTone(member.role)}
+              size="xs"
+              uppercase
+            >
               {member.roleLabel}
             </PillBadge>
             <StatusBadge
               label={member.statusLabel}
-              tone={resolveStatusTone(member.status)}
+              tone={resolveAdminPersonnelStatusTone(member.status)}
             />
           </div>
         </div>

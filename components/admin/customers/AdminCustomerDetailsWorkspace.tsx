@@ -9,43 +9,15 @@ import Icon from "@/components/ui/Icon";
 import PillBadge from "@/components/ui/PillBadge";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { useAdminCustomersData } from "@/hooks/useAdminCustomersData";
-import { AdminCustomerRow } from "@/types/admin-customers";
+import {
+  resolveAdminCustomerSegmentTone,
+  resolveAdminCustomerStatusTone,
+} from "@/lib/admin-view-resolvers";
+import { resolveRouteParam } from "@/lib/route-param";
 
-function resolveStatusTone(status: AdminCustomerRow["status"]) {
-  if (status === "active") {
-    return "success" as const;
-  }
-
-  if (status === "dormant") {
-    return "info" as const;
-  }
-
-  if (status === "at-risk") {
-    return "warning" as const;
-  }
-
-  return "error" as const;
-}
-
-function resolveSegmentTone(segment: AdminCustomerRow["segment"]) {
-  if (segment === "vip") {
-    return "primary-soft" as const;
-  }
-
-  if (segment === "corporate") {
-    return "tertiary-fixed" as const;
-  }
-
-  if (segment === "family") {
-    return "surface-glass" as const;
-  }
-
-  return "surface" as const;
-}
-
-export default function AdminCustomerDetailsPage() {
+export default function AdminCustomerDetailsWorkspace() {
   const params = useParams<{ id: string | string[] }>();
-  const routeId = Array.isArray(params?.id) ? params.id[0] : params?.id;
+  const routeId = resolveRouteParam(params?.id);
 
   const {
     customers,
@@ -95,7 +67,7 @@ export default function AdminCustomerDetailsPage() {
               {customer.customerCode}
             </PillBadge>
             <PillBadge
-              tone={resolveSegmentTone(customer.segment)}
+              tone={resolveAdminCustomerSegmentTone(customer.segment)}
               size="xs"
               uppercase
             >
@@ -103,7 +75,7 @@ export default function AdminCustomerDetailsPage() {
             </PillBadge>
             <StatusBadge
               label={customer.statusLabel}
-              tone={resolveStatusTone(customer.status)}
+              tone={resolveAdminCustomerStatusTone(customer.status)}
             />
           </div>
         </div>

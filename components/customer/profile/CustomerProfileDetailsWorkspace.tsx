@@ -7,10 +7,11 @@ import SurfaceCard from "@/components/ui/SurfaceCard";
 import Icon from "@/components/ui/Icon";
 import PillBadge from "@/components/ui/PillBadge";
 import { useCustomerProfileData } from "@/hooks/useCustomerProfileData";
+import { resolveRouteParam } from "@/lib/route-param";
 
-export default function ProfileDetailsPage() {
+export default function CustomerProfileDetailsWorkspace() {
   const params = useParams<{ id: string | string[] }>();
-  const routeId = Array.isArray(params?.id) ? params.id[0] : params?.id;
+  const routeId = resolveRouteParam(params?.id);
 
   const { hero, upcomingTrip, savedTours, pastTrips } =
     useCustomerProfileData();

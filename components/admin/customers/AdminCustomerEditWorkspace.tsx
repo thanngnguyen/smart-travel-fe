@@ -1,13 +1,14 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import AdminButton from "@/components/ui/AdminButton";
 import AdminCard from "@/components/ui/AdminCard";
 import Icon from "@/components/ui/Icon";
+import { useAdminCustomerEditForm } from "@/hooks/useAdminCustomerEditForm";
 import { useAdminCustomersData } from "@/hooks/useAdminCustomersData";
+import { resolveRouteParam } from "@/lib/route-param";
 import { CustomerSegment, CustomerStatus } from "@/types/admin-customers";
 
 const SEGMENT_OPTIONS: Array<{ value: CustomerSegment; label: string }> = [
@@ -24,45 +25,15 @@ const STATUS_OPTIONS: Array<{ value: CustomerStatus; label: string }> = [
   { value: "blocked", label: "Đã khóa" },
 ];
 
-export default function AdminCustomerEditPage() {
+export default function AdminCustomerEditWorkspace() {
   const params = useParams<{ id: string | string[] }>();
-  const routeId = Array.isArray(params?.id) ? params.id[0] : params?.id;
+  const routeId = resolveRouteParam(params?.id);
 
   const { customers } = useAdminCustomersData();
   const customer = customers.find((item) => item.id === routeId);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [segment, setSegment] = useState<CustomerSegment>("standard");
-  const [status, setStatus] = useState<CustomerStatus>("active");
-  const [assignedConcierge, setAssignedConcierge] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
-  const [notice, setNotice] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!customer) {
-      return;
-    }
-
-    setName(customer.name);
-    setEmail(customer.email);
-    setPhone(customer.phone);
-    setSegment(customer.segment);
-    setStatus(customer.status);
-    setAssignedConcierge(customer.assignedConcierge);
-    setAvatarUrl(
-      customer.avatarUrl ||
-        "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=900&q=80",
-    );
-  }, [customer]);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setNotice(
-      "Đã lưu thay đổi hồ sơ khách hàng (demo frontend). Chưa đồng bộ backend.",
-    );
-  };
+  const { form, notice, setField, handleSubmit } =
+    useAdminCustomerEditForm(customer);
 
   if (!customer) {
     return (
@@ -132,8 +103,8 @@ export default function AdminCustomerEditPage() {
                   Họ tên
                 </span>
                 <input
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
+                  value={form.name}
+                  onChange={(event) => setField("name", event.target.value)}
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -143,8 +114,8 @@ export default function AdminCustomerEditPage() {
                   Email
                 </span>
                 <input
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  value={form.email}
+                  onChange={(event) => setField("email", event.target.value)}
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -154,8 +125,8 @@ export default function AdminCustomerEditPage() {
                   Điện thoại
                 </span>
                 <input
-                  value={phone}
-                  onChange={(event) => setPhone(event.target.value)}
+                  value={form.phone}
+                  onChange={(event) => setField("phone", event.target.value)}
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -165,8 +136,10 @@ export default function AdminCustomerEditPage() {
                   Concierge phụ trách
                 </span>
                 <input
-                  value={assignedConcierge}
-                  onChange={(event) => setAssignedConcierge(event.target.value)}
+                  value={form.assignedConcierge}
+                  onChange={(event) =>
+                    setField("assignedConcierge", event.target.value)
+                  }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -176,9 +149,9 @@ export default function AdminCustomerEditPage() {
                   Phân khúc
                 </span>
                 <select
-                  value={segment}
+                  value={form.segment}
                   onChange={(event) =>
-                    setSegment(event.target.value as CustomerSegment)
+                    setField("segment", event.target.value as CustomerSegment)
                   }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 >
@@ -195,9 +168,9 @@ export default function AdminCustomerEditPage() {
                   Trạng thái
                 </span>
                 <select
-                  value={status}
+                  value={form.status}
                   onChange={(event) =>
-                    setStatus(event.target.value as CustomerStatus)
+                    setField("status", event.target.value as CustomerStatus)
                   }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 >
@@ -221,16 +194,16 @@ export default function AdminCustomerEditPage() {
                 URL ảnh
               </span>
               <input
-                value={avatarUrl}
-                onChange={(event) => setAvatarUrl(event.target.value)}
+                value={form.avatarUrl}
+                onChange={(event) => setField("avatarUrl", event.target.value)}
                 className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
               />
             </label>
 
             <div className="relative h-60 overflow-hidden rounded-2xl border border-outline-variant/20">
               <Image
-                src={avatarUrl}
-                alt={name || "Customer avatar"}
+                src={form.avatarUrl}
+                alt={form.name || "Customer avatar"}
                 fill
                 sizes="(max-width: 1280px) 100vw, 30vw"
                 className="object-cover"

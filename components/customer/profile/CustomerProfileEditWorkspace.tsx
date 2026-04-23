@@ -1,6 +1,5 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -8,68 +7,26 @@ import SurfaceCard from "@/components/ui/SurfaceCard";
 import Icon from "@/components/ui/Icon";
 import PillBadge from "@/components/ui/PillBadge";
 import { useCustomerProfileData } from "@/hooks/useCustomerProfileData";
+import { useCustomerProfileEditForm } from "@/hooks/useCustomerProfileEditForm";
+import { resolveRouteParam } from "@/lib/route-param";
 
-const INTEREST_OPTIONS = [
-  "Ẩm thực địa phương",
-  "Nghỉ dưỡng cao cấp",
-  "Khám phá văn hóa",
-  "Hoạt động ngoài trời",
-  "Chụp ảnh thiên nhiên",
-];
-
-function extractDefaultName(heading: string) {
-  const raw = heading.split(",").slice(1).join(",").replace(".", "").trim();
-  return raw || "Khách hàng Smart Travel";
-}
-
-export default function CustomerProfileEditPage() {
+export default function CustomerProfileEditWorkspace() {
   const params = useParams<{ id: string | string[] }>();
-  const routeId = Array.isArray(params?.id) ? params.id[0] : params?.id;
+  const routeId = resolveRouteParam(params?.id);
 
   const { hero, upcomingTrip, savedTours } = useCustomerProfileData();
 
-  const [fullName, setFullName] = useState(extractDefaultName(hero.heading));
-  const [email, setEmail] = useState("alexandra.sterling@email.com");
-  const [phone, setPhone] = useState("+1 202 555 0188");
-  const [nationality, setNationality] = useState("United Kingdom");
-  const [passportId, setPassportId] = useState("P****9821");
-  const [emergencyContact, setEmergencyContact] = useState("+44 7700 900123");
-  const [preferredDepartureCity, setPreferredDepartureCity] =
-    useState("Singapore");
-  const [dietaryNotes, setDietaryNotes] = useState("Không ăn hải sản sống");
-  const [travelNotes, setTravelNotes] = useState(
-    "Ưu tiên phòng yên tĩnh, gần khu vực lounge.",
+  const {
+    form,
+    notice,
+    suggestedInterests,
+    setField,
+    toggleInterest,
+    handleSubmit,
+  } = useCustomerProfileEditForm(
+    hero.heading,
+    savedTours.map((tour) => tour.title),
   );
-  const [selectedInterests, setSelectedInterests] = useState<string[]>([
-    "Nghỉ dưỡng cao cấp",
-    "Khám phá văn hóa",
-  ]);
-  const [notice, setNotice] = useState<string | null>(null);
-
-  const suggestedInterests = useMemo(
-    () => [
-      ...new Set([
-        ...INTEREST_OPTIONS,
-        ...savedTours.map((tour) => tour.title),
-      ]),
-    ],
-    [savedTours],
-  );
-
-  const toggleInterest = (interest: string) => {
-    setSelectedInterests((previous) =>
-      previous.includes(interest)
-        ? previous.filter((item) => item !== interest)
-        : [...previous, interest],
-    );
-  };
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setNotice(
-      "Hồ sơ của bạn đã được cập nhật (demo frontend). Concierge sẽ đồng bộ thay đổi trong phiên kế tiếp.",
-    );
-  };
 
   return (
     <div className="bg-surface min-h-screen pt-28 pb-20">
@@ -132,8 +89,10 @@ export default function CustomerProfileEditPage() {
                         Họ tên
                       </span>
                       <input
-                        value={fullName}
-                        onChange={(event) => setFullName(event.target.value)}
+                        value={form.fullName}
+                        onChange={(event) =>
+                          setField("fullName", event.target.value)
+                        }
                         className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                       />
                     </label>
@@ -144,8 +103,10 @@ export default function CustomerProfileEditPage() {
                       </span>
                       <input
                         type="email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
+                        value={form.email}
+                        onChange={(event) =>
+                          setField("email", event.target.value)
+                        }
                         className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                       />
                     </label>
@@ -155,8 +116,10 @@ export default function CustomerProfileEditPage() {
                         Điện thoại
                       </span>
                       <input
-                        value={phone}
-                        onChange={(event) => setPhone(event.target.value)}
+                        value={form.phone}
+                        onChange={(event) =>
+                          setField("phone", event.target.value)
+                        }
                         className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                       />
                     </label>
@@ -166,8 +129,10 @@ export default function CustomerProfileEditPage() {
                         Quốc tịch
                       </span>
                       <input
-                        value={nationality}
-                        onChange={(event) => setNationality(event.target.value)}
+                        value={form.nationality}
+                        onChange={(event) =>
+                          setField("nationality", event.target.value)
+                        }
                         className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                       />
                     </label>
@@ -177,8 +142,10 @@ export default function CustomerProfileEditPage() {
                         Hộ chiếu
                       </span>
                       <input
-                        value={passportId}
-                        onChange={(event) => setPassportId(event.target.value)}
+                        value={form.passportId}
+                        onChange={(event) =>
+                          setField("passportId", event.target.value)
+                        }
                         className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                       />
                     </label>
@@ -188,9 +155,9 @@ export default function CustomerProfileEditPage() {
                         Liên hệ khẩn cấp
                       </span>
                       <input
-                        value={emergencyContact}
+                        value={form.emergencyContact}
                         onChange={(event) =>
-                          setEmergencyContact(event.target.value)
+                          setField("emergencyContact", event.target.value)
                         }
                         className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                       />
@@ -208,9 +175,9 @@ export default function CustomerProfileEditPage() {
                         Thành phố khởi hành ưu tiên
                       </span>
                       <input
-                        value={preferredDepartureCity}
+                        value={form.preferredDepartureCity}
                         onChange={(event) =>
-                          setPreferredDepartureCity(event.target.value)
+                          setField("preferredDepartureCity", event.target.value)
                         }
                         className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                       />
@@ -221,9 +188,9 @@ export default function CustomerProfileEditPage() {
                         Ghi chú ăn uống
                       </span>
                       <input
-                        value={dietaryNotes}
+                        value={form.dietaryNotes}
                         onChange={(event) =>
-                          setDietaryNotes(event.target.value)
+                          setField("dietaryNotes", event.target.value)
                         }
                         className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                       />
@@ -236,8 +203,10 @@ export default function CustomerProfileEditPage() {
                     </span>
                     <textarea
                       rows={4}
-                      value={travelNotes}
-                      onChange={(event) => setTravelNotes(event.target.value)}
+                      value={form.travelNotes}
+                      onChange={(event) =>
+                        setField("travelNotes", event.target.value)
+                      }
                       className="w-full rounded-xl border border-outline-variant/25 bg-surface px-3 py-2.5 text-sm font-medium text-on-surface outline-none focus:border-primary"
                     />
                   </label>
@@ -248,7 +217,8 @@ export default function CustomerProfileEditPage() {
                     </span>
                     <div className="flex flex-wrap gap-2">
                       {suggestedInterests.map((interest) => {
-                        const selected = selectedInterests.includes(interest);
+                        const selected =
+                          form.selectedInterests.includes(interest);
 
                         return (
                           <button
@@ -301,7 +271,9 @@ export default function CustomerProfileEditPage() {
                   <p className="text-xs font-bold uppercase tracking-wide text-white/80">
                     Hồ sơ hội viên
                   </p>
-                  <p className="text-lg font-black line-clamp-2">{fullName}</p>
+                  <p className="text-lg font-black line-clamp-2">
+                    {form.fullName}
+                  </p>
                 </div>
               </div>
               <div className="p-4 space-y-2">

@@ -1,6 +1,5 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -10,46 +9,22 @@ import Icon from "@/components/ui/Icon";
 import PillBadge from "@/components/ui/PillBadge";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { useAdminBookingDetailsData } from "@/hooks/useAdminBookingDetailsData";
+import { useAdminBookingEditForm } from "@/hooks/useAdminBookingEditForm";
 import { useAdminBookingsData } from "@/hooks/useAdminBookingsData";
+import { resolveRouteParam } from "@/lib/route-param";
 import { BackendBookingStatus } from "@/types/backend-contract";
 
-export default function AdminBookingEditPage() {
+export default function AdminBookingEditWorkspace() {
   const params = useParams<{ id: string | string[] }>();
-  const routeId = Array.isArray(params?.id) ? params.id[0] : params?.id;
+  const routeId = resolveRouteParam(params?.id);
 
   const { rows } = useAdminBookingsData();
   const { tourHighlight, primaryPassenger, specialRequests } =
     useAdminBookingDetailsData();
 
   const booking = rows.find((item) => item.id === routeId);
-
-  const [customerName, setCustomerName] = useState("");
-  const [customerEmail, setCustomerEmail] = useState("");
-  const [tourName, setTourName] = useState("");
-  const [departureDate, setDepartureDate] = useState("");
-  const [amount, setAmount] = useState("");
-  const [status, setStatus] = useState<BackendBookingStatus>("PENDING");
-  const [adminNote, setAdminNote] = useState("");
-  const [notice, setNotice] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!booking) {
-      return;
-    }
-
-    setCustomerName(booking.customerName);
-    setCustomerEmail(booking.customerEmail);
-    setTourName(booking.tourName);
-    setDepartureDate(booking.departureDate);
-    setAmount(booking.amount);
-    setStatus(booking.status);
-    setAdminNote("");
-  }, [booking]);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setNotice("Đã lưu thay đổi đặt chỗ (demo frontend). Chưa gọi API backend.");
-  };
+  const { form, notice, setField, handleSubmit } =
+    useAdminBookingEditForm(booking);
 
   if (!booking) {
     return (
@@ -128,8 +103,10 @@ export default function AdminBookingEditPage() {
                   Tên khách hàng
                 </span>
                 <input
-                  value={customerName}
-                  onChange={(event) => setCustomerName(event.target.value)}
+                  value={form.customerName}
+                  onChange={(event) =>
+                    setField("customerName", event.target.value)
+                  }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -139,8 +116,10 @@ export default function AdminBookingEditPage() {
                   Email
                 </span>
                 <input
-                  value={customerEmail}
-                  onChange={(event) => setCustomerEmail(event.target.value)}
+                  value={form.customerEmail}
+                  onChange={(event) =>
+                    setField("customerEmail", event.target.value)
+                  }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -150,8 +129,8 @@ export default function AdminBookingEditPage() {
                   Tour
                 </span>
                 <input
-                  value={tourName}
-                  onChange={(event) => setTourName(event.target.value)}
+                  value={form.tourName}
+                  onChange={(event) => setField("tourName", event.target.value)}
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -161,8 +140,10 @@ export default function AdminBookingEditPage() {
                   Ngày khởi hành
                 </span>
                 <input
-                  value={departureDate}
-                  onChange={(event) => setDepartureDate(event.target.value)}
+                  value={form.departureDate}
+                  onChange={(event) =>
+                    setField("departureDate", event.target.value)
+                  }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -172,8 +153,8 @@ export default function AdminBookingEditPage() {
                   Số tiền
                 </span>
                 <input
-                  value={amount}
-                  onChange={(event) => setAmount(event.target.value)}
+                  value={form.amount}
+                  onChange={(event) => setField("amount", event.target.value)}
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
@@ -183,9 +164,12 @@ export default function AdminBookingEditPage() {
                   Trạng thái booking
                 </span>
                 <select
-                  value={status}
+                  value={form.status}
                   onChange={(event) =>
-                    setStatus(event.target.value as BackendBookingStatus)
+                    setField(
+                      "status",
+                      event.target.value as BackendBookingStatus,
+                    )
                   }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 >
@@ -202,8 +186,8 @@ export default function AdminBookingEditPage() {
               </span>
               <textarea
                 rows={4}
-                value={adminNote}
-                onChange={(event) => setAdminNote(event.target.value)}
+                value={form.adminNote}
+                onChange={(event) => setField("adminNote", event.target.value)}
                 className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-medium text-on-surface outline-none focus:border-primary"
                 placeholder="Nhập ghi chú vận hành hoặc lý do chỉnh sửa booking..."
               />

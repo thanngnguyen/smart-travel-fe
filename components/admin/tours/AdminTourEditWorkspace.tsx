@@ -1,77 +1,34 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import AdminButton from "@/components/ui/AdminButton";
 import AdminCard from "@/components/ui/AdminCard";
 import Icon from "@/components/ui/Icon";
-import { useAdminCustomersData } from "@/hooks/useAdminCustomersData";
-import { CustomerSegment, CustomerStatus } from "@/types/admin-customers";
+import PillBadge from "@/components/ui/PillBadge";
+import { useAdminTourEditForm } from "@/hooks/useAdminTourEditForm";
+import { useAdminToursData } from "@/hooks/useAdminToursData";
+import { resolveRouteParam } from "@/lib/route-param";
 
-const SEGMENT_OPTIONS: Array<{ value: CustomerSegment; label: string }> = [
-  { value: "vip", label: "VIP" },
-  { value: "corporate", label: "Doanh nghiệp" },
-  { value: "family", label: "Gia đình" },
-  { value: "standard", label: "Tiêu chuẩn" },
-];
-
-const STATUS_OPTIONS: Array<{ value: CustomerStatus; label: string }> = [
-  { value: "active", label: "Đang hoạt động" },
-  { value: "dormant", label: "Ngủ đông" },
-  { value: "at-risk", label: "Có rủi ro" },
-  { value: "blocked", label: "Đã khóa" },
-];
-
-export default function AdminCustomerEditPage() {
+export default function AdminTourEditWorkspace() {
   const params = useParams<{ id: string | string[] }>();
-  const routeId = Array.isArray(params?.id) ? params.id[0] : params?.id;
+  const routeId = resolveRouteParam(params?.id);
 
-  const { customers } = useAdminCustomersData();
-  const customer = customers.find((item) => item.id === routeId);
+  const { tourRows, recurringDays, guideOptions } = useAdminToursData();
+  const tour = tourRows.find((item) => item.id === routeId);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [segment, setSegment] = useState<CustomerSegment>("standard");
-  const [status, setStatus] = useState<CustomerStatus>("active");
-  const [assignedConcierge, setAssignedConcierge] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
-  const [notice, setNotice] = useState<string | null>(null);
+  const { form, notice, setField, toggleDay, handleSubmit } =
+    useAdminTourEditForm(tour, recurringDays, guideOptions);
 
-  useEffect(() => {
-    if (!customer) {
-      return;
-    }
-
-    setName(customer.name);
-    setEmail(customer.email);
-    setPhone(customer.phone);
-    setSegment(customer.segment);
-    setStatus(customer.status);
-    setAssignedConcierge(customer.assignedConcierge);
-    setAvatarUrl(
-      customer.avatarUrl ||
-        "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=900&q=80",
-    );
-  }, [customer]);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setNotice(
-      "Đã lưu thay đổi hồ sơ khách hàng (demo frontend). Chưa đồng bộ backend.",
-    );
-  };
-
-  if (!customer) {
+  if (!tour) {
     return (
       <AdminCard className="space-y-4" radius="3xl">
         <h1 className="text-2xl font-black text-on-surface">
-          Không tìm thấy khách hàng để chỉnh sửa
+          Không tìm thấy tour để chỉnh sửa
         </h1>
         <Link
-          href="/admin/customers"
+          href="/admin/tours"
           className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white"
         >
           <Icon name="arrow_back" className="text-base" />
@@ -86,27 +43,37 @@ export default function AdminCustomerEditPage() {
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div className="space-y-2">
           <Link
-            href={`/admin/customers/${customer.id}`}
+            href={`/admin/tours/${tour.id}`}
             className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
           >
             <Icon name="arrow_back" className="text-base" />
-            Quay lại hồ sơ khách hàng
+            Quay lại chi tiết tour
           </Link>
 
           <h1 className="text-4xl font-black tracking-tight text-on-surface">
-            Chỉnh sửa khách hàng
+            Chỉnh sửa tour
           </h1>
+          <PillBadge tone="primary-soft" size="xs" uppercase>
+            {tour.code}
+          </PillBadge>
         </div>
 
-        <AdminButton
-          variant="gradient"
-          size="md"
-          form="customer-edit-form"
-          type="submit"
-        >
-          <Icon name="save" className="text-base" />
-          Lưu thay đổi
-        </AdminButton>
+        <div className="flex flex-wrap items-center gap-2">
+          <Link href={`/admin/tours/${tour.id}`}>
+            <AdminButton variant="surface" size="md">
+              Hủy thay đổi
+            </AdminButton>
+          </Link>
+          <AdminButton
+            variant="gradient"
+            size="md"
+            form="tour-edit-form"
+            type="submit"
+          >
+            <Icon name="save" className="text-base" />
+            Lưu tour
+          </AdminButton>
+        </div>
       </header>
 
       {notice ? (
@@ -116,92 +83,77 @@ export default function AdminCustomerEditPage() {
       ) : null}
 
       <form
-        id="customer-edit-form"
+        id="tour-edit-form"
         onSubmit={handleSubmit}
         className="grid grid-cols-12 gap-6"
       >
-        <section className="col-span-12 xl:col-span-8 space-y-6">
+        <div className="col-span-12 xl:col-span-8 space-y-6">
           <AdminCard radius="3xl" className="space-y-4">
             <h2 className="text-xl font-black text-on-surface">
-              Thông tin hồ sơ
+              Thông tin cơ bản
             </h2>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <label className="space-y-1.5">
                 <span className="text-xs font-bold uppercase tracking-wide text-on-surface-variant">
-                  Họ tên
+                  Tên tour
                 </span>
                 <input
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
+                  value={form.title}
+                  onChange={(event) => setField("title", event.target.value)}
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
 
               <label className="space-y-1.5">
                 <span className="text-xs font-bold uppercase tracking-wide text-on-surface-variant">
-                  Email
+                  Thời lượng
                 </span>
                 <input
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  value={form.duration}
+                  onChange={(event) => setField("duration", event.target.value)}
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
 
               <label className="space-y-1.5">
                 <span className="text-xs font-bold uppercase tracking-wide text-on-surface-variant">
-                  Điện thoại
+                  Giá cơ bản
                 </span>
                 <input
-                  value={phone}
-                  onChange={(event) => setPhone(event.target.value)}
+                  value={form.basePrice}
+                  onChange={(event) =>
+                    setField("basePrice", event.target.value)
+                  }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
 
               <label className="space-y-1.5">
                 <span className="text-xs font-bold uppercase tracking-wide text-on-surface-variant">
-                  Concierge phụ trách
+                  Khởi hành hoạt động
                 </span>
                 <input
-                  value={assignedConcierge}
-                  onChange={(event) => setAssignedConcierge(event.target.value)}
+                  value={form.activeDepartures}
+                  onChange={(event) =>
+                    setField("activeDepartures", event.target.value)
+                  }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 />
               </label>
 
-              <label className="space-y-1.5">
+              <label className="space-y-1.5 md:col-span-2">
                 <span className="text-xs font-bold uppercase tracking-wide text-on-surface-variant">
-                  Phân khúc
+                  Hướng dẫn viên chính
                 </span>
                 <select
-                  value={segment}
+                  value={form.assignedGuide}
                   onChange={(event) =>
-                    setSegment(event.target.value as CustomerSegment)
+                    setField("assignedGuide", event.target.value)
                   }
                   className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
                 >
-                  {SEGMENT_OPTIONS.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label className="space-y-1.5">
-                <span className="text-xs font-bold uppercase tracking-wide text-on-surface-variant">
-                  Trạng thái
-                </span>
-                <select
-                  value={status}
-                  onChange={(event) =>
-                    setStatus(event.target.value as CustomerStatus)
-                  }
-                  className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
-                >
-                  {STATUS_OPTIONS.map((option) => (
+                  {guideOptions.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
@@ -210,27 +162,67 @@ export default function AdminCustomerEditPage() {
               </label>
             </div>
           </AdminCard>
-        </section>
+
+          <AdminCard radius="3xl" className="space-y-4">
+            <h2 className="text-xl font-black text-on-surface">
+              Lịch khởi hành định kỳ
+            </h2>
+
+            <div className="flex flex-wrap gap-2">
+              {recurringDays.map((day) => {
+                const isSelected = form.selectedDays.includes(day.id);
+
+                return (
+                  <button
+                    key={day.id}
+                    type="button"
+                    onClick={() => toggleDay(day.id)}
+                    className={`rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wide transition-colors ${
+                      isSelected
+                        ? "border-primary bg-primary/10 text-primary"
+                        : "border-outline-variant/30 bg-surface-container-lowest text-on-surface-variant"
+                    }`}
+                  >
+                    {day.label}
+                  </button>
+                );
+              })}
+            </div>
+          </AdminCard>
+        </div>
 
         <aside className="col-span-12 xl:col-span-4 space-y-6">
           <AdminCard radius="3xl" className="space-y-4">
-            <h2 className="text-lg font-black text-on-surface">Ảnh hồ sơ</h2>
+            <h2 className="text-lg font-black text-on-surface">
+              Ảnh đại diện tour
+            </h2>
 
             <label className="space-y-1.5">
               <span className="text-xs font-bold uppercase tracking-wide text-on-surface-variant">
                 URL ảnh
               </span>
               <input
-                value={avatarUrl}
-                onChange={(event) => setAvatarUrl(event.target.value)}
+                value={form.imageUrl}
+                onChange={(event) => setField("imageUrl", event.target.value)}
                 className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
               />
             </label>
 
-            <div className="relative h-60 overflow-hidden rounded-2xl border border-outline-variant/20">
+            <label className="space-y-1.5">
+              <span className="text-xs font-bold uppercase tracking-wide text-on-surface-variant">
+                Mô tả ảnh
+              </span>
+              <input
+                value={form.imageAlt}
+                onChange={(event) => setField("imageAlt", event.target.value)}
+                className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface outline-none focus:border-primary"
+              />
+            </label>
+
+            <div className="relative h-52 overflow-hidden rounded-2xl border border-outline-variant/20">
               <Image
-                src={avatarUrl}
-                alt={name || "Customer avatar"}
+                src={form.imageUrl || tour.imageUrl}
+                alt={form.imageAlt || tour.imageAlt}
                 fill
                 sizes="(max-width: 1280px) 100vw, 30vw"
                 className="object-cover"
